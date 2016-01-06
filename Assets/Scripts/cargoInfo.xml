@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CargoInfo>
+	<Cargo>
+	<Name>Cargo1</Name>
+	<Health>100</Health>
+	<Weight>5</Weight>
+	<Description>Random junk</Description>
+	</Cargo>
+</CargoInfo>
