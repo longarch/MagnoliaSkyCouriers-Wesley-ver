@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{37B5F2D6-5B9E-7CA8-7E28-45F63327542C}</ProjectGuid>
+	<ProjectGuid>{ADAC3F83-B7F4-462C-639C-D72A26C6929F}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -49,7 +49,11 @@
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
      <Compile Include="Assets\Scripts\AbstractMover.cs" />
+     <Compile Include="Assets\Scripts\CargoManager.cs" />
+     <Compile Include="Assets\Scripts\CrewController.cs" />
      <Compile Include="Assets\Scripts\CrewDebugScript.cs" />
+     <Compile Include="Assets\Scripts\CrewSelTutorialHandler.cs" />
+     <Compile Include="Assets\Scripts\DialogManager.cs" />
      <Compile Include="Assets\Scripts\DirectMover.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MoveToClick.cs" />
@@ -58,7 +62,9 @@
      <Compile Include="Assets\Scripts\UIManager.cs" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
+     <None Include="Assets\Resources\Dialogs\DialogTest.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
+     <None Include="Assets\Scripts\cargoInfo.xml" />
      <None Include="Assets\Scene_1.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
  <Reference Include="UnityEngine.UI">
@@ -71,16 +77,16 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="DOTween">
- <HintPath>C:/Users/Zeng/Documents/GitHub/MagnoliaSkyCouriers/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ <HintPath>C:/Users/Zeng/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="DOTween43">
- <HintPath>C:/Users/Zeng/Documents/GitHub/MagnoliaSkyCouriers/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
+ <HintPath>C:/Users/Zeng/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
  </Reference>
  <Reference Include="DOTween46">
- <HintPath>C:/Users/Zeng/Documents/GitHub/MagnoliaSkyCouriers/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
+ <HintPath>C:/Users/Zeng/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
  </Reference>
  <Reference Include="DOTween50">
- <HintPath>C:/Users/Zeng/Documents/GitHub/MagnoliaSkyCouriers/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
+ <HintPath>C:/Users/Zeng/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

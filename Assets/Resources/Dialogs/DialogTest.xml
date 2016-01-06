@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DialogCollection>
+	<Dialogs>
+		<Dialog name = "elf">
+			<text>...</text>
+			<text>Wake up, Captain!</text>
+			<text>Geez, what are you doing...daydreaming on your first assignment...</text>
+			<text>Well, I've been told to guide you around for our first delivery.</text>
+			<text>Everything's smooth sailing so far since we left port, its a short trip too.</text>
+			<text>I think its better if you experience things hands on, so lets get started!</text>
+		</Dialog>
+		<Dialog name = "elf">
+			<text>The ship is armed with a variety of facilities.</text>
+			<text>Facilities will automatically power up and start running when there's crew nearby operating it.</text>
+			<text>Try going over or direct one of us to operate the facility.</text>
+			<text>Use the left mouse button to select us, and click on the facility or anywhere near it.</text>
+			<text>You can hover over the mouse over any facility to see it does.
+			You can view the info over at the information box</text>
+		</Dialog>
+		<Dialog name = "elf">
+			<text>Look, the facility is up and running!</text>
+			<text>Some facilities may require more than a crew to operate</text>
+			<text>You can better optimize the using of facilities by sending the right crew to operate on the facility</text>
+			<text>Just so you know, I'm pretty good at operating "mobility" based facilities!</text>
+			<text>You can also refer to the information box to see the crew that works best with which facility types.</text>
+		</Dialog>
+		<Dialog name = "elf">
+			<text>Darn! Looks like we got company!</text>
+			<text>Looks like a bunch of raiders wants our precious cargo...!</text>
+			<text>Captain, its your call. You can choose to repel them off or outrun them.</text>
+			<text>Keep your cool and we will be fine!</text>
+		</Dialog>
+	</Dialogs>
+</DialogCollection>
