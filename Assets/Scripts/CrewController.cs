@@ -8,12 +8,10 @@ public class CrewController : MonoBehaviour {
     private Vector3 _firstPressLocation;
     bool _canMove = true;
 
-    [SerializeField]
-    private LayerMask _movableLayerMask;
-    [SerializeField]
-    private float _touchDistanceThreshold = 50.0f;
-    [SerializeField]
-    private float _clickRegisterTime = 0.3f;
+    [SerializeField] private LayerMask _movableLayerMask;
+    [SerializeField] private LayerMask _selectionLayerMask;
+    [SerializeField] private float _touchDistanceThreshold = 50.0f;
+    [SerializeField] private float _clickRegisterTime = 0.3f;
 
     [SerializeField]
     Camera cam;
@@ -23,8 +21,8 @@ public class CrewController : MonoBehaviour {
     private List<GameObject> crew;
     // Use this for initialization
     void Start () {
-	
-	}
+        _mover = crew[0].GetComponent<AbstractMover>(); //Default moving is the 1st character
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -91,34 +89,21 @@ public class CrewController : MonoBehaviour {
 
     private bool CheckScreenPoint(Vector3 screenPoint)
     {
-
-        //Ray2D _ray2D = cam.ScreenToWorldPoint(Input.mousePosition)
         RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
-                                             _movableLayerMask.value);
-
-
-
+                                             _selectionLayerMask.value);
         if (hit.collider != null)
         {
-            Debug.Log("Target Position: " + hit.collider.gameObject.name);
-            Vector3 hitWorldPos = new Vector3(hit.point.x, hit.point.y, 0);
-            //_mover.StopMoving();
-            //_mover.MoveTowards(hitWorldPos);
-
+            Debug.Log("Target Position in crew Layer: " + hit.collider.gameObject.name);
+            _mover = hit.collider.GetComponent<AbstractMover>();
         }
         else {
-            Debug.Log("null!");
+            RaycastHit2D moveTo = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
+                                             _movableLayerMask.value);
+            Debug.Log("Target Position in moving Layer: " + moveTo.collider.gameObject.name);
+            Vector3 moveWorldPos = new Vector3(moveTo.point.x, moveTo.point.y, 0);
+            _mover.StopMoving();
+            _mover.MoveTowards(moveWorldPos);
         }
-        /*
-		if (hitGround)
-		{
-			Vector3 hitWorldPosition = hitInfo.point;
-			_mover.StopMoving();
-			_mover.MoveTowards(hitWorldPosition);
-			
-
-		}
-		*/
         return true;
     }
 
