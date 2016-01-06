@@ -18,9 +18,8 @@ public class UIManager : MonoBehaviour {
 		if (pausePnl != null) {
 			pausePnl.gameObject.SetActive (false);
 		}
-
 		paused = false;
-		c.loadCargo ();
+		CargoManager c = new CargoManager ();
 	}
 
 	// Update is called once per frame
@@ -72,6 +71,7 @@ public class UIManager : MonoBehaviour {
 	public void quit_btn()
 	{
 		// check if in main menu or in-game
+		loadLevel("SelectionScene_2");
 	}
 
 
