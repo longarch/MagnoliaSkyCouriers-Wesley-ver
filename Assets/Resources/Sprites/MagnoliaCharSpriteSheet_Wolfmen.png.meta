@@ -1,0 +1,566 @@
+fileFormatVersion: 2
+guid: edd52ea08105ee14099d786abe7f428c
+timeCreated: 1451913764
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MagnoliaCharSpriteSheet_Wolfmen_0
+    21300002: MagnoliaCharSpriteSheet_Wolfmen_1
+    21300004: MagnoliaCharSpriteSheet_Wolfmen_2
+    21300006: MagnoliaCharSpriteSheet_Wolfmen_3
+    21300008: MagnoliaCharSpriteSheet_Wolfmen_4
+    21300010: MagnoliaCharSpriteSheet_Wolfmen_5
+    21300012: MagnoliaCharSpriteSheet_Wolfmen_6
+    21300014: MagnoliaCharSpriteSheet_Wolfmen_7
+    21300016: MagnoliaCharSpriteSheet_Wolfmen_8
+    21300018: MagnoliaCharSpriteSheet_Wolfmen_9
+    21300020: MagnoliaCharSpriteSheet_Wolfmen_10
+    21300022: MagnoliaCharSpriteSheet_Wolfmen_11
+    21300024: MagnoliaCharSpriteSheet_Wolfmen_12
+    21300026: MagnoliaCharSpriteSheet_Wolfmen_13
+    21300028: MagnoliaCharSpriteSheet_Wolfmen_14
+    21300030: MagnoliaCharSpriteSheet_Wolfmen_15
+    21300032: MagnoliaCharSpriteSheet_Wolfmen_16
+    21300034: MagnoliaCharSpriteSheet_Wolfmen_17
+    21300036: MagnoliaCharSpriteSheet_Wolfmen_18
+    21300038: MagnoliaCharSpriteSheet_Wolfmen_19
+    21300040: MagnoliaCharSpriteSheet_Wolfmen_20
+    21300042: MagnoliaCharSpriteSheet_Wolfmen_21
+    21300044: MagnoliaCharSpriteSheet_Wolfmen_22
+    21300046: MagnoliaCharSpriteSheet_Wolfmen_23
+    21300048: MagnoliaCharSpriteSheet_Wolfmen_24
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: MagnoliaCharSpriteSheet_Wolfmen_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 466
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -15}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 9}
+        - {x: 14, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 466
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -13, y: -16}
+        - {x: 11, y: -16}
+        - {x: 14, y: -15}
+        - {x: 16, y: -14}
+        - {x: 16, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_2
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 466
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: -11}
+        - {x: -13, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 12}
+        - {x: 15, y: 16}
+        - {x: -13, y: 16}
+        - {x: -16, y: 11}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_3
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 466
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: -11}
+        - {x: -13, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 12}
+        - {x: 15, y: 16}
+        - {x: -13, y: 16}
+        - {x: -16, y: 11}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_4
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 466
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -13, y: -16}
+        - {x: 11, y: -16}
+        - {x: 14, y: -15}
+        - {x: 16, y: -14}
+        - {x: 16, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_5
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 466
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -15}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 9}
+        - {x: 14, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_6
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 409
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 9}
+        - {x: -16, y: -7}
+        - {x: -13, y: -16}
+        - {x: 9, y: -16}
+        - {x: 12, y: -4}
+        - {x: 12, y: 15}
+        - {x: 10, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_7
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 409
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 12}
+        - {x: -16, y: -11}
+        - {x: -14, y: -16}
+        - {x: 10, y: -16}
+        - {x: 12, y: -7}
+        - {x: 12, y: 15}
+        - {x: 9, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_8
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 409
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -16, y: 10}
+        - {x: -16, y: -5}
+        - {x: -14, y: -10}
+        - {x: -12, y: -16}
+        - {x: 9, y: -16}
+        - {x: 13, y: -7}
+        - {x: 13, y: 13}
+        - {x: 8, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_9
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 409
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -16, y: 10}
+        - {x: -16, y: -5}
+        - {x: -14, y: -10}
+        - {x: -12, y: -16}
+        - {x: 9, y: -16}
+        - {x: 13, y: -7}
+        - {x: 13, y: 13}
+        - {x: 8, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_10
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 409
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 12}
+        - {x: -16, y: -11}
+        - {x: -14, y: -16}
+        - {x: 10, y: -16}
+        - {x: 12, y: -7}
+        - {x: 12, y: 15}
+        - {x: 9, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_11
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 409
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 9}
+        - {x: -16, y: -7}
+        - {x: -13, y: -16}
+        - {x: 9, y: -16}
+        - {x: 12, y: -4}
+        - {x: 12, y: 15}
+        - {x: 10, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_12
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 353
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16, y: 8}
+        - {x: 11, y: 16}
+        - {x: -14, y: 16}
+        - {x: -14, y: -13}
+        - {x: -11, y: -16}
+        - {x: 10, y: -16}
+        - {x: 9, y: -13}
+        - {x: 11, y: -10}
+        - {x: 16, y: 0}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_13
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 353
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16, y: 8}
+        - {x: 13, y: 16}
+        - {x: -7, y: 16}
+        - {x: -12, y: 13}
+        - {x: -12, y: -6}
+        - {x: -4, y: -16}
+        - {x: 12, y: -16}
+        - {x: 11, y: -13}
+        - {x: 16, y: -4}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_14
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 353
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 16}
+        - {x: -7, y: 16}
+        - {x: -12, y: 13}
+        - {x: -12, y: -7}
+        - {x: -6, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: -15}
+        - {x: 16, y: -6}
+        - {x: 16, y: 8}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_15
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 353
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 16}
+        - {x: -7, y: 16}
+        - {x: -12, y: 13}
+        - {x: -12, y: -7}
+        - {x: -6, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: -15}
+        - {x: 16, y: -6}
+        - {x: 16, y: 8}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_16
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 353
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16, y: 8}
+        - {x: 13, y: 16}
+        - {x: -7, y: 16}
+        - {x: -12, y: 13}
+        - {x: -12, y: -6}
+        - {x: -4, y: -16}
+        - {x: 12, y: -16}
+        - {x: 11, y: -13}
+        - {x: 16, y: -4}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_17
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 353
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16, y: 8}
+        - {x: 11, y: 16}
+        - {x: -14, y: 16}
+        - {x: -14, y: -13}
+        - {x: -11, y: -16}
+        - {x: 10, y: -16}
+        - {x: 9, y: -13}
+        - {x: 11, y: -10}
+        - {x: 16, y: 0}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_18
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 296
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 10}
+        - {x: -16, y: -9}
+        - {x: -12, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -13}
+        - {x: 16, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_19
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 296
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 4}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_20
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 296
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 16}
+        - {x: -13, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -8}
+        - {x: -13, y: -16}
+        - {x: 9, y: -16}
+        - {x: 15, y: -9}
+        - {x: 16, y: -7}
+        - {x: 16, y: 6}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_21
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 296
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 16}
+        - {x: -13, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -8}
+        - {x: -13, y: -16}
+        - {x: 9, y: -16}
+        - {x: 15, y: -9}
+        - {x: 16, y: -7}
+        - {x: 16, y: 6}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_22
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 296
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 4}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_23
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 296
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 10}
+        - {x: -16, y: -9}
+        - {x: -12, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -13}
+        - {x: 16, y: 16}
+    - name: MagnoliaCharSpriteSheet_Wolfmen_24
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 20
+        width: 232
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 65, y: -98}
+        - {x: 94, y: -101}
+        - {x: 104, y: -92}
+        - {x: 116, y: -44}
+        - {x: 116, y: 46}
+        - {x: 99, y: 128}
+        - {x: -99, y: 128}
+        - {x: -94, y: 33}
+        - {x: -116, y: -5}
+        - {x: -116, y: -32}
+        - {x: -109, y: -91}
+        - {x: -68, y: -111}
+        - {x: -47, y: -128}
+        - {x: 46, y: -128}
+        - {x: 54, y: -112}
+        - {x: 55, y: -79}
+        - {x: 58, y: -88}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

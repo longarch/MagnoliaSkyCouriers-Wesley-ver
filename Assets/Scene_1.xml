@@ -1,0 +1,14 @@
+<DialogScript>
+  <Dialog>
+    <name>Staff Karin</name>
+    <Speech > Hi, I'm a staff of Magnolia Courier Company!</Speech>
+  </Dialog>
+  <Dialog>
+    <name>Staff Rebe</name>
+    <Speech > Hi, I'm a staff here too!</Speech>
+  </Dialog>
+  <Dialog>
+    <name>Staff Karin</name>
+    <Speech > Don't take my line!</Speech>
+  </Dialog>
+</DialogScript>

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6c3b135a3aae8f545961724042790b08
+timeCreated: 1451896215
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _shipSpriteRenderer: {instanceID: 0}
+  - ship: {instanceID: 0}
+  - sprite: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
