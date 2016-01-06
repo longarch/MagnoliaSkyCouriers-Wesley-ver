@@ -1,0 +1,564 @@
+fileFormatVersion: 2
+guid: 94ca193bd9b5a0740ae395c315957468
+timeCreated: 1452081286
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MagnoliaCharSpriteSheetElf_0
+    21300002: MagnoliaCharSpriteSheetElf_1
+    21300004: MagnoliaCharSpriteSheetElf_2
+    21300006: MagnoliaCharSpriteSheetElf_3
+    21300008: MagnoliaCharSpriteSheetElf_4
+    21300010: MagnoliaCharSpriteSheetElf_5
+    21300012: MagnoliaCharSpriteSheetElf_6
+    21300014: MagnoliaCharSpriteSheetElf_7
+    21300016: MagnoliaCharSpriteSheetElf_8
+    21300018: MagnoliaCharSpriteSheetElf_9
+    21300020: MagnoliaCharSpriteSheetElf_10
+    21300022: MagnoliaCharSpriteSheetElf_11
+    21300024: MagnoliaCharSpriteSheetElf_12
+    21300026: MagnoliaCharSpriteSheetElf_13
+    21300028: MagnoliaCharSpriteSheetElf_14
+    21300030: MagnoliaCharSpriteSheetElf_15
+    21300032: MagnoliaCharSpriteSheetElf_16
+    21300034: MagnoliaCharSpriteSheetElf_17
+    21300036: MagnoliaCharSpriteSheetElf_18
+    21300038: MagnoliaCharSpriteSheetElf_19
+    21300040: MagnoliaCharSpriteSheetElf_20
+    21300042: MagnoliaCharSpriteSheetElf_21
+    21300044: MagnoliaCharSpriteSheetElf_22
+    21300046: MagnoliaCharSpriteSheetElf_23
+    21300048: MagnoliaCharSpriteSheetElf_24
+    21300050: MagnoliaCharSpriteSheetElf_25
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: MagnoliaCharSpriteSheetElf_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 466
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 16.5}
+        - {x: -11, y: 16.5}
+        - {x: -16, y: 7.5}
+        - {x: -16, y: -16.5}
+        - {x: 16, y: -16.5}
+        - {x: 16, y: 6.5}
+        - {x: 15, y: 15.5}
+    - name: MagnoliaCharSpriteSheetElf_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 465
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 8}
+        - {x: 12, y: 16}
+    - name: MagnoliaCharSpriteSheetElf_2
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 466
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 16.5}
+        - {x: -12, y: 16.5}
+        - {x: -16, y: 4.5}
+        - {x: -16, y: -15.5}
+        - {x: -13, y: -16.5}
+        - {x: 14, y: -16.5}
+        - {x: 16, y: -14.5}
+        - {x: 16, y: 12.5}
+        - {x: 15, y: 15.5}
+    - name: MagnoliaCharSpriteSheetElf_3
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 466
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 16.5}
+        - {x: -11, y: 16.5}
+        - {x: -16, y: 7.5}
+        - {x: -16, y: -16.5}
+        - {x: 16, y: -16.5}
+        - {x: 16, y: 6.5}
+        - {x: 15, y: 15.5}
+    - name: MagnoliaCharSpriteSheetElf_4
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 465
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 8}
+        - {x: 12, y: 16}
+    - name: MagnoliaCharSpriteSheetElf_5
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 466
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 16.5}
+        - {x: -12, y: 16.5}
+        - {x: -16, y: 4.5}
+        - {x: -16, y: -15.5}
+        - {x: -13, y: -16.5}
+        - {x: 14, y: -16.5}
+        - {x: 16, y: -14.5}
+        - {x: 16, y: 12.5}
+        - {x: 15, y: 15.5}
+    - name: MagnoliaCharSpriteSheetElf_6
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 408
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16.5}
+        - {x: -16, y: -14.5}
+        - {x: -15, y: -16.5}
+        - {x: 11, y: -16.5}
+        - {x: 11, y: 16.5}
+    - name: MagnoliaCharSpriteSheetElf_7
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 409
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -16}
+        - {x: 11, y: -16}
+        - {x: 11, y: 11}
+        - {x: 9, y: 16}
+    - name: MagnoliaCharSpriteSheetElf_8
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 408
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 16.5}
+        - {x: -11, y: 16.5}
+        - {x: -15, y: 10.5}
+        - {x: -16, y: -5.5}
+        - {x: -16, y: -16.5}
+        - {x: 12, y: -16.5}
+        - {x: 14, y: -14.5}
+        - {x: 14, y: 9.5}
+        - {x: 13, y: 13.5}
+    - name: MagnoliaCharSpriteSheetElf_9
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 408
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 16.5}
+        - {x: -11, y: 16.5}
+        - {x: -15, y: 10.5}
+        - {x: -16, y: -5.5}
+        - {x: -16, y: -16.5}
+        - {x: 12, y: -16.5}
+        - {x: 14, y: -14.5}
+        - {x: 14, y: 9.5}
+        - {x: 13, y: 13.5}
+    - name: MagnoliaCharSpriteSheetElf_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 409
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -16}
+        - {x: 11, y: -16}
+        - {x: 11, y: 11}
+        - {x: 9, y: 16}
+    - name: MagnoliaCharSpriteSheetElf_11
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 408
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16.5}
+        - {x: -16, y: -14.5}
+        - {x: -15, y: -16.5}
+        - {x: 11, y: -16.5}
+        - {x: 11, y: 16.5}
+    - name: MagnoliaCharSpriteSheetElf_12
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 352
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16.5}
+        - {x: -12, y: -10.5}
+        - {x: -10, y: -16.5}
+        - {x: 16, y: -16.5}
+        - {x: 16, y: 11.5}
+        - {x: 13, y: 16.5}
+    - name: MagnoliaCharSpriteSheetElf_13
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 353
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 10}
+        - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -12, y: 13}
+        - {x: -12, y: 3}
+        - {x: -8, y: -13}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 16, y: -10}
+        - {x: 16, y: -2}
+    - name: MagnoliaCharSpriteSheetElf_14
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 352
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 16.5}
+        - {x: -10, y: 16.5}
+        - {x: -12, y: 13.5}
+        - {x: -12, y: -16.5}
+        - {x: 9, y: -16.5}
+        - {x: 16, y: -12.5}
+        - {x: 16, y: 5.5}
+        - {x: 14, y: 11.5}
+    - name: MagnoliaCharSpriteSheetElf_15
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 352
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16.5}
+        - {x: -12, y: 14.5}
+        - {x: -12, y: -16.5}
+        - {x: 13, y: -16.5}
+        - {x: 16, y: -14.5}
+        - {x: 16, y: 4.5}
+        - {x: 11, y: 16.5}
+    - name: MagnoliaCharSpriteSheetElf_16
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 353
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 10}
+        - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -12, y: 13}
+        - {x: -12, y: 3}
+        - {x: -8, y: -13}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 16, y: -10}
+        - {x: 16, y: -2}
+    - name: MagnoliaCharSpriteSheetElf_17
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 352
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16.5}
+        - {x: -12, y: -10.5}
+        - {x: -10, y: -16.5}
+        - {x: 16, y: -16.5}
+        - {x: 16, y: 11.5}
+        - {x: 13, y: 16.5}
+    - name: MagnoliaCharSpriteSheetElf_18
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 295
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: -14.5}
+        - {x: -13, y: -16.5}
+        - {x: 11, y: -16.5}
+        - {x: 16, y: -14.5}
+        - {x: 16, y: 16.5}
+        - {x: -12, y: 16.5}
+        - {x: -16, y: 7.5}
+    - name: MagnoliaCharSpriteSheetElf_19
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 296
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 13}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 7}
+        - {x: 14, y: 16}
+    - name: MagnoliaCharSpriteSheetElf_20
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 295
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16.5}
+        - {x: -15, y: 7.5}
+        - {x: -16, y: 5.5}
+        - {x: -16, y: -13.5}
+        - {x: -5, y: -16.5}
+        - {x: 10, y: -16.5}
+        - {x: 16, y: -12.5}
+        - {x: 16, y: 11.5}
+        - {x: 14, y: 16.5}
+    - name: MagnoliaCharSpriteSheetElf_21
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 295
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: -14.5}
+        - {x: -13, y: -16.5}
+        - {x: 11, y: -16.5}
+        - {x: 16, y: -14.5}
+        - {x: 16, y: 16.5}
+        - {x: -12, y: 16.5}
+        - {x: -16, y: 7.5}
+    - name: MagnoliaCharSpriteSheetElf_22
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 296
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 13}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 7}
+        - {x: 14, y: 16}
+    - name: MagnoliaCharSpriteSheetElf_23
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 295
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16.5}
+        - {x: -15, y: 7.5}
+        - {x: -16, y: 5.5}
+        - {x: -16, y: -13.5}
+        - {x: -5, y: -16.5}
+        - {x: 10, y: -16.5}
+        - {x: 16, y: -12.5}
+        - {x: 16, y: 11.5}
+        - {x: 14, y: 16.5}
+    - name: MagnoliaCharSpriteSheetElf_24
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 15
+        width: 232
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 116, y: -36}
+        - {x: 102, y: -7}
+        - {x: 116, y: 45}
+        - {x: 116, y: 50}
+        - {x: 83, y: 100}
+        - {x: 48, y: 128}
+        - {x: -39, y: 128}
+        - {x: -52, y: 122}
+        - {x: -64, y: 120}
+        - {x: -116, y: 50}
+        - {x: -113, y: 22}
+        - {x: -99, y: -1}
+        - {x: -116, y: -55}
+        - {x: -116, y: -99}
+        - {x: -66, y: -113}
+        - {x: -53, y: -128}
+        - {x: 46, y: -128}
+        - {x: 67, y: -100}
+        - {x: 112, y: -105}
+        - {x: 116, y: -92}
+    - name: MagnoliaCharSpriteSheetElf_25
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 103
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
