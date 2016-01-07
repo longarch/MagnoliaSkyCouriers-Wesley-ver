@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\CrewSelTutorialHandler.cs" />
      <Compile Include="Assets\Scripts\DialogManager.cs" />
      <Compile Include="Assets\Scripts\DirectMover.cs" />
+     <Compile Include="Assets\Scripts\EventManager.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MoveToClick.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
