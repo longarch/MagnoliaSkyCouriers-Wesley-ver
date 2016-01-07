@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public enum STATE { START = 0, ONGOING, EVENT, END };
     private STATE gameMode;
 
-    private float destination;
+    //private float destination;
+    [SerializeField]
+    GameObject destination;
 
     public static GameManager Instance //can call from any other class w/o reference
     {
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameMode = STATE.START;
-        destination = 100f;
+        //destination = 100f;
     }
 
     // Update is called once per frame
@@ -43,12 +45,18 @@ public class GameManager : MonoBehaviour
         return gameMode;
     }
 
-    public void checkShipStatus(float shipPos, float shipHP)
+    public Collider2D getDestination()
+    {
+        return destination.GetComponent<Collider2D>();
+    }
+
+    public void checkShipStatus(Ship shipPos, float shipHP)
     {
         if (gameMode.Equals(STATE.ONGOING))
         {
-            if (shipPos >= destination)
-                gameMode = STATE.END;
+            //if (shipPos.GetComponent<Collider2D>().IsTouching(destination.GetComponent<Collider2D>())) 
+            //if (shipPos >= destination)
+              //gameMode = STATE.END;
         }
         if (shipHP <= 0)
             gameMode = STATE.END;
@@ -67,7 +75,7 @@ public class GameManager : MonoBehaviour
 
     public void loadLevel(string s)
     {
-        Application.LoadLevel(s);
+        //Application.LoadLevel(s);
         Debug.Log("Hello");
     }
 }
