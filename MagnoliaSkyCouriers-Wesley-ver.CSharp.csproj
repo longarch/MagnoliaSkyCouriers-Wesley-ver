@@ -80,8 +80,11 @@
     <Compile Include="Assets\Scripts\CargoManager.cs" />
     <Compile Include="Assets\Scripts\CrewController.cs" />
     <Compile Include="Assets\Scripts\CrewDebugScript.cs" />
+    <Compile Include="Assets\Scripts\CrewSelTutorialHandler.cs" />
+    <Compile Include="Assets\Scripts\DialogManager.cs" />
     <Compile Include="Assets\Scripts\DirectMover.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Goal.cs" />
     <Compile Include="Assets\Scripts\MoveToClick.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Ship.cs" />
@@ -94,6 +97,7 @@
     <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
     <None Include="Assets\Demigiant\DOTween\Editor\DOTweenEditor.XML" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\Resources\Dialogs\DialogTest.xml" />
     <None Include="Assets\Scene_1.xml" />
     <None Include="Assets\Scripts\cargoInfo.xml" />
   </ItemGroup>

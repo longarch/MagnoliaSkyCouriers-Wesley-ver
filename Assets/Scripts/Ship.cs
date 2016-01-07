@@ -6,6 +6,11 @@ public class Ship : MonoBehaviour
 {
     private int Health;
     public float position;
+    private float speed = 0.05f;
+    [SerializeField]
+    GameObject Goal;
+    [SerializeField]
+    Camera mainCam;
     
     // Use this for initialization
     void Start()
@@ -18,7 +23,7 @@ public class Ship : MonoBehaviour
     void Update()
     {
        // Debug.Log(Health);
-        GameManager.Instance.checkShipStatus(position,Health);
+        GameManager.Instance.checkShipStatus(this,Health);
         switch((int)GameManager.Instance.getStatus())
         {
             case 0:
@@ -53,7 +58,17 @@ public class Ship : MonoBehaviour
 
     public void moveShip()
     {
-        transform.position += Vector3.right * 0.05f;
-        position += 0.3f;
+        transform.position += Vector3.right * speed;
+        //this.collider
+
+        float distance = Goal.transform.position.x - transform.position.x;
+
+        if (distance > 16)
+            mainCam.transform.position += Vector3.right * speed;
+        Debug.Log("Distance left : " + distance);
+
+        //if (GameManager.Instance.getDestination().IsTouching(this.GetComponent<Collider2D>()))
+        //if (distance <= 0)
+          //  GameManager.Instance.setStatus(GameManager.STATE.END);
     }
 }
