@@ -1,8 +1,0 @@
-sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/GameUI.unity
-=======
-- path: Assets/Scenes/GameMode test.unity
->>>>>>> origin/master
-  isLoaded: 1
-  isActive: 1

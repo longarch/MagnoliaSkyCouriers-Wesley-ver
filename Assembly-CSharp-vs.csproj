@@ -50,13 +50,17 @@
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
      <Compile Include="Assets\Scripts\AbstractMover.cs" />
      <Compile Include="Assets\Scripts\CargoManager.cs" />
+     <Compile Include="Assets\Scripts\Crew.cs" />
      <Compile Include="Assets\Scripts\CrewController.cs" />
      <Compile Include="Assets\Scripts\CrewDebugScript.cs" />
      <Compile Include="Assets\Scripts\CrewSelTutorialHandler.cs" />
      <Compile Include="Assets\Scripts\DialogManager.cs" />
      <Compile Include="Assets\Scripts\DirectMover.cs" />
      <Compile Include="Assets\Scripts\EventManager.cs" />
+     <Compile Include="Assets\Scripts\Facility.cs" />
+     <Compile Include="Assets\Scripts\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Goal.cs" />
      <Compile Include="Assets\Scripts\MoveToClick.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Ship.cs" />

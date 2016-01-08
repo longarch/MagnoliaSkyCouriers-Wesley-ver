@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour {
 	private static UIManager _instance = null;
 	//public CargoManager c;
 
+	bool isDebug = false;
+
 	public static UIManager Instance
 	{
 		get { return _instance; }
@@ -65,18 +67,16 @@ public class UIManager : MonoBehaviour {
 		//DialogManager.Instance.returnDialogs (0);
 		//Dialogs.Add(" ");
 		if (Application.loadedLevelName.Contains ("DialogScene")) {
-			if (Dialogs != null) {						
+			if (Dialogs != null && isDebug) {						
 				setUpDialog (DialogManager.Instance.returnDialogs (0).getListofTexts ());
 			}
-		} else {
-			DialogPnl.gameObject.SetActive (false);
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (Application.loadedLevelName.Contains ("DialogScene")) {
-			if (Dialogs != null) {	
+			if (Dialogs != null && isDebug) {	
 				if (Input.GetButtonDown ("Jump") && current < Dialogs.Count - 1) {
 					current += 1;
 					StartCoroutine (TypeText (Dialogs [current]));
