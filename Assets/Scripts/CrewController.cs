@@ -99,7 +99,7 @@ public class CrewController : MonoBehaviour {
         else {
             RaycastHit2D moveTo = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
                                              _movableLayerMask.value);
-            Debug.Log("Target Position in moving Layer: " + moveTo.collider.gameObject.name);
+            //Debug.Log("Target Position in moving Layer: " + moveTo.collider.gameObject.name);
             Vector3 moveWorldPos = new Vector3(moveTo.point.x, moveTo.point.y, 0);
             _mover.StopMoving();
             _mover.MoveTowards(moveWorldPos);

@@ -64,19 +64,25 @@ public class UIManager : MonoBehaviour {
 		paused = false;
 		//DialogManager.Instance.returnDialogs (0);
 		//Dialogs.Add(" ");
-		if (Dialogs != null) {						
-			setUpDialog(DialogManager.Instance.returnDialogs (0).getListofTexts());
+		if (Application.loadedLevelName.Contains ("DialogScene")) {
+			if (Dialogs != null) {						
+				setUpDialog (DialogManager.Instance.returnDialogs (0).getListofTexts ());
+			}
+		} else {
+			DialogPnl.gameObject.SetActive (false);
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (Dialogs != null) {	
-			if (Input.GetButtonDown ("Jump") && current < Dialogs.Count - 1) {
-				current += 1;
-				StartCoroutine (TypeText (Dialogs [current]));
+		if (Application.loadedLevelName.Contains ("DialogScene")) {
+			if (Dialogs != null) {	
+				if (Input.GetButtonDown ("Jump") && current < Dialogs.Count - 1) {
+					current += 1;
+					StartCoroutine (TypeText (Dialogs [current]));
+				}
+				txtInstruction1.text = emptySpeech;
 			}
-			txtInstruction1.text = emptySpeech;
 		}
 	}
 

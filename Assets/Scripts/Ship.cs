@@ -66,11 +66,11 @@ public class Ship : MonoBehaviour
 
     public void moveShip()
     {
-        transform.position += Vector3.right * speed;
+        //transform.position += Vector3.right * speed;
 
-        float distance = Goal.transform.position.x - transform.position.x;
+        //float distance = Goal.transform.position.x - transform.position.x;
         
-        Debug.Log("Distance left : " + distance);
+        //Debug.Log("Distance left : " + distance);
         
     }
 }
