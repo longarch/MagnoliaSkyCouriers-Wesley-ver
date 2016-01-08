@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class CrewController : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class CrewController : MonoBehaviour {
     bool _canMove = true;
 
     [SerializeField] private LayerMask _movableLayerMask;
+    [SerializeField] private LayerMask _facilityLayerMask;
     [SerializeField] private LayerMask _selectionLayerMask;
     [SerializeField] private float _touchDistanceThreshold = 50.0f;
     [SerializeField] private float _clickRegisterTime = 0.3f;
@@ -16,12 +18,15 @@ public class CrewController : MonoBehaviour {
     [SerializeField]
     Camera cam;
     private AbstractMover _mover;
+    private GameObject selectedCrew;
 
     [SerializeField]
-    private List<GameObject> crew;
+    private List<GameObject> crews;
+    
     // Use this for initialization
     void Start () {
-        _mover = crew[0].GetComponent<AbstractMover>(); //Default moving is the 1st character
+        _mover = crews[0].GetComponent<AbstractMover>(); //Default moving is the 1st character
+        selectedCrew = crews[0];
     }
 	
 	// Update is called once per frame
@@ -93,18 +98,53 @@ public class CrewController : MonoBehaviour {
                                              _selectionLayerMask.value);
         if (hit.collider != null)
         {
-            Debug.Log("Target Position in crew Layer: " + hit.collider.gameObject.name);
-            _mover = hit.collider.GetComponent<AbstractMover>();
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Crew"))
+            {
+                Debug.Log("Target Position in crew Layer: " + hit.collider.gameObject.name);
+                //_mover = hit.collider.GetComponent<AbstractMover>();
+                selCrew(hit.collider.gameObject);
+                _mover = selectedCrew.GetComponent<AbstractMover>();
+            }
+            else
+            {
+                Debug.Log("Target Position in moving Layer: " + hit.collider.gameObject.name);
+                Vector3 moveWorldPos = new Vector3(hit.point.x, hit.point.y, 0);
+                _mover.StopMoving();
+                _mover.MoveTowards(moveWorldPos);
+            }
         }
         else {
+            /*RaycastHit2D facilityAssign = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
+                                             _facilityLayerMask.value);
+
+            if (facilityAssign.collider != null)
+            {
+                selectedCrew.GetComponent<Crew>().setAssigned(true);
+            }
+            else
+            {
+                selectedCrew.GetComponent<Crew>().setAssigned(false);
+            }
             RaycastHit2D moveTo = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
                                              _movableLayerMask.value);
             //Debug.Log("Target Position in moving Layer: " + moveTo.collider.gameObject.name);
             Vector3 moveWorldPos = new Vector3(moveTo.point.x, moveTo.point.y, 0);
             _mover.StopMoving();
-            _mover.MoveTowards(moveWorldPos);
+            _mover.MoveTowards(moveWorldPos);*/
+            Debug.Log("Null");
         }
         return true;
     }
 
+    private void selCrew(GameObject selected)
+    {
+        foreach(GameObject Crew in crews)
+        {
+            if (Crew.name.Equals(selected.name))
+            {
+                selectedCrew = Crew;
+                break;
+            }
+        }
+    }
 }
