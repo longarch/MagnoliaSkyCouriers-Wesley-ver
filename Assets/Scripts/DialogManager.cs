@@ -5,16 +5,11 @@ using System.Xml;
 using System.IO;
 
 public class DialogManager : MonoBehaviour {
-
-
-
+	
 	private static DialogManager _instance = null;
 
 	public class Dialog
 	{
-
-
-
 		public List<string> texts;
 
 		public Dialog()
@@ -30,7 +25,6 @@ public class DialogManager : MonoBehaviour {
 			{
 				loadXMLFromAsset(assets);
 			}
-
 		}
 
 		// Following method load xml file from resouces folder under Assets
@@ -45,8 +39,8 @@ public class DialogManager : MonoBehaviour {
 				for (int i = 0; i < node.SelectSingleNode("Dialog").ChildNodes.Count; i ++)
 				{
 					//p.ProjReq.Add(node);
-					texts.Add(node.SelectSingleNode("Dialog").ChildNodes[i].InnerText);
-					
+					texts.Add(node.SelectSingleNode("Dialog").ChildNodes[i].InnerText);			
+					//Debug.Log(texts[i]);
 				}
 
 			}
@@ -67,8 +61,6 @@ public class DialogManager : MonoBehaviour {
 	TextAsset asset;
 
 	List<Dialog> _Dialogs;
-	
-
 
 	public static DialogManager Instance
 	{
@@ -89,12 +81,7 @@ public class DialogManager : MonoBehaviour {
 		Dialog D = new Dialog (asset);
 
 		_Dialogs.Add (D);
-
-
-
 	}
-
-
 
 	void Start() {
 
@@ -105,8 +92,4 @@ public class DialogManager : MonoBehaviour {
 	{
 		return _Dialogs[i];
 	}
-
-
-	
-
 }

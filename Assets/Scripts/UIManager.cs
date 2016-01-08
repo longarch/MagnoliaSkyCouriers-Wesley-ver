@@ -1,30 +1,165 @@
 ﻿using UnityEngine;
-using System.Collections;
-using DG.Tweening;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 
+//detect which scene
 public class UIManager : MonoBehaviour {
 
-	[SerializeField]
-	private Button start_btn;
-	[SerializeField]
-	private Image pausePnl;
+	//public enum Tutorial1Phase
+	//{
+	//	PreStart,
+	//	Dialog,
+	//	Action,
+	//	Ending
+	//}
 
+	[SerializeField]
+	Text txtInstruction1;
+	[SerializeField]
+	Button start_btn, dlogNext_btn, dlogCom_btn;
+	[SerializeField]
+	Image pausePnl,DialogPnl;
+	[SerializeField]
+	List<string> Dialogs, Dialogs_2, Dialogs_3;
+
+	string emptySpeech = "";
 	private bool paused;
-	public CargoManager c;
+	int current = 0, dialogCount = 0;
+
+	private int menuState = 0;
+
+	//public Tutorial1Phase TPhase = new Tutorial1Phase ();
+
+	private static UIManager _instance = null;
+	//public CargoManager c;
+
+	public static UIManager Instance
+	{
+		get { return _instance; }
+	}
+
+	void Awake()
+	{
+		if (_instance != null && _instance != this)
+		{
+			Destroy(gameObject);
+		}
+		_instance = this;
+
+	}
 
 	// Use this for initialization
 	void Start () {
+
+		//TPhase = Tutorial1Phase.PreStart;
 		if (pausePnl != null) {
 			pausePnl.gameObject.SetActive (false);
 		}
+		if (dlogCom_btn != null) {
+			dlogCom_btn.gameObject.SetActive (false);
+		}
+
 		paused = false;
-		CargoManager c = new CargoManager ();
+		//DialogManager.Instance.returnDialogs (0);
+		//Dialogs.Add(" ");
+		if (Dialogs != null) {						
+			setUpDialog(DialogManager.Instance.returnDialogs (0).getListofTexts());
+		}
 	}
 
 	// Update is called once per frame
 	void Update () {
+		if (Dialogs != null) {	
+			if (Input.GetButtonDown ("Jump") && current < Dialogs.Count - 1) {
+				current += 1;
+				StartCoroutine (TypeText (Dialogs [current]));
+			}
+			txtInstruction1.text = emptySpeech;
+		}
+	}
 
+	IEnumerator TypeText (string speech) {
+		emptySpeech = "";
+		foreach (char letter in speech) {
+			emptySpeech += letter;
+			yield return 0;
+			yield return new WaitForEndOfFrame();
+		}      
+	}
+
+	public void triggerNextDialog()
+	{
+		txtInstruction1.text = "";
+		if (current < Dialogs.Count - 1) {
+			current += 1;
+			StopAllCoroutines();
+			StartCoroutine (TypeText (Dialogs [current]));
+		}
+
+		//Last line of dialog!
+
+		if (current == Dialogs.Count - 1) {
+			//if (dialogCount < 2) {
+			//	dialogCount++;
+				//Debug.Log (dialogCount);
+				//setUpDialog (dialogCount);
+			//} else {				
+				dlogCom_btn.gameObject.SetActive (true);
+			//}						
+		}
+	}
+
+	public void HideDialogBox()
+	{
+		//TPhase = Tutorial1Phase.Action;
+		DialogPnl.gameObject.SetActive (false);
+	}
+
+	public void setUpDialog(int i)
+	{
+		//TPhase = Tutorial1Phase.Dialog;
+		DialogPnl.gameObject.SetActive (true);
+		dlogCom_btn.gameObject.SetActive (false);
+		current = 0;
+		Dialogs.Clear ();
+		switch (i) {
+		case 1:
+			for (int j = 0; j < Dialogs_2.Count; j ++) {
+				Dialogs.Add (Dialogs_2[j]);
+			}
+			break;
+		case 2:
+			for (int j= 0; j < Dialogs_3.Count; j ++) {
+				Dialogs.Add (Dialogs_3[j]);
+			}
+			break;
+		}
+
+		StopAllCoroutines();
+		StartCoroutine (TypeText (Dialogs [current]));
+
+
+		//tutNextBtn.onClick.AddListener (() => triggerNextDialog_2());
+	}
+
+	public void setUpDialog(List<string> newDialog)
+	{
+		//TPhase = Tutorial1Phase.Dialog;
+		DialogPnl.gameObject.SetActive (true);
+		dlogCom_btn.gameObject.SetActive (false);
+		current = 0;
+		Dialogs.Clear ();
+
+		for (int j = 0; j < newDialog.Count; j ++) {			
+			Dialogs.Add (newDialog[j]);
+		}
+
+		StopAllCoroutines();
+		StartCoroutine(TypeText (Dialogs [current]));
+
+		//tutNextBtn.onClick.AddListener (() => triggerNextDialog_2());
 	}
 
 	public void loadLevel(string s)
@@ -41,7 +176,6 @@ public class UIManager : MonoBehaviour {
 	public void pause_btn() //in-game pause button
 	{
 		if (paused) {
-
 			Sequence sequence = DOTween.Sequence();
 			//sequence.Complete();
 			sequence.Append(pausePnl.rectTransform.DOLocalMoveY(950, 1.0f, false));
@@ -65,14 +199,35 @@ public class UIManager : MonoBehaviour {
 
 	public void restart_btn()
 	{
-		c.cargoDamaged ("Cargo1", 5);
+		//cargo test
+		//c.cargoDamaged ("Cargo1", 5);
 	}
 
 	public void quit_btn()
 	{
 		// check if in main menu or in-game
-		loadLevel("SelectionScene_2");
+		//loadLevel("SelectionScene_2");
 	}
 
+	public void dialogNext()
+	{
+		triggerNextDialog ();
+	}
 
+	public void dialogComplete()
+	{
+		HideDialogBox ();
+	}
+
+	private void initGameState()
+	{
+		switch (menuState) {
+		case 1: //start screen
+			break;
+		case 2: //menu screen
+			break;
+		case 3: //game screen
+			break;
+		}
+	}
 }
