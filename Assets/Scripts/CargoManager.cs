@@ -13,10 +13,29 @@ public class CargoManager : MonoBehaviour {
 
 	private XmlDocument xmlDoc;
 	private List<Cargo> cargoStores;
+    private int damage;
 
 	void Start () {
 		loadCargo ();
+        damage = 2;
 	}
+
+    void Update()
+    {
+        if (GameManager.Instance.getStatus() == GameManager.STATE.EVENT)
+        {
+            cargoDamaged(cargoStores[0].getName(), damage);
+            Debug.Log("Cargo in Damaged");
+            foreach(Cargo c in cargoStores)
+            {
+                if (c.getLost())
+                {
+                    GameManager.Instance.setStatus(GameManager.STATE.CARGOLOST);
+                    break;
+                }
+            }
+        }
+    }
 
 	public void loadCargo()
 	{
@@ -55,8 +74,6 @@ public class CargoManager : MonoBehaviour {
 				if (cargoStores [i].getHealth () <= 0) {
 					cargoStores [i].setLost (true);
 				}
-				Debug.Log(cargoStores[i].getHealth());
-				Debug.Log(cargoStores[i].getLost());
 			}
 		}
 	}

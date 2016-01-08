@@ -16,7 +16,11 @@ public class Goal : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Hellooooooo");
-        //if (other.GetComponent<GameObject>().name == "Ship")
-            GameManager.Instance.setStatus(GameManager.STATE.END);
+        Debug.Log(other);
+        if (other.name == "Ship")
+            GameManager.Instance.setStatus(GameManager.STATE.GOAL);
+        if (other.name == "Camera")
+            GameManager.Instance.setFollow(false);
     }
+    
 }

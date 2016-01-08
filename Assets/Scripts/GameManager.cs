@@ -5,8 +5,9 @@ using System;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance = null;
-    public enum STATE { START = 0, ONGOING, EVENT, END };
+    public enum STATE { START = 0, ONGOING, EVENT, CARGOLOST, GOAL };
     private STATE gameMode;
+    private bool followShip;
 
     //private float destination;
     [SerializeField]
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameMode = STATE.START;
+        followShip = false;
         //destination = 100f;
     }
 
@@ -59,13 +61,13 @@ public class GameManager : MonoBehaviour
               //gameMode = STATE.END;
         }
         if (shipHP <= 0)
-            gameMode = STATE.END;
+            gameMode = STATE.CARGOLOST;
     }
 
     public void checkCargoStatus(float cargoHP)
     {
         if (cargoHP <= 0)
-            gameMode = STATE.END;
+            gameMode = STATE.CARGOLOST;
     }
 
     public void setStatus(STATE curState)
@@ -76,6 +78,16 @@ public class GameManager : MonoBehaviour
     public void loadLevel(string s)
     {
         //Application.LoadLevel(s);
-        Debug.Log("Hello");
+        //Debug.Log("Hello");
+    }
+
+    public bool shouldFollow()
+    {
+        return followShip;
+    }
+
+    public void setFollow(bool follow)
+    {
+        followShip = follow;
     }
 }
