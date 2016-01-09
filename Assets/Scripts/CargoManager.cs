@@ -8,12 +8,28 @@ using UnityEngine.UI;
 
 public class CargoManager : MonoBehaviour {
 
+	private static CargoManager _instance = null;
+
 	[SerializeField]
 	private TextAsset cargoXML;
 
 	private XmlDocument xmlDoc;
 	private List<Cargo> cargoStores;
     private int damage;
+
+	public static CargoManager Instance //can call from any other class w/o reference
+	{
+		get { return _instance; }
+	}
+
+	void Awake()
+	{
+		if (_instance != null && _instance != this)
+		{
+			Destroy(gameObject);
+		}
+		_instance = this;
+	}
 
 	void Start () {
 		loadCargo ();
