@@ -1,19 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-<<<<<<< HEAD
 using System.Collections.Generic;
 
-=======
-using System;
 using DG.Tweening;
->>>>>>> origin/master
+
 
 public class Ship : MonoBehaviour
 {
 	private int Health, currentHealth = 100, cargoHealth = 100;
     public float position;
-<<<<<<< HEAD
+
 	[SerializeField]
     private float speed = 0.05f;
     [SerializeField]
@@ -21,10 +18,9 @@ public class Ship : MonoBehaviour
 	[SerializeField]
 	float heightChangeTimer = 5.0f;
 	private float heightAscent = 0;
-=======
-	private float speed = 0.05f, maxHealth = 1.0f;
-    [SerializeField]
-    GameObject Goal;
+
+	float maxHealth = 1.0f;
+   
 
 	[SerializeField]
 	Image healthImage;
@@ -38,7 +34,7 @@ public class Ship : MonoBehaviour
 	[SerializeField]
 	Camera innerCam;
     
->>>>>>> origin/master
+
     // Use this for initialization
     void Start()
     {

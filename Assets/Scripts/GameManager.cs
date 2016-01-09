@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 using System.Collections;
 using System;
-//using DG.Tweening;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject destination;
 
-<<<<<<< HEAD
 	[SerializeField]
 	Image healthImage;
 
@@ -31,8 +30,7 @@ public class GameManager : MonoBehaviour
 
 	private float countDownTimer = 5.0f;
 
-=======
->>>>>>> origin/master
+
     public static GameManager Instance //can call from any other class w/o reference
     {
         get { return _instance; }
@@ -64,11 +62,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
+
 		countDown ();
 
 		if (Input.GetButtonDown ("Jump")) {
-			takeDamage(5);
+			//takeDamage(5);
 		}
 		if (Input.GetButtonDown ("Fire1")) {
 			c.cargoDamaged ("Cargo1", 5);
@@ -76,9 +74,7 @@ public class GameManager : MonoBehaviour
 			cargoHealthImage.DOFillAmount(((float)cargoHealth)/100, 0.5f);
 			cargoCountTxt.text = "Cargo Health: " + cargoHealth;
 		}
-=======
-		
->>>>>>> origin/master
+
     }
 
     public STATE getStatus()
