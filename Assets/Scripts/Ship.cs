@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+<<<<<<< HEAD
 using System.Collections.Generic;
 
+=======
+using System;
+using DG.Tweening;
+>>>>>>> origin/master
 
 public class Ship : MonoBehaviour
 {
-    private int Health;
+	private int Health, currentHealth = 100, cargoHealth = 100;
     public float position;
+<<<<<<< HEAD
 	[SerializeField]
     private float speed = 0.05f;
     [SerializeField]
@@ -14,16 +21,38 @@ public class Ship : MonoBehaviour
 	[SerializeField]
 	float heightChangeTimer = 5.0f;
 	private float heightAscent = 0;
+=======
+	private float speed = 0.05f, maxHealth = 1.0f;
+    [SerializeField]
+    GameObject Goal;
+
+	[SerializeField]
+	Image healthImage;
+
+	[SerializeField]
+	Image cargoHealthImage;
+
+	[SerializeField]
+	Text healthTxt, cargoCountTxt;
+
+	[SerializeField]
+	Camera innerCam;
+    
+>>>>>>> origin/master
     // Use this for initialization
     void Start()
     {
         position = 0;
         Health = 100;
+		healthImage.fillAmount = maxHealth;
+		cargoHealthImage.fillAmount = maxHealth;
+		CargoManager.Instance.loadCargo ();
     }
 
     // Update is called once per frame
     void Update()
     {
+		shipDamages (); //placed here to test
        // Debug.Log(Health);
         GameManager.Instance.checkShipStatus(this,Health);
         switch(GameManager.Instance.getStatus())
@@ -46,6 +75,9 @@ public class Ship : MonoBehaviour
                 break;
 			case GameManager.STATE.EVENT: // Event Stage
                 shipDamages();
+				if (Input.GetButtonDown ("FIRE1")) {
+				//takeDamage(5);
+				}
                 break;
             case GameManager.STATE.GOAL: //Reached Goal
                 GameManager.Instance.setFollow(false);
@@ -54,12 +86,36 @@ public class Ship : MonoBehaviour
     }
 
     private void shipDamages()
-    {
-        if (GameManager.Instance.getStatus() == GameManager.STATE.EVENT)
-        {
-
-        }
+    {	//commented out the if....statement to test
+        //if (GameManager.Instance.getStatus() == GameManager.STATE.EVENT)
+        //{
+			if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+				cargoTakeDamage (5);
+			}
+			if (Input.GetKeyDown(KeyCode.RightArrow)) {
+				shipTakeDamage (5);
+			}
+        //}
     }
+
+	public void shipTakeDamage(int i ) {
+		if (currentHealth > 0) {
+			currentHealth -= i;
+			//healthSlider.value = currentHealth;
+			//Debug.Log(currentHealth/100);
+			healthImage.DOFillAmount (((float)currentHealth) / 100, 0.5f);
+			//Debug.Log (healthImage.fillAmount);
+			healthTxt.text = "Health: " + currentHealth;
+			innerCam.DOShakePosition(0.5f, 5.0f, 30);
+		}
+	}
+
+	public void cargoTakeDamage(int i) {
+		CargoManager.Instance.cargoDamaged ("Cargo1", i);
+		cargoHealth -= i;
+		cargoHealthImage.DOFillAmount(((float)cargoHealth)/100, 0.5f);
+		cargoCountTxt.text = "Cargo Health: " + cargoHealth;
+	}
 
     private void testEvent()
     {

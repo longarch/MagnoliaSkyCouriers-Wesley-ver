@@ -20,8 +20,8 @@ public class EventManager : MonoBehaviour {
 	
 		eventTime -= Time.deltaTime;
 		if (eventTime <= 0) {
-			innerCam.DOShakePosition(0.5f, 5.0f, 30);
-			GameManager.Instance.takeDamage(5);
+			//innerCam.DOShakePosition(0.5f, 5.0f, 30);
+			//GameManager.Instance.takeDamage(5);
 			eventTime = fixedeventTime;
 		}
 

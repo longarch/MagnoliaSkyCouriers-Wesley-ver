@@ -66,11 +66,18 @@ public class UIManager : MonoBehaviour {
 		paused = false;
 		//DialogManager.Instance.returnDialogs (0);
 		//Dialogs.Add(" ");
-		if (Application.loadedLevelName.Contains ("DialogScene")) {
+		Debug.Log(GameManager.Instance.getStatus ());
+		if (GameManager.Instance.getStatus () == GameManager.STATE.TUTORIAL) { //Application.loadedLevelName.Contains ("DialogScene")
+			DialogPnl.gameObject.SetActive (true);
 			if (Dialogs != null && isDebug) {						
 				setUpDialog (DialogManager.Instance.returnDialogs (0).getListofTexts ());
 			}
 		}
+		else {
+			DialogPnl.gameObject.SetActive (false);
+		}
+
+
 	}
 
 	// Update is called once per frame

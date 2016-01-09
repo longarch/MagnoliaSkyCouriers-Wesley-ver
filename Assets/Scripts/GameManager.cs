@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 using System.Collections;
 using System;
-using DG.Tweening;
+//using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject destination;
 
+<<<<<<< HEAD
 	[SerializeField]
 	Image healthImage;
 
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
 
 	private float countDownTimer = 5.0f;
 
+=======
+>>>>>>> origin/master
     public static GameManager Instance //can call from any other class w/o reference
     {
         get { return _instance; }
@@ -56,14 +59,12 @@ public class GameManager : MonoBehaviour
 
 
         followShip = false;
-		healthImage.fillAmount = maxHealth;
-		cargoHealthImage.fillAmount = maxHealth;
-		c.loadCargo();
     }
 
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
 		countDown ();
 
 		if (Input.GetButtonDown ("Jump")) {
@@ -75,6 +76,9 @@ public class GameManager : MonoBehaviour
 			cargoHealthImage.DOFillAmount(((float)cargoHealth)/100, 0.5f);
 			cargoCountTxt.text = "Cargo Health: " + cargoHealth;
 		}
+=======
+		
+>>>>>>> origin/master
     }
 
     public STATE getStatus()
@@ -137,17 +141,5 @@ public class GameManager : MonoBehaviour
     public void setFollow(bool follow)
     {
         followShip = follow;
-    }
-
-	public void takeDamage(int i)
-	{
-		if (currentHealth > 0) {
-			currentHealth -= i;
-			//healthSlider.value = currentHealth;
-			//Debug.Log(currentHealth/100);
-			healthImage.DOFillAmount(((float)currentHealth)/100, 0.5f) ;
-			//Debug.Log (healthImage.fillAmount);
-			healthTxt.text = "Health: " + currentHealth;
-		}
-	}
+    }		
 }
