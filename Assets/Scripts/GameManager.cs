@@ -7,7 +7,7 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance = null;
-    public enum STATE { START = 0, TUTORIAL, ONGOING, EVENT, CARGOLOST, GOAL };
+    public enum STATE { START , TUTORIAL, ONGOING, EVENT, CARGOLOST, GOAL };
     private STATE gameMode;
     private bool followShip;
 
@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 	private int currentHealth = 100, cargoHealth = 100;
 	public CargoManager c;
 
+	private float countDownTimer = 5.0f;
+
     public static GameManager Instance //can call from any other class w/o reference
     {
         get { return _instance; }
@@ -40,6 +42,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         _instance = this;
+
+
+
     }
 
  
@@ -48,6 +53,8 @@ public class GameManager : MonoBehaviour
     {
 		//Debug.Log (healthImage.fillAmount);
         gameMode = STATE.START;
+
+
         followShip = false;
 		healthImage.fillAmount = maxHealth;
 		cargoHealthImage.fillAmount = maxHealth;
@@ -57,6 +64,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		countDown ();
+
 		if (Input.GetButtonDown ("Jump")) {
 			takeDamage(5);
 		}
@@ -99,7 +108,20 @@ public class GameManager : MonoBehaviour
     public void setStatus(STATE curState)
     {
         gameMode = curState;
+
     }
+
+	public void countDown()
+	{
+		if (gameMode == STATE.START) {
+			countDownTimer -= Time.deltaTime;
+			
+			if (countDownTimer <= 0.0f) {
+				gameMode = STATE.ONGOING;
+				setFollow(true);
+			}
+		}
+	}
 
     public void loadLevel(string s)
     {

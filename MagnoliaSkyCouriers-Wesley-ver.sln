@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{340E7F74-F516-A0B1-AAED-13E1FFA5DDDE}") = "MagnoliaSkyCouriers-Wesley-ver", "Assembly-CSharp.csproj", "{ADAC3F83-B7F4-462C-639C-D72A26C6929F}"
 EndProject
+Project("{340E7F74-F516-A0B1-AAED-13E1FFA5DDDE}") = "MagnoliaSkyCouriers-Wesley-ver", "Assembly-CSharp-Editor.csproj", "{830E33A4-1028-4285-75D1-A45215DCF20E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{ADAC3F83-B7F4-462C-639C-D72A26C6929F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADAC3F83-B7F4-462C-639C-D72A26C6929F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADAC3F83-B7F4-462C-639C-D72A26C6929F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{830E33A4-1028-4285-75D1-A45215DCF20E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{830E33A4-1028-4285-75D1-A45215DCF20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{830E33A4-1028-4285-75D1-A45215DCF20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{830E33A4-1028-4285-75D1-A45215DCF20E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-				GlobalSection(MonoDevelopProperties) = preSolution
+																			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
