@@ -53,7 +53,7 @@ public class AstarMover : AbstractMover
 		_elapsedInterval += Time.deltaTime;
 		if (!_isMoving)
 		{
-            //animator.SetInteger("Direction", 4);
+            animator.SetInteger("Direction", 4);
             return;
 		}
 		if (_calculatedPath == null)
