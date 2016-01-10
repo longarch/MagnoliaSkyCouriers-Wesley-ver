@@ -11,44 +11,63 @@ public class Facility : MonoBehaviour {
     
     private int ResourcesNeeded;
     private int rValue;
+    [SerializeField]
+    Ship shipInteractions;
 
     [SerializeField]
     private type facilityType;
     bool isActivated;
+    private float facilityOutput = 0;
+    private float originalOutput;
 
 
     // Use this for initialization
     void Start () {
         isActivated = false;
+        switch ((int)facilityType)
+        {
+            case 0: // Magic Type
+                facilityOutput = 1;
+                break;
+            case 1: // Combat
+                facilityOutput = 1;
+                break;
+            case 2: // Core
+                facilityOutput = 2;
+                break;
+            case 3: // Movement
+                facilityOutput = 3;
+                originalOutput = shipInteractions.ShipSpeed;
+                break;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
         checkResource();
+        startFacility();
         // Always be checking for the resources
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log(other);
         if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
         {
             Debug.Log("Race "+ other.gameObject.GetComponent<Crew>().getRace() + " working on " + name);
             //if (!other.gameObject.GetComponent<Crew>().getAssigned())
-                checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), true);
+            other.gameObject.GetComponent<AbstractMover>().IsMoving = false;
+            checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), true);
         }
         //Debug.Log(assignedCrews);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        //Debug.Log(other);
         if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
         {
             Debug.Log("Race " + other.gameObject.GetComponent<Crew>().getRace() + " left " + name);
             checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), false);
         }
-        //Debug.Log(assignedCrews);
     }
 
     void checkRaceVsType(int race, bool enter)
@@ -92,22 +111,46 @@ public class Facility : MonoBehaviour {
             isActivated = true;
             Debug.Log(name + " is working");
         }
+        else
+            isActivated = false;
     }
 
-    /*void OnTriggerStay2D(Collider2D other)
+    public void startFacility()
     {
-        Debug.Log(other);
-        if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
+        if (isActivated)
         {
-
+            switch((int)facilityType)
+            {
+                case 0: // Magic Type
+                    break;
+                case 1: // Combat
+                    break;
+                case 2: // Core
+                    break;
+                case 3: // Movement
+                    shipInteractions.ShipSpeed = originalOutput * facilityOutput;
+                    break;
+            }
+        }
+        else
+        {
+            switch ((int)facilityType)
+            {
+                case 0: // Magic Type
+                    break;
+                case 1: // Combat
+                    break;
+                case 2: // Core
+                    break;
+                case 3: // Movement
+                    shipInteractions.ShipSpeed = originalOutput;
+                    break;
+            }
         }
     }
 
-
-    /*ontriggercollide()
+    private void TimerLoop()
     {
-        GetComponent component of crew by checking script
-        to see hu is it(keep track of type n adds resources accordingly)
+
     }
-    */
 }

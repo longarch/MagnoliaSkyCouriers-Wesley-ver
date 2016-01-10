@@ -32,9 +32,13 @@ public class AstarMover : AbstractMover
 	
 	private CharacterController _characterController;
 	private Seeker _seeker;
-	
-	
-	private float _moveInterval = 0.3f, _elapsedInterval = 0.0f; // Only recalculate every moveInterval seconds 
+    Vector3 olddir = Vector3.zero;
+
+    [SerializeField]
+    private Animator animator;
+
+
+    private float _moveInterval = 0.3f, _elapsedInterval = 0.0f; // Only recalculate every moveInterval seconds 
 	
 	void Awake()
 	{
@@ -45,10 +49,12 @@ public class AstarMover : AbstractMover
 	
 	void Update()
 	{
+        
 		_elapsedInterval += Time.deltaTime;
 		if (!_isMoving)
 		{
-			return;
+            //animator.SetInteger("Direction", 4);
+            return;
 		}
 		if (_calculatedPath == null)
 		{
@@ -59,13 +65,16 @@ public class AstarMover : AbstractMover
 		{
 			// Reached destination
 			OnMoveComplete();
-			_calculatedPath = null;
+            animator.SetInteger("Direction", 4);
+            _calculatedPath = null;
 			return;
 		}
 		Vector3 waypoint = _calculatedPath.vectorPath[_currentWaypoint];
 		Vector3 dir = (waypoint - transform.position).normalized;
-		
-		if (_moveMethod == MoveMethod.CharacterController)
+        //animateMovement(dir);
+        animateMovement(olddir, dir);
+
+        if (_moveMethod == MoveMethod.CharacterController)
 		{
 			dir *= _speed;
 			_characterController.SimpleMove(dir);
@@ -83,12 +92,69 @@ public class AstarMover : AbstractMover
 		
 		if (Vector3.Distance(transform.position, waypoint) <= _closenessThreshold)
 		{
+            //animateMovement(transform.position, waypoint);
 			_currentWaypoint++;
 			return;
 		}
+        olddir = dir;
 	}
-	
-	public void SetNewDestination(Vector3 newPosition)
+
+    private void animateMovement(Vector3 curr, Vector3 next)
+    {
+        if (curr.x < next.x) //move right
+        {
+            if (Mathf.Abs(curr.x - next.x) > 0.4)
+                animator.SetInteger("Direction", 3);
+            else {
+                if (curr.y > next.y) //move front
+                    animator.SetInteger("Direction", 0);
+                else if (curr.y < next.y) //move back
+                    animator.SetInteger("Direction", 2);
+            }
+        }
+        else if (curr.x > next.x) //move left
+        {
+            if (Mathf.Abs(curr.x - next.x) > 0.4)
+                animator.SetInteger("Direction", 1);
+            else {
+                if (curr.y > next.y) //move front
+                    animator.SetInteger("Direction", 0);
+                else if (curr.y < next.y) //move back
+                    animator.SetInteger("Direction", 2);
+            }
+        }
+        
+    }
+
+    private void animateMovement(Vector3 curr)
+    {
+        if (curr.x > 0) //move right
+        {
+            if (Mathf.Abs(curr.y) < 0.2)
+                animator.SetInteger("Direction", 3);
+            else {
+                if (curr.y > 0) //move front
+                    animator.SetInteger("Direction", 0);
+                else if (curr.y < 0) //move back
+                    animator.SetInteger("Direction", 2);
+            }
+        }
+        else if (curr.x < 0) //move left
+        {
+            if (Mathf.Abs(curr.y) < 0.2)
+                animator.SetInteger("Direction", 1);
+            else {
+                if (curr.y > 0) //move front
+                    animator.SetInteger("Direction", 0);
+                else if (curr.y < 0) //move back
+                    animator.SetInteger("Direction", 2);
+            }
+        }
+        else
+            animator.SetInteger("Direction", 4);
+    }
+
+    public void SetNewDestination(Vector3 newPosition)
 	{
 		_goalPosition = newPosition;
 		CalculatePath();

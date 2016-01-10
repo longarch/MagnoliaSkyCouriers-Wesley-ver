@@ -21,7 +21,8 @@ public class Goal : MonoBehaviour {
         if (other.name == "Ship")
             GameManager.Instance.setStatus(GameManager.STATE.GOAL);
         if (other.name == "Camera")
-            GameManager.Instance.setFollow(false);
+            //GameManager.Instance.setFollow(false);
+            other.GetComponentInParent<CameraFollow>().IsDeactivated = true;
     }
     
 }
