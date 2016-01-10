@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Goal : MonoBehaviour {
+	
 
 	// Use this for initialization
 	void Start () {
@@ -15,8 +16,8 @@ public class Goal : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hellooooooo");
-        Debug.Log(other);
+        //Debug.Log("Hellooooooo");
+       // Debug.Log(other);
         if (other.name == "Ship")
             GameManager.Instance.setStatus(GameManager.STATE.GOAL);
         if (other.name == "Camera")

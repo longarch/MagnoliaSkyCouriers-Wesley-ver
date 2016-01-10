@@ -191,5 +191,8 @@ public class TweenHelper
         sequence.AppendInterval(delayDuration).AppendCallback(callback);
         return sequence;
     }
-
+	// public Sequence FadeCombo(float alpha, float duration)
+	//{
+	//	return TweenHelper.FadeCanvasChildren(_comboPanel, alpha, duration);
+	//}
 }

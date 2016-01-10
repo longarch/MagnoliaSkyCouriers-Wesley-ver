@@ -8,19 +8,9 @@ using DG.Tweening;
 
 public class Ship : MonoBehaviour
 {
-	private int Health, currentHealth = 100, cargoHealth = 100;
-    public float position;
-
-	[SerializeField]
-    private float speed = 0.05f;
-    [SerializeField]
-    GameObject Goal;
-	[SerializeField]
-	float heightChangeTimer = 5.0f;
-	private float heightAscent = 0;
-
-	float maxHealth = 1.0f;
-   
+	private int currentHealth, cargoHealth;
+	public float position, maxDist = 0;
+	private float heightChangeTimer = 5.0f,  maxHealth = 1.0f, speed = 0.05f;
 
 	[SerializeField]
 	Image healthImage;
@@ -33,16 +23,18 @@ public class Ship : MonoBehaviour
 
 	[SerializeField]
 	Camera innerCam;
-    
+
+	private float heightAscent = 0;
 
     // Use this for initialization
     void Start()
     {
         position = 0;
-        Health = 100;
+		currentHealth = 100;
 		healthImage.fillAmount = maxHealth;
 		cargoHealthImage.fillAmount = maxHealth;
 		CargoManager.Instance.loadCargo ();
+		cargoHealth = CargoManager.Instance.getCargoHealth ("Cargo1");
     }
 
     // Update is called once per frame
@@ -50,7 +42,7 @@ public class Ship : MonoBehaviour
     {
 		shipDamages (); //placed here to test
        // Debug.Log(Health);
-        GameManager.Instance.checkShipStatus(this,Health);
+		GameManager.Instance.checkShipStatus(this,currentHealth);
         switch(GameManager.Instance.getStatus())
         {
             case GameManager.STATE.START: //Starting
@@ -107,23 +99,26 @@ public class Ship : MonoBehaviour
 	}
 
 	public void cargoTakeDamage(int i) {
-		CargoManager.Instance.cargoDamaged ("Cargo1", i);
-		cargoHealth -= i;
-		cargoHealthImage.DOFillAmount(((float)cargoHealth)/100, 0.5f);
-		cargoCountTxt.text = "Cargo Health: " + cargoHealth;
+		if (cargoHealth > 0) {
+			CargoManager.Instance.cargoDamaged ("Cargo1", i);
+			cargoHealth -= i;
+			cargoHealthImage.DOFillAmount (((float)cargoHealth) / 100, 0.5f);
+			cargoCountTxt.text = "Cargo Health: " + cargoHealth;
+		}
 	}
 
-    private void testEvent()
-    {
-        if (UnityEngine.Random.Range(0, 10) > 4)
-        {
-            GameManager.Instance.setStatus(GameManager.STATE.ONGOING);
-        }
-        else Health -= 1;
-    }
+    //private void testEvent()
+   // {
+        //if (UnityEngine.Random.Range(0, 10) > 4)
+        //{
+        //    GameManager.Instance.setStatus(GameManager.STATE.ONGOING);
+        //}
+        //else Health -= 1;
+    //}
 
     public void moveShip()
     {
+
 		heightChangeTimer -= Time.deltaTime;
 
 		if (heightChangeTimer <= 0.0f) {
@@ -132,9 +127,7 @@ public class Ship : MonoBehaviour
 		}
 
 		transform.position += new Vector3(1,heightAscent,0) * speed;
-
-        float distance = Goal.transform.position.x - transform.position.x;
-        
+		//transform.DOMove(new Vector3(1,heightAscent,0) * speed, 8.0f, false);
         //Debug.Log("Distance left : " + distance);
         
     }
@@ -142,9 +135,12 @@ public class Ship : MonoBehaviour
 	//Returns random between descending and ascending
 	public float heightVariantChange()
 	{
-
-
 		return Random.Range (-0.2f,0.2f);
 
+	}		
+
+	public float getPosition()
+	{
+		return transform.position.x;
 	}
 }

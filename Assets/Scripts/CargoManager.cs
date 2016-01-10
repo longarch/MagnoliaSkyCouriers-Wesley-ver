@@ -93,6 +93,17 @@ public class CargoManager : MonoBehaviour {
 			}
 		}
 	}
+
+	public int getCargoHealth(string name) {
+		for (int i = 0; i < cargoStores.Count; i++) {
+			if (cargoStores [i].getName ().Contains (name)) {
+				return cargoStores [i].getHealth ();
+			} else {
+				return 0;
+			}
+		}
+		return 0;
+	}
 }
 
 public class Cargo

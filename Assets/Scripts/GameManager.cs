@@ -13,22 +13,17 @@ public class GameManager : MonoBehaviour
 
     //private float destination;
     [SerializeField]
-    GameObject destination;
+	GameObject destination;
 
 	[SerializeField]
-	Image healthImage;
+	Ship player;
 
 	[SerializeField]
-	Image cargoHealthImage;
-
-	[SerializeField]
-	Text healthTxt, cargoCountTxt;
-
-	private float maxHealth = 1.0f;
-	private int currentHealth = 100, cargoHealth = 100;
-	public CargoManager c;
+	Text distanceTxt;
 
 	private float countDownTimer = 5.0f;
+	public float maxDist;
+	public int position;
 
 
     public static GameManager Instance //can call from any other class w/o reference
@@ -43,9 +38,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         _instance = this;
-
-
-
     }
 
  
@@ -53,28 +45,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 		//Debug.Log (healthImage.fillAmount);
-        gameMode = STATE.START;
-
-
+        gameMode = STATE.ONGOING;
+				  
         followShip = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
 		countDown ();
-
-		if (Input.GetButtonDown ("Jump")) {
-			//takeDamage(5);
-		}
-		if (Input.GetButtonDown ("Fire1")) {
-			c.cargoDamaged ("Cargo1", 5);
-			cargoHealth -= 5;
-			cargoHealthImage.DOFillAmount(((float)cargoHealth)/100, 0.5f);
-			cargoCountTxt.text = "Cargo Health: " + cargoHealth;
-		}
-
     }
 
     public STATE getStatus()
@@ -91,9 +70,17 @@ public class GameManager : MonoBehaviour
     {
         if (gameMode.Equals(STATE.ONGOING))
         {
+			if (maxDist <= 0.0f) {
+				maxDist = getDestination().transform.position.x - shipPos.transform.position.x;
+			}
             //if (shipPos.GetComponent<Collider2D>().IsTouching(destination.GetComponent<Collider2D>())) 
             //if (shipPos >= destination)
               //gameMode = STATE.END;
+			//position = getDestination().transform.position.x - shipPos.transform.position.x; 
+			position = (int)((shipPos.transform.position.x / maxDist) * 100) + 1;
+			//Debug.Log (position);
+			goalDistance ();
+
         }
         if (shipHP <= 0)
             gameMode = STATE.CARGOLOST;
@@ -138,4 +125,11 @@ public class GameManager : MonoBehaviour
     {
         followShip = follow;
     }		
+
+	public void goalDistance ()
+	{
+		//distanceTxt.text = "Distance: " + ((int)position).ToString() + " km";
+		//distanceTxt.text = "Distance: " + ((int)position + 1).ToString() + " %";
+		distanceTxt.text = "Distance: " + position.ToString() + " %";
+	}
 }
