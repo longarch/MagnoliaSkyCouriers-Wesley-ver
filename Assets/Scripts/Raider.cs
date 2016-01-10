@@ -9,7 +9,7 @@ public class Raider : MonoBehaviour {
 	[SerializeField]
 	GameObject player;
 
-	private float heightChangeTimer = 5.0f, speed = 0.05f, heightAscent = 0;
+	private float heightChangeTimer = 10.0f, speed = 0.05f, heightAscent = 0;
 	private Vector3 position;
 	private int currentHealth;
 
@@ -34,7 +34,7 @@ public class Raider : MonoBehaviour {
 	//Returns random between descending and ascending
 	public float heightVariantChange()
 	{
-		return Random.Range (-0.5f,0.6f);
+		return Random.Range (-1.4f,1.4f);
 
 	}
 
@@ -44,7 +44,7 @@ public class Raider : MonoBehaviour {
 
 		if (heightChangeTimer <= 0.0f) {
 			heightAscent = heightVariantChange();
-			heightChangeTimer = 5.0f; //Hard coded for now
+			heightChangeTimer = 10.0f; //Hard coded for now
 		}
 
 		position += new Vector3(1, 0,0) * speed;

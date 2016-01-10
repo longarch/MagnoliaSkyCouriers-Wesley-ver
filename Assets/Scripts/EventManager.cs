@@ -10,6 +10,9 @@ public class EventManager : MonoBehaviour {
 	GameObject raider;
 
 	[SerializeField]
+	GameObject dragon;
+
+	[SerializeField]
 	GameObject player;
 
 	float eventTime = 1.0f;
@@ -17,7 +20,7 @@ public class EventManager : MonoBehaviour {
 	float percent;
 
 	[SerializeField]
-	int eventCap = 3;
+	int eventCap = 2;
 
 	int currentEventNo = 0;
 	//Ship mc;
@@ -46,10 +49,18 @@ public class EventManager : MonoBehaviour {
 			
 			if (i == 0 && currentEventNo <= 2) {
 				//raider.gameObject.transform.position = new Vector3 (player.transform.position.x - 5, player.transform.position.y, 0);
-				Instantiate(raider,new Vector3 (player.transform.position.x - 5,
-				                                Random.Range(player.transform.position.y - 10,player.transform.position.y + 10) , 0),Quaternion.identity);
-				currentEventNo ++;
-				
+				int j = Random.Range(0,10);
+				if (j < 5) {
+					Instantiate (raider, new Vector3 (player.transform.position.x - 3,
+						Random.Range (player.transform.position.y - 10, player.transform.position.y + 10), 0), Quaternion.identity);
+					currentEventNo++;
+				} else {
+					//Instantiate (raider, new Vector3 (player.transform.position.x - 3,
+					//	Random.Range (player.transform.position.y - 10, player.transform.position.y + 10), 0), Quaternion.identity);
+					Instantiate(dragon, new Vector3 (player.transform.position.x - 13,
+					Random.Range (player.transform.position.y - 10, player.transform.position.y + 10), 0), Quaternion.identity);
+					currentEventNo++;
+				}	
 			}
 
 			eventTime = fixedeventTime;

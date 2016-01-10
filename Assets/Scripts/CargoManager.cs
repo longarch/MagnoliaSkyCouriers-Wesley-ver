@@ -79,7 +79,7 @@ public class CargoManager : MonoBehaviour {
 
 			cargoStores.Add (c);
 
-			Debug.Log("Adding: "  + node.Name);
+			//Debug.Log("Adding: "  + node.Name);
 		}
 	}
 

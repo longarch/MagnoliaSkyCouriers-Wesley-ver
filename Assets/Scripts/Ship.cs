@@ -126,7 +126,7 @@ public class Ship : MonoBehaviour
 
 		if (heightChangeTimer <= 0.0f) {
 			heightAscent = heightVariantChange();
-			heightChangeTimer = 5.0f; //Hard coded for now
+			heightChangeTimer = 15.0f; //Hard coded for now
 		}
 
 		//transform.position += new Vector3(1,heightAscent,0) * speed;
@@ -141,7 +141,7 @@ public class Ship : MonoBehaviour
 	//Returns random between descending and ascending
 	public float heightVariantChange()
 	{
-		return Random.Range (-0.3f,0.3f);
+		return Random.Range (-1.5f,1.5f);
 
 	}		
 

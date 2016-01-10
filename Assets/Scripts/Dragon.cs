@@ -16,7 +16,7 @@ public class Dragon : MonoBehaviour {
 	void Awake() {
 
 		player = GameObject.Find("Ship");
-
+		position = player.transform.position;
 	}
 
 	// Use this for initialization
@@ -33,7 +33,7 @@ public class Dragon : MonoBehaviour {
 	//Returns random between descending and ascending
 	public float heightVariantChange()
 	{
-		return Random.Range (-0.5f,0.7f);
+		return Random.Range (-1.2f,1.2f);
 
 	}
 
