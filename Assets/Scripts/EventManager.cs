@@ -44,7 +44,7 @@ public class EventManager : MonoBehaviour {
 			//GameManager.Instance.takeDamage(5);
 			int i = Random.Range(0,2);
 			
-			if (i == 0 && currentEventNo <= 3) {
+			if (i == 0 && currentEventNo <= 2) {
 				//raider.gameObject.transform.position = new Vector3 (player.transform.position.x - 5, player.transform.position.y, 0);
 				Instantiate(raider,new Vector3 (player.transform.position.x - 5,
 				                                Random.Range(player.transform.position.y - 10,player.transform.position.y + 10) , 0),Quaternion.identity);
@@ -54,7 +54,7 @@ public class EventManager : MonoBehaviour {
 
 			eventTime = fixedeventTime;
 		}
-		Debug.Log(GameManager.Instance.position);
+		//Debug.Log(GameManager.Instance.position);
 		/*
 		if (GameManager.Instance.position == 5) {
 

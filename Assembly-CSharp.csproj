@@ -126,6 +126,7 @@
      <Compile Include="Assets\Scripts\CrewDebugScript.cs" />
      <Compile Include="Assets\Scripts\CrewSelTutorialHandler.cs" />
      <Compile Include="Assets\Scripts\DialogManager.cs" />
+     <Compile Include="Assets\Scripts\Dragon.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyBullet.cs" />
      <Compile Include="Assets\Scripts\EnemyGun.cs" />
