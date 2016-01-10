@@ -4,8 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
-public class Raider : MonoBehaviour {
-	
+public class Dragon : MonoBehaviour {
+
 	[SerializeField]
 	GameObject player;
 
@@ -16,7 +16,6 @@ public class Raider : MonoBehaviour {
 	void Awake() {
 
 		player = GameObject.Find("Ship");
-		position = player.transform.position;
 
 	}
 
@@ -24,21 +23,21 @@ public class Raider : MonoBehaviour {
 	void Start () {
 		currentHealth = 100;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		moveShip ();
+		moveDragon ();
 		//Debug.Log (transform.position.x);
 	}		
 
 	//Returns random between descending and ascending
 	public float heightVariantChange()
 	{
-		return Random.Range (-0.5f,0.6f);
+		return Random.Range (-0.5f,0.7f);
 
 	}
 
-	public void moveShip()
+	public void moveDragon()
 	{
 		heightChangeTimer -= Time.deltaTime;
 
@@ -56,7 +55,7 @@ public class Raider : MonoBehaviour {
 
 	}
 
-	public void shipTakeDamage(int i ) {
+	public void dragonTakeDamage(int i ) {
 		if (currentHealth > 0) {
 			currentHealth -= i;
 			//healthSlider.value = currentHealth;

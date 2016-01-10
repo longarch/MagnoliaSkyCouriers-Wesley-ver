@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class enemyBullet : MonoBehaviour {
+public class EnemyBullet : MonoBehaviour {
 
 	float speed; // the bullet speed
 	Vector2 _direction; // the direction of the bullet
@@ -9,7 +9,7 @@ public class enemyBullet : MonoBehaviour {
 
 	void Awake()
 	{
-		speed = 0.1f;
+		speed = 1.0f;
 		isReady = false;
 	}
 

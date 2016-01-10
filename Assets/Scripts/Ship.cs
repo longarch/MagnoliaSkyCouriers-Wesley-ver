@@ -8,9 +8,9 @@ using DG.Tweening;
 
 public class Ship : MonoBehaviour
 {
-	public float position, maxDist = 0;
+	public float maxDist = 0;
 	private float heightChangeTimer = 5.0f,  maxHealth = 1.0f, heightAscent = 0;// speed = 0.05f;
-
+	private Vector3 position;
 	private int currentHealth = 100, cargoHealth = 100;
 
 	[SerializeField] 
@@ -33,7 +33,7 @@ public class Ship : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        position = 0;
+		position = getPosition();
 		currentHealth = 100;
 		healthImage.fillAmount = maxHealth;
 		cargoHealthImage.fillAmount = maxHealth;
@@ -129,7 +129,10 @@ public class Ship : MonoBehaviour
 			heightChangeTimer = 5.0f; //Hard coded for now
 		}
 
-		transform.position += new Vector3(1,heightAscent,0) * speed;
+		//transform.position += new Vector3(1,heightAscent,0) * speed;
+		position += new Vector3(1, 0,0) * speed;
+		transform.DOMoveX (position.x, 5.0f, false);
+		transform.DOMoveY (heightAscent, 10.0f, false);
 
         //Debug.Log("Distance left : " + distance);
         
@@ -138,13 +141,13 @@ public class Ship : MonoBehaviour
 	//Returns random between descending and ascending
 	public float heightVariantChange()
 	{
-		return Random.Range (-0.2f,0.2f);
+		return Random.Range (-0.3f,0.3f);
 
 	}		
 
-	public float getPosition()
+	public Vector3 getPosition()
 	{
-		return transform.position.x;
+		return transform.position;
 	}
 
     public float ShipSpeed

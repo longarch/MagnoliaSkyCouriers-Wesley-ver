@@ -1,10 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Raider.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Dragon.cs">
     <Files>
-      <File FileName="Assets\Scripts\EventManager.cs" Line="51" Column="23" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="80" Column="12" />
-      <File FileName="Assets\Scripts\Raider.cs" Line="19" Column="35" />
+      <File FileName="Assets\Scripts\Dragon.cs" Line="36" Column="28" />
+      <File FileName="Assets\Scripts\Raider.cs" Line="37" Column="28" />
+      <File FileName="Assets\Scripts\EnemyBullet.cs" Line="12" Column="14" />
+      <File FileName="Assets\Scripts\UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EventManager.cs" Line="49" Column="68" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemyGun.cs" Line="30" Column="4" />
+      <File FileName="..\Backup\enemyGun.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Ship.cs" Line="17" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
