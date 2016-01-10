@@ -14,6 +14,12 @@ public class Raider : MonoBehaviour {
 
 	private int currentHealth;
 
+	void Awake() {
+
+		player = GameObject.Find("Ship");
+
+	}
+
 	// Use this for initialization
 	void Start () {
 		currentHealth = 100;

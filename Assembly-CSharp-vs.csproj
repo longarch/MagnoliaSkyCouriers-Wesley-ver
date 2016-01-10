@@ -137,10 +137,13 @@
      <Compile Include="Assets\Scripts\Movers\AstarMover.cs" />
      <Compile Include="Assets\Scripts\Movers\DirectMover.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Raider.cs" />
      <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
      <Compile Include="Assets\Scripts\Ship.cs" />
      <Compile Include="Assets\Scripts\UIManager.cs" />
      <Compile Include="Assets\Scripts\Utilities\TweenHelper.cs" />
+     <Compile Include="Assets\Scripts\enemyBullet.cs" />
+     <Compile Include="Assets\Scripts\enemyGun.cs" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
