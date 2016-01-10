@@ -8,24 +8,15 @@ using DG.Tweening;
 
 public class Ship : MonoBehaviour
 {
-<<<<<<< HEAD
-	private int currentHealth, cargoHealth;
 	public float position, maxDist = 0;
-	private float heightChangeTimer = 5.0f,  maxHealth = 1.0f, speed = 0.05f;
-=======
-	private int Health, currentHealth = 100, cargoHealth = 100;
-    public float position;
+	private float heightChangeTimer = 5.0f,  maxHealth = 1.0f, heightAscent = 0;// speed = 0.05f;
 
-	[SerializeField] private float speed = 0.05f;
-    [SerializeField] GameObject Goal;
-	[SerializeField] float heightChangeTimer = 5.0f;
-    private float heightAscent = 0;
-    private float boost;
+	private int currentHealth = 100, cargoHealth = 100;
 
-
-	float maxHealth = 1.0f;
-   
->>>>>>> origin/master
+	[SerializeField] 
+	private float speed = 0.05f;
+    [SerializeField] 
+	GameObject Goal;
 
 	[SerializeField]
 	Image healthImage;
@@ -39,12 +30,9 @@ public class Ship : MonoBehaviour
 	[SerializeField]
 	Camera innerCam;
 
-	private float heightAscent = 0;
-
     // Use this for initialization
     void Start()
     {
-        boost = 1;
         position = 0;
 		currentHealth = 100;
 		healthImage.fillAmount = maxHealth;
@@ -133,8 +121,7 @@ public class Ship : MonoBehaviour
     //}
 
     public void moveShip()
-    {
-
+    {    
 		heightChangeTimer -= Time.deltaTime;
 
 		if (heightChangeTimer <= 0.0f) {
@@ -142,15 +129,8 @@ public class Ship : MonoBehaviour
 			heightChangeTimer = 5.0f; //Hard coded for now
 		}
 
-<<<<<<< HEAD
 		transform.position += new Vector3(1,heightAscent,0) * speed;
-		//transform.DOMove(new Vector3(1,heightAscent,0) * speed, 8.0f, false);
-=======
-        transform.position += new Vector3(1, heightAscent, 0) * speed;
 
-        float distance = Goal.transform.position.x - transform.position.x;
-        
->>>>>>> origin/master
         //Debug.Log("Distance left : " + distance);
         
     }
@@ -159,15 +139,12 @@ public class Ship : MonoBehaviour
 	public float heightVariantChange()
 	{
 		return Random.Range (-0.2f,0.2f);
-<<<<<<< HEAD
 
 	}		
 
 	public float getPosition()
 	{
 		return transform.position.x;
-=======
->>>>>>> origin/master
 	}
 
     public float ShipSpeed
