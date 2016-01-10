@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyGun : MonoBehaviour {
+public class enemyGun : MonoBehaviour {
 
 	public GameObject enemyBullet;
 	// Use this for initialization
@@ -26,7 +26,7 @@ public class EnemyGun : MonoBehaviour {
 
 			Vector2 direction = playership.transform.position - bullet.transform.position;
 
-			bullet.GetComponent<EnemyBullet> ().setDirection (direction);
+			bullet.GetComponent<enemyBullet> ().setDirection (direction);
 		}
 	}
 }

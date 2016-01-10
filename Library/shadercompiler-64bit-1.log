@@ -1,5 +1,5 @@
 Base path: C:/Program Files/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-10548
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-9560
 Cmd: getPlatforms
 Cmd: preprocess
   insize=708 outsize=708 ok=1
@@ -77,3 +77,15 @@ Cmd: compileSnippet
   api=4 type=0 insize=1051 outsize=1266 kw= ok=1
 Cmd: compileSnippet
   api=4 type=1 insize=1051 outsize=965 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1482 outsize=1290 kw=SOFTPARTICLES_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1482 outsize=827 kw=SOFTPARTICLES_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=9591 outsize=10358 kw=UNITY_COLORSPACE_GAMMA ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=9591 outsize=2639 kw=UNITY_COLORSPACE_GAMMA ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=938 outsize=4727 kw=POINT SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=938 outsize=5962 kw=POINT SHADOWS_OFF ok=1
