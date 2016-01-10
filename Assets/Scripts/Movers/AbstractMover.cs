@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class AbstractMover : MonoBehaviour
 {
 	[SerializeField]
-	protected float _speed = 8;
+	protected float _speed = 5;
 	
 	protected bool _isMoving = false;
 	

@@ -11,13 +11,12 @@ public class Ship : MonoBehaviour
 	private int Health, currentHealth = 100, cargoHealth = 100;
     public float position;
 
-	[SerializeField]
-    private float speed = 0.05f;
-    [SerializeField]
-    GameObject Goal;
-	[SerializeField]
-	float heightChangeTimer = 5.0f;
-	private float heightAscent = 0;
+	[SerializeField] private float speed = 0.05f;
+    [SerializeField] GameObject Goal;
+	[SerializeField] float heightChangeTimer = 5.0f;
+    private float heightAscent = 0;
+    private float boost;
+
 
 	float maxHealth = 1.0f;
    
@@ -38,6 +37,7 @@ public class Ship : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        boost = 1;
         position = 0;
         Health = 100;
 		healthImage.fillAmount = maxHealth;
@@ -131,7 +131,7 @@ public class Ship : MonoBehaviour
 			heightChangeTimer = 5.0f; //Hard coded for now
 		}
 
-		transform.position += new Vector3(1,heightAscent,0) * speed;
+        transform.position += new Vector3(1, heightAscent, 0) * speed;
 
         float distance = Goal.transform.position.x - transform.position.x;
         
@@ -142,9 +142,12 @@ public class Ship : MonoBehaviour
 	//Returns random between descending and ascending
 	public float heightVariantChange()
 	{
-
-
 		return Random.Range (-0.2f,0.2f);
-
 	}
+
+    public float ShipSpeed
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
 }
