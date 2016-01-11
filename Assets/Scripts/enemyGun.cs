@@ -3,15 +3,23 @@ using System.Collections;
 
 public class enemyGun : MonoBehaviour {
 
+	float eventTime = 10.0f;
+	float fixedeventTime;
+
 	public GameObject enemyBullet;
 	// Use this for initialization
 	void Start () {
 		//Invoke ("fireEnemyBullet", 1.0f);
+		fixedeventTime = eventTime;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		eventTime -= Time.deltaTime;
+		if (eventTime <= 0) {
+			fireEnemyBullet ();
+			eventTime = fixedeventTime;
+		}
 	}
 
 	void fireEnemyBullet()
