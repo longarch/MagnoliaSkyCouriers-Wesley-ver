@@ -9,14 +9,21 @@ public class Dragon : MonoBehaviour {
 	[SerializeField]
 	GameObject player;
 
+	[SerializeField]
+	GameObject enemyProjectile;
+
 	private float heightChangeTimer = 5.0f, speed = 0.05f, heightAscent = 0;
 	private Vector3 position;
 	private int currentHealth;
+
+	[SerializeField]
+	private float _atkSpeed,_attackTimer = 5.0f; //Attacks every 5 seconds
 
 	void Awake() {
 
 		player = GameObject.Find("Ship");
 		position = player.transform.position;
+		_attackTimer = _atkSpeed;
 	}
 
 	// Use this for initialization
@@ -27,6 +34,13 @@ public class Dragon : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		moveDragon ();
+
+		_attackTimer -= Time.deltaTime;
+		if (_attackTimer <= 0.0f) {
+			fireEnemyBullet();
+
+			_attackTimer = _atkSpeed;
+		}
 		//Debug.Log (transform.position.x);
 	}		
 
@@ -52,6 +66,23 @@ public class Dragon : MonoBehaviour {
 		//transform.DOMoveX(player.transform.position.x, 10.0f, false);
 		//transform.DOMove(new Vector3(1,heightAscent,0) * speed, 10.0f, false);
 		//Debug.Log("Distance left : " + distance);
+
+	}
+
+	void fireEnemyBullet()
+	{
+		if (player == null) {
+			return;
+		}
+
+		GameObject bullet = (GameObject)Instantiate (enemyProjectile, gameObject.transform.position, Quaternion.identity);
+	
+			
+		bullet.transform.position = transform.position;
+			
+		Vector2 direction = player.transform.position - bullet.transform.position;
+			
+		bullet.GetComponent<enemyBullet> ().setDirection (direction);
 
 	}
 

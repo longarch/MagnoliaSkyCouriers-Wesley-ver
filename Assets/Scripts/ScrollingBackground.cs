@@ -12,6 +12,12 @@ public class ScrollingBackground : MonoBehaviour {
 		render = gameObject.GetComponent<Renderer> ();
 	//	bgWidth = gameObject.GetComponent<Renderer>().bounds.size.x;
 	}
+
+	public void setBGSpeed(float i)
+	{
+		backgroundSpeed = i;
+
+	}
 	
 	// Update is called once per frame
 	void Update () {

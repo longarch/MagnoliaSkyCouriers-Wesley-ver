@@ -102,6 +102,16 @@ public class Ship : MonoBehaviour
 		}
 	}
 
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Projectile")) {
+			shipTakeDamage(5);
+			Destroy(other.gameObject);
+		}
+
+
+	}
+
 	public void cargoTakeDamage(int i) {
 		if (cargoHealth > 0) {
 			CargoManager.Instance.cargoDamaged ("Cargo1", i);

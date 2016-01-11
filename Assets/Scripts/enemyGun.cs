@@ -6,7 +6,7 @@ public class enemyGun : MonoBehaviour {
 	public GameObject enemyBullet;
 	// Use this for initialization
 	void Start () {
-		Invoke ("fireEnemyBullet", 1.0f);
+		//Invoke ("fireEnemyBullet", 1.0f);
 	}
 	
 	// Update is called once per frame

@@ -16,6 +16,9 @@ public class Facility : MonoBehaviour {
 
     [SerializeField]
     private type facilityType;
+	[SerializeField]
+	private ScrollingBackground SkyBG; //To be used to indirectly manipulate scroll speed
+
     bool isActivated;
     private float facilityOutput = 0;
     private float originalOutput;
@@ -129,6 +132,7 @@ public class Facility : MonoBehaviour {
                     break;
                 case 3: // Movement
                     shipInteractions.ShipSpeed = originalOutput * facilityOutput;
+					SkyBG.setBGSpeed(1);
                     break;
             }
         }
@@ -144,6 +148,7 @@ public class Facility : MonoBehaviour {
                     break;
                 case 3: // Movement
                     shipInteractions.ShipSpeed = originalOutput;
+					SkyBG.setBGSpeed(0.5f);
                     break;
             }
         }
