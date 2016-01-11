@@ -51,7 +51,7 @@ public class EventManager : MonoBehaviour {
 				//raider.gameObject.transform.position = new Vector3 (player.transform.position.x - 5, player.transform.position.y, 0);
 				int j = Random.Range(0,10);
 				if (j < 5) {
-					Instantiate (raider, new Vector3 (player.transform.position.x - 3,
+					Instantiate (raider, new Vector3 (player.transform.position.x -9,
 						Random.Range (player.transform.position.y - 10, player.transform.position.y + 10), 0), Quaternion.identity);
 					currentEventNo++;
 				} else {
