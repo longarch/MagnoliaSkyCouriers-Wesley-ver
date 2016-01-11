@@ -20,6 +20,7 @@ public class Facility : MonoBehaviour {
 	private ScrollingBackground SkyBG; //To be used to indirectly manipulate scroll speed
 
     bool isActivated;
+    bool needToReset = false;
     private float facilityOutput = 0;
     private float originalOutput;
 
@@ -47,7 +48,15 @@ public class Facility : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        checkResource();
+        if (!isActivated)
+        {
+            if (needToReset)
+            {
+                resetOutputs();
+            }
+            return;
+        }
+        //checkResource();
         startFacility();
         // Always be checking for the resources
     }
@@ -58,7 +67,7 @@ public class Facility : MonoBehaviour {
         {
             Debug.Log("Race "+ other.gameObject.GetComponent<Crew>().getRace() + " working on " + name);
             //if (!other.gameObject.GetComponent<Crew>().getAssigned())
-            other.gameObject.GetComponent<AbstractMover>().IsMoving = false;
+            //other.gameObject.GetComponent<AbstractMover>().IsMoving = false;
             checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), true);
         }
         //Debug.Log(assignedCrews);
@@ -105,6 +114,7 @@ public class Facility : MonoBehaviour {
         if (enter)
             ResourcesNeeded += rValue;
         else ResourcesNeeded -= rValue;
+        checkResource();
     }
 
     void checkResource()
@@ -114,48 +124,60 @@ public class Facility : MonoBehaviour {
             isActivated = true;
             Debug.Log(name + " is working");
         }
-        else
+        else {
             isActivated = false;
+            needToReset = true;
+        }
     }
 
     public void startFacility()
     {
-        if (isActivated)
+        switch ((int)facilityType)
         {
-            switch((int)facilityType)
-            {
-                case 0: // Magic Type
-                    break;
-                case 1: // Combat
-                    break;
-                case 2: // Core
-                    break;
-                case 3: // Movement
-                    shipInteractions.ShipSpeed = originalOutput * facilityOutput;
-					SkyBG.setBGSpeed(1);
-                    break;
-            }
-        }
-        else
-        {
-            switch ((int)facilityType)
-            {
-                case 0: // Magic Type
-                    break;
-                case 1: // Combat
-                    break;
-                case 2: // Core
-                    break;
-                case 3: // Movement
-                    shipInteractions.ShipSpeed = originalOutput;
-					SkyBG.setBGSpeed(0.5f);
-                    break;
-            }
+            case 0: // Magic Type
+                break;
+            case 1: // Combat
+                break;
+            case 2: // Core
+                break;
+            case 3: // Movement
+                float accel = 1;
+                while (accel < facilityOutput)
+                {
+                    shipInteractions.ShipSpeed = originalOutput * accel;
+                    SkyBG.setBGSpeed(1);
+                    accel += 0.2f;
+                }
+                break;
         }
     }
 
-    private void TimerLoop()
+    private void resetOutputs()
     {
+        switch ((int)facilityType)
+        {
+            case 0: // Magic Type
+                break;
+            case 1: // Combat
+                break;
+            case 2: // Core
+                break;
+            case 3: // Movement
+                float accel = facilityOutput;
+                while (accel > 1)
+                {
+                    shipInteractions.ShipSpeed = originalOutput * accel;
+                    SkyBG.setBGSpeed(0.5f);
+                    accel -= 0.2f;
+                }
+                break;
+        }
+        needToReset = false;
+    }
 
+    private void TimerLoop(float delay)
+    {
+        if (delay <= 0)
+        { }
     }
 }
