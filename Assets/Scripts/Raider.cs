@@ -4,20 +4,19 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
-public class Raider : MonoBehaviour {
+public class Raider : BaseEnemy {
 	
-	[SerializeField]
-	GameObject player;
-
-	private float heightChangeTimer = 10.0f, speed = 0.05f, heightAscent = 0;
-	private Vector3 position;
-	private int currentHealth;
-
+	//[SerializeField]
+	//GameObject player;
+    
 	void Awake() {
 
 		player = GameObject.Find("Ship");
-		position = player.transform.position;
-	}
+		//position = player.transform.position;
+        heightChangeTimer = 10.0f;
+        speed = 0.05f;
+        heightAscent = 0;
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -26,15 +25,9 @@ public class Raider : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		moveShip ();
+		//moveShip ();
 		//Debug.Log (transform.position.x);
 	}		
-
-	//Returns random between descending and ascending
-	public float heightVariantChange()
-	{
-		return Random.Range (-1.4f,1.4f);
-	}
 
 	public void moveShip()
 	{
@@ -45,15 +38,15 @@ public class Raider : MonoBehaviour {
 			heightChangeTimer = 10.0f; //Hard coded for now
 		}
 
-		position += new Vector3(1, 0,0) * speed;
-		transform.DOMoveX (position.x, 5.0f, false);
+		//position += new Vector3(1, 0,0) * speed;
+		//transform.DOMoveX (position.x, 5.0f, false);
 		transform.DOMoveY (player.transform.position.y + heightAscent, 10.0f, false);
 		//transform.DOMoveX(player.transform.position.x, 10.0f, false);
 		//transform.DOMove(new Vector3(1,heightAscent,0) * speed, 10.0f, false);
 		//Debug.Log("Distance left : " + distance);
 	}
 
-	public void shipTakeDamage(int i ) {
+	/*public void shipTakeDamage(int i ) {
 		if (currentHealth > 0) {
 			currentHealth -= i;
 			//healthSlider.value = currentHealth;
@@ -63,5 +56,5 @@ public class Raider : MonoBehaviour {
 			//healthTxt.text = "Health: " + currentHealth;
 			///innerCam.DOShakePosition(0.5f, 5.0f, 30);
 		}
-	}
+	}*/
 }

@@ -6,10 +6,14 @@ public class enemyGun : MonoBehaviour {
 
 	float eventTime = 0f;
 	float fixedeventTime;
+    float _animTimer;
 
-	public GameObject enemyBullet;
+
+    public GameObject enemyBullet;
 	[SerializeField]
 	public GameObject self;
+    [SerializeField]
+    Animator animator;
 
 	[SerializeField]
 	GameObject playership;
@@ -19,7 +23,9 @@ public class enemyGun : MonoBehaviour {
 		//Invoke ("fireEnemyBullet", 1.0f);
 		if (self.name.Contains ("Dragon")) {
 			eventTime = 20.0f;
-		} else {
+            _animTimer = 3.0f;
+
+        } else {
 			eventTime = 10.0f;
 		}
 		fixedeventTime = eventTime;
@@ -29,7 +35,14 @@ public class enemyGun : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		eventTime -= Time.deltaTime;
-		if (eventTime <= 0) {
+        if (self.name.Contains("Dragon"))
+        {
+            if (eventTime <= _animTimer)
+                animator.SetBool("Attacking", true);
+            else
+                animator.SetBool("Attacking", false);
+        }
+            if (eventTime <= 0) {
 			fireEnemyBullet();
 			eventTime = fixedeventTime;
 		}
@@ -38,6 +51,7 @@ public class enemyGun : MonoBehaviour {
 	void fireEnemyBullet()
 	{
 		if (playership != null) {
+
 
 			GameObject bullet = (GameObject)Instantiate (enemyBullet);
 

@@ -4,20 +4,19 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
-public class Dragon : MonoBehaviour {
+public class Dragon : BaseEnemy {
 
-	[SerializeField]
-	GameObject player;
-
-	private float heightChangeTimer = 5.0f, speed = 0.05f, heightAscent = 0;
-	private Vector3 position;
-	private int currentHealth;
-
+	//[SerializeField]
+	//GameObject player;
+	
 	void Awake() {
 
 		player = GameObject.Find("Ship");
-		position = player.transform.position;
-	}
+		//position = player.transform.position;
+        heightChangeTimer = 5.0f;
+        speed = 0.05f;
+        heightAscent = 0;
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -29,13 +28,6 @@ public class Dragon : MonoBehaviour {
 		moveDragon ();
 	}		
 
-	//Returns random between descending and ascending
-	public float heightVariantChange()
-	{
-		return Random.Range (-1.2f,1.2f);
-
-	}
-
 	public void moveDragon()
 	{
 		heightChangeTimer -= Time.deltaTime;
@@ -45,8 +37,8 @@ public class Dragon : MonoBehaviour {
 			heightChangeTimer = 5.0f; //Hard coded for now
 		}
 
-		position += new Vector3(1, 0,0) * speed;
-		transform.DOMoveX (position.x, 5.0f, false);
+		//position += new Vector3(1, 0,0) * speed;
+		//transform.DOMoveX (position.x, 5.0f, false);
 		transform.DOMoveY (player.transform.position.y + heightAscent, 10.0f, false);
 		//transform.DOMoveX(player.transform.position.x, 10.0f, false);
 		//transform.DOMove(new Vector3(1,heightAscent,0) * speed, 10.0f, false);
@@ -54,7 +46,7 @@ public class Dragon : MonoBehaviour {
 
 	}
 
-	public void dragonTakeDamage(int i ) {
+	/*public void dragonTakeDamage(int i ) {
 		if (currentHealth > 0) {
 			currentHealth -= i;
 			//healthSlider.value = currentHealth;
@@ -64,5 +56,5 @@ public class Dragon : MonoBehaviour {
 			//healthTxt.text = "Health: " + currentHealth;
 			///innerCam.DOShakePosition(0.5f, 5.0f, 30);
 		}
-	}
+	}*/
 }

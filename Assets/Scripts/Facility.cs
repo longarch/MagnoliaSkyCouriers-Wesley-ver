@@ -15,11 +15,19 @@ public class Facility : MonoBehaviour {
     Ship shipInteractions;
 
     [SerializeField]
+    EnemyManager eventEnemies;
+    [SerializeField]
+    EnemyPool ePool;
+
+    [SerializeField]
     private type facilityType;
 	[SerializeField]
 	private ScrollingBackground SkyBG; //To be used to indirectly manipulate scroll speed
 
+    private BaseEnemy target;
+
     bool isActivated;
+    bool scanned;
     bool needToReset = false;
     private float facilityOutput = 0;
     private float originalOutput;
@@ -31,15 +39,18 @@ public class Facility : MonoBehaviour {
         switch ((int)facilityType)
         {
             case 0: // Magic Type
+                scanned = false;
                 facilityOutput = 1;
                 break;
             case 1: // Combat
+                scanned = false;
                 facilityOutput = 1;
                 break;
             case 2: // Core
                 facilityOutput = 2;
                 break;
             case 3: // Movement
+                scanned = true;
                 facilityOutput = 3;
                 originalOutput = shipInteractions.ShipSpeed;
                 break;
@@ -57,6 +68,11 @@ public class Facility : MonoBehaviour {
             return;
         }
         //checkResource();
+        if (!scanned)
+        {
+            if (facilityType == type.Combat || facilityType == type.Magic)
+                scanForTarget();
+        }
         startFacility();
         // Always be checking for the resources
     }
@@ -137,6 +153,16 @@ public class Facility : MonoBehaviour {
             case 0: // Magic Type
                 break;
             case 1: // Combat
+                if (target == null)
+                {
+                    return;
+                }
+                target.TakeDamage((int)facilityOutput);
+                if (target.getHealth() <= 0)
+                {
+                    target.gameObject.SetActive(false);
+                    scanned = false;
+                }
                 break;
             case 2: // Core
                 break;
@@ -173,6 +199,22 @@ public class Facility : MonoBehaviour {
                 break;
         }
         needToReset = false;
+    }
+
+    private void scanForTarget()
+    {
+        foreach (BaseEnemy pEnemy in ePool.GetAllActiveEnemies())
+        {
+            foreach (BaseEnemy sEnemy in eventEnemies.enemy)
+            {
+                if (sEnemy.GetType().Equals(pEnemy.GetType()))
+                {
+                    target = pEnemy;
+                    scanned = true;
+                    break;
+                }
+            }
+        }
     }
 
     private void TimerLoop(float delay)

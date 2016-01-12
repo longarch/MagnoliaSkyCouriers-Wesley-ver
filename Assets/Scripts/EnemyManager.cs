@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour {
 
-	public List<GameObject> enemy;
+	public List<BaseEnemy> enemy;
 
 	[SerializeField]
 	GameObject raider;
@@ -12,16 +12,17 @@ public class EnemyManager : MonoBehaviour {
 	GameObject dragon;
 	[SerializeField]
 	GameObject playerObject;
-	Ship player;
+    [SerializeField]
+    Ship player;
 
-	public GameObject enemies;
+	public BaseEnemy enemies;
 	float eventTime = 5.0f, spawnTime;
 	int i, currentNo = 0, maxNo = 3;
 	// Use this for initialization
 	void Start () {
 		spawnTime = eventTime;
-		enemy = new List<GameObject> ();
-		player = new Ship ();
+		enemy = new List<BaseEnemy> ();
+		//player = new Ship ();
 		//InvokeRepeating ("Spawn", spawnTime, spawnTime);
 	}
 
@@ -36,20 +37,30 @@ public class EnemyManager : MonoBehaviour {
 
 	void Spawn()
 	{
-		if (player.currentHealth <= 0 || currentNo >= maxNo) {
+        if (player.currentHealth <= 0 || currentNo >= maxNo) {
 			return;
 		} else {
-			i = randomType ();
+            //Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+            Debug.Log("Start Spawn 1 " + playerObject.transform.position.x);
+            Debug.Log("Start Spawn 2 " + player.getPosition().x);
+            i = randomType ();
 			if (randomType () < 1) {
-				enemies = Instantiate (dragon, new Vector3 (playerObject.transform.position.x - 10,
-					Random.Range (playerObject.transform.position.y - 10, playerObject.transform.position.y + 10), 0), Quaternion.identity) as GameObject;
+                //Debug.Log(playerObject.transform.position.x);
+				enemies = EnemyPool.Instance.SpawnEnemy(new Vector3(playerObject.transform.position.x - 2,
+                    Random.Range(player.getPosition().y - 10, player.getPosition().y + 10), 0), EnemyPool.EnemyType.Dragon);
+
+                //Instantiate(dragon, new Vector3 (playerObject.transform.position.x - 10,
+					//Random.Range (playerObject.transform.position.y - 10, playerObject.transform.position.y + 10), 0), Quaternion.identity) as GameObject;
 				enemy.Add (enemies);
 				currentNo++;
 				spawnTime = 15f; //change the time between spawns
 			} else {
-				enemies = Instantiate (raider, new Vector3 (playerObject.transform.position.x - 10,
-					Random.Range (playerObject.transform.position.y - 10, playerObject.transform.position.y + 10), 0), Quaternion.identity) as GameObject;
-				enemy.Add (enemies);
+				enemies = EnemyPool.Instance.SpawnEnemy(new Vector3(playerObject.transform.position.x - 2,
+                    Random.Range(player.getPosition().y - 10, player.getPosition().y + 10), 0), EnemyPool.EnemyType.Raider);
+
+                //Instantiate (raider, new Vector3 (playerObject.transform.position.x - 10,
+                //Random.Range (playerObject.transform.position.y - 10, playerObject.transform.position.y + 10), 0), Quaternion.identity) as GameObject;
+                enemy.Add (enemies);
 				currentNo++;
 				spawnTime = 10f; //change the time between spawns
 			}
