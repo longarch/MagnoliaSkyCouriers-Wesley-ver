@@ -3,69 +3,64 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour {
-	
+
 	public List<GameObject> enemy;
 
 	[SerializeField]
+	GameObject raider;
+	[SerializeField]
+	GameObject dragon;
+	[SerializeField]
+	GameObject playerObject;
+	Ship player;
 
+	public GameObject enemies;
+	float eventTime = 5.0f, spawnTime;
+	int i, currentNo = 0, maxNo = 3;
 	// Use this for initialization
 	void Start () {
-	
+		spawnTime = eventTime;
+		enemy = new List<GameObject> ();
+		player = new Ship ();
+		//InvokeRepeating ("Spawn", spawnTime, spawnTime);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-	
-	}
-
-	void trackEnemySpawn() {
-		randomType ();	
-		//Instantiate (enemy[0], Vector3 (0, 0, 0), transform.rotation);
-	}
-
-	private void randomType()
-	{
-		int i = Random.Range (0, 1);
-		if (i == 0) {
-			//GameObject eSpawn = new Enemy (200, Enemy.Type.DRAGON);
-			//enemy.Add (eSpawn);
-		} else {
-			//GameObject eSpawn = new Enemy (100, Enemy.Type.RAIDER);
-			//enemy.Add (eSpawn);
+		eventTime -= Time.deltaTime;
+		if (eventTime <= 0) {
+			Spawn ();
+			eventTime = spawnTime;
 		}
 	}
-}
 
-public class Enemy
-{
-	public enum Type { RAIDER, DRAGON };
-	public int health;
-	public Type enemyType;
-
-	public Enemy(int h, Type d)
-	{	
-		setHealth (h);
-		setType (d);
-	}
-
-	public int getHealth()
+	void Spawn()
 	{
-		return health;
+		if (player.currentHealth <= 0 || currentNo >= maxNo) {
+			return;
+		} else {
+			i = randomType ();
+			if (randomType () < 1) {
+				enemies = Instantiate (dragon, new Vector3 (playerObject.transform.position.x - 10,
+					Random.Range (playerObject.transform.position.y - 10, playerObject.transform.position.y + 10), 0), Quaternion.identity) as GameObject;
+				enemy.Add (enemies);
+				currentNo++;
+				spawnTime = 15f; //change the time between spawns
+			} else {
+				enemies = Instantiate (raider, new Vector3 (playerObject.transform.position.x - 10,
+					Random.Range (playerObject.transform.position.y - 10, playerObject.transform.position.y + 10), 0), Quaternion.identity) as GameObject;
+				enemy.Add (enemies);
+				currentNo++;
+				spawnTime = 10f; //change the time between spawns
+			}
+		}
+		Debug.Log (enemy.Count);
 	}
 
-	public Type getType()
+	private int randomType()
 	{
-		return enemyType;
-	}
-		
-	public void setHealth (int h)
-	{
-		health = h;
-	}
+		int i = Random.Range (0, 3);
 
-	public void setType (Type e)
-	{
-		enemyType = e;
+		return i;
 	}
-
 }

@@ -11,7 +11,7 @@ public class Ship : MonoBehaviour
 	public float maxDist = 0;
 	private float heightChangeTimer = 5.0f,  maxHealth = 1.0f, heightAscent = 0;// speed = 0.05f;
 	private Vector3 position;
-	private int currentHealth = 100, cargoHealth = 100;
+	public int currentHealth = 100, cargoHealth = 100;
 
 	[SerializeField] 
 	private float speed = 0.05f;
@@ -120,15 +120,6 @@ public class Ship : MonoBehaviour
 			cargoCountTxt.text = "Cargo Health: " + cargoHealth;
 		}
 	}
-
-    //private void testEvent()
-   // {
-        //if (UnityEngine.Random.Range(0, 10) > 4)
-        //{
-        //    GameManager.Instance.setStatus(GameManager.STATE.ONGOING);
-        //}
-        //else Health -= 1;
-    //}
 
     public void moveShip()
     {    

@@ -1,40 +1,54 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class enemyGun : MonoBehaviour {
 
-	float eventTime = 10.0f;
+	float eventTime = 0f;
 	float fixedeventTime;
 
 	public GameObject enemyBullet;
+	[SerializeField]
+	public GameObject self;
+
+	[SerializeField]
+	GameObject playership;
+
 	// Use this for initialization
 	void Start () {
 		//Invoke ("fireEnemyBullet", 1.0f);
+		if (self.name.Contains ("Dragon")) {
+			eventTime = 20.0f;
+		} else {
+			eventTime = 10.0f;
+		}
 		fixedeventTime = eventTime;
+		playership  = GameObject.Find ("Ship");
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		eventTime -= Time.deltaTime;
 		if (eventTime <= 0) {
-			fireEnemyBullet ();
+			fireEnemyBullet();
 			eventTime = fixedeventTime;
 		}
 	}
 
 	void fireEnemyBullet()
 	{
-		GameObject playership = GameObject.Find ("Ship");
-
 		if (playership != null) {
 
 			GameObject bullet = (GameObject)Instantiate (enemyBullet);
 
 			bullet.transform.position = transform.position;
 
-			Vector2 direction = playership.transform.position - bullet.transform.position;
+			Vector2 direction = playership.transform.position - bullet.transform.position + new Vector3(2f,0,0);
 
 			bullet.GetComponent<enemyBullet> ().setDirection (direction);
+		}
+		else {
+			return;
 		}
 	}
 }

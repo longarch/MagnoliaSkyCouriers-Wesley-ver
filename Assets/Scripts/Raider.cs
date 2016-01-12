@@ -17,7 +17,6 @@ public class Raider : MonoBehaviour {
 
 		player = GameObject.Find("Ship");
 		position = player.transform.position;
-
 	}
 
 	// Use this for initialization
@@ -35,7 +34,6 @@ public class Raider : MonoBehaviour {
 	public float heightVariantChange()
 	{
 		return Random.Range (-1.4f,1.4f);
-
 	}
 
 	public void moveShip()
@@ -53,7 +51,6 @@ public class Raider : MonoBehaviour {
 		//transform.DOMoveX(player.transform.position.x, 10.0f, false);
 		//transform.DOMove(new Vector3(1,heightAscent,0) * speed, 10.0f, false);
 		//Debug.Log("Distance left : " + distance);
-
 	}
 
 	public void shipTakeDamage(int i ) {
