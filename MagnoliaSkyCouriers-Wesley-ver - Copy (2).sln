@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{B3EEDC72-4DD1-8D91-8610-D7D537CF86AA}") = "MagnoliaSkyCouriers-Wesley-ver - Copy (2)", "Assembly-CSharp.csproj", "{7DA000F0-DF06-2CC4-624D-0B31E7AA8C3B}"
+EndProject
+Project("{B3EEDC72-4DD1-8D91-8610-D7D537CF86AA}") = "MagnoliaSkyCouriers-Wesley-ver - Copy (2)", "Assembly-CSharp-Editor.csproj", "{DD22F854-7A3B-68C7-AB86-A8399E5E2E75}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DA000F0-DF06-2CC4-624D-0B31E7AA8C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA000F0-DF06-2CC4-624D-0B31E7AA8C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA000F0-DF06-2CC4-624D-0B31E7AA8C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA000F0-DF06-2CC4-624D-0B31E7AA8C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD22F854-7A3B-68C7-AB86-A8399E5E2E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD22F854-7A3B-68C7-AB86-A8399E5E2E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD22F854-7A3B-68C7-AB86-A8399E5E2E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD22F854-7A3B-68C7-AB86-A8399E5E2E75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

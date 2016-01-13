@@ -73,10 +73,64 @@ public class EnemyManager : MonoBehaviour {
 		Debug.Log (enemy.Count);
 	}
 
+	//Scenarios more dragons than raiders or more raiders than dragons
+	public void Spawn(int count, int state)
+	{
+		maxNo = count;
+		switch (state) {
+		case 1: //more dragons than raiders
+			i = randomType (state);
+			if (randomType () < 1) {
+				enemies = EnemyPool.Instance.SpawnEnemy(new Vector3(playerObject.transform.position.x - 2,
+					Random.Range(player.getPosition().y - 10, player.getPosition().y + 10), 0), EnemyPool.EnemyType.Raider);
+				enemy.Add (enemies);
+				currentNo++;
+				spawnTime = 15f; //change the time between spawns
+			} else {
+				enemies = EnemyPool.Instance.SpawnEnemy(new Vector3(playerObject.transform.position.x - 2,
+					Random.Range(player.getPosition().y - 10, player.getPosition().y + 10), 0), EnemyPool.EnemyType.Dragon);
+				enemy.Add (enemies);
+				currentNo++;
+				spawnTime = 10f; //change the time between spawns
+			}
+			break;
+		case 2: //more raiders than dragons
+			i = randomType (state);
+			if (randomType () < 1) {
+				enemies = EnemyPool.Instance.SpawnEnemy(new Vector3(playerObject.transform.position.x - 2,
+					Random.Range(player.getPosition().y - 10, player.getPosition().y + 10), 0), EnemyPool.EnemyType.Dragon);
+				enemy.Add (enemies);
+				currentNo++;
+				spawnTime = 15f; //change the time between spawns
+			} else {
+				enemies = EnemyPool.Instance.SpawnEnemy(new Vector3(playerObject.transform.position.x - 2,
+					Random.Range(player.getPosition().y - 10, player.getPosition().y + 10), 0), EnemyPool.EnemyType.Raider);
+				enemy.Add (enemies);
+				currentNo++;
+				spawnTime = 10f; //change the time between spawns
+			}
+			break;
+		}
+	}
+
 	private int randomType()
 	{
-		int i = Random.Range (0, 3);
+		int i = Random.Range (0, 10);
 
 		return i;
+	}
+
+	private int randomType(int i)
+	{
+		int j = 0;
+		switch (i){
+		case 1:
+			j = Random.Range (0, 3);
+			return j;
+		case 2:
+			j = Random.Range (0, 5);
+			return j;
+		}
+		return j;
 	}
 }
