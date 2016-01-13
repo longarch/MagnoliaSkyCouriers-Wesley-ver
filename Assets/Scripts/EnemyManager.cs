@@ -28,6 +28,11 @@ public class EnemyManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+		if (GameManager.Instance.getStatus () == GameManager.STATE.START) {
+			return;
+		}
+
 		eventTime -= Time.deltaTime;
 		if (eventTime <= 0) {
 			Spawn ();

@@ -50,6 +50,7 @@ public class Ship : MonoBehaviour
         switch(GameManager.Instance.getStatus())
         {
             case GameManager.STATE.START: //Starting
+				moveShipHeight();
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     GameManager.Instance.setStatus(GameManager.STATE.ONGOING);
@@ -104,8 +105,14 @@ public class Ship : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
+
+
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Projectile")) {
-			shipTakeDamage(5);
+			if(other.name.Contains("Fireball")){
+				shipTakeDamage(20);
+			}else{
+				shipTakeDamage(5);
+			}
 			Destroy(other.gameObject);
 		}
 
@@ -119,6 +126,24 @@ public class Ship : MonoBehaviour
 			cargoHealthImage.DOFillAmount (((float)cargoHealth) / 100, 0.5f);
 			cargoCountTxt.text = "Cargo Health: " + cargoHealth;
 		}
+	}
+
+	public void moveShipHeight()
+	{    
+		heightChangeTimer -= Time.deltaTime;
+		
+		if (heightChangeTimer <= 0.0f) {
+			heightAscent = heightVariantChange();
+			heightChangeTimer = 15.0f; //Hard coded for now
+		}
+		//DOTween.Complete (gameObject.transform);
+		//transform.position += new Vector3(1,heightAscent,0) * speed;
+		//position += new Vector3(1, 0,0) * speed;
+		//transform.DOMoveX (position.x, 5.0f, false);
+		transform.DOMoveY (heightAscent, 10.0f, false);
+		
+		//Debug.Log("Distance left : " + distance);
+		
 	}
 
     public void moveShip()

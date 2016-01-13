@@ -22,6 +22,9 @@ public class BaseEnemy : MonoBehaviour {
     [SerializeField]
     protected EnemyType type = EnemyType.None;
 
+	[SerializeField]
+	GameObject _spriteFeedback;
+
     void Awake()
     {
         player = GameObject.Find("Ship");
@@ -29,6 +32,7 @@ public class BaseEnemy : MonoBehaviour {
         speed = 0.05f;
         heightAscent = 0;
         currentHealth = 100;
+		_spriteFeedback.SetActive (false);
     }
 
     // Use this for initialization
@@ -65,6 +69,20 @@ public class BaseEnemy : MonoBehaviour {
     {
         return currentHealth;
     }
+
+	public void promptDeathCallback()
+	{
+		_spriteFeedback.SetActive (true);
+		Sequence sequence = DOTween.Sequence();
+		DOTween.Complete (_spriteFeedback.transform);
+		sequence.Append(_spriteFeedback.transform.DOPunchScale (new Vector3 (0.05f, 0.05f, 0.05f), 0.5f, 5, 1));
+		sequence.OnComplete(() =>
+		                    {
+			//camera.orthographic = !currentMode;
+			_spriteFeedback.SetActive (false);
+			gameObject.SetActive(false);
+		});
+	}
 
     public EnemyType returnEType()
     {

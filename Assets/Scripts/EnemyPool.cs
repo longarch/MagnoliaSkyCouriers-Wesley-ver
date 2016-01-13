@@ -80,7 +80,15 @@ public class EnemyPool : MonoBehaviour
 			{
                 //enemy.transform.position = spawnPosition;
                 enemy.Setup(spawnPosition);
-                enemy.transform.localScale = _normalEnemyPrefab.transform.localScale;
+				if (enemyType == EnemyType.Dragon)
+				{
+					enemy.transform.localScale = _heavyEnemyPrefab.transform.localScale;
+				}
+				else
+				{
+					enemy.transform.localScale = _normalEnemyPrefab.transform.localScale;
+				}
+               
 				enemy.gameObject.SetActive(true);
 				return enemy;
 			}

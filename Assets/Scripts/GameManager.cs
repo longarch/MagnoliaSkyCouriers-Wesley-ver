@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance = null;
     public enum STATE { START , TUTORIAL, ONGOING, EVENT, CARGOLOST, GOAL };
-    private STATE gameMode;
+    [SerializeField]
+	private STATE gameMode;
     private bool followShip;
 
     //private float destination;
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 		//Debug.Log (healthImage.fillAmount);
-        gameMode = STATE.ONGOING;
+        //gameMode = STATE.ONGOING;
 				  
         followShip = false;
     }

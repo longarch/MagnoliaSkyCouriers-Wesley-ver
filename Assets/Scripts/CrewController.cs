@@ -42,6 +42,10 @@ public class CrewController : MonoBehaviour {
             return;
         }
 
+		if (GameManager.Instance.getStatus () == GameManager.STATE.START) {
+			return;
+		}
+
         if (Input.touchCount > 0)
         {
             for (int i = 0; i < Input.touchCount; i++)

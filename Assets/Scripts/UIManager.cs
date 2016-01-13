@@ -16,11 +16,11 @@ public class UIManager : MonoBehaviour {
 	//}
 
 	[SerializeField]
-	Text txtInstruction1;
+	Text txtInstruction1,txtOpeningText;
 	[SerializeField]
 	Button start_btn, dlogNext_btn, dlogCom_btn;
 	[SerializeField]
-	Image pausePnl,DialogPnl;
+	Image pausePnl,DialogPnl,openingPnl;
 	[SerializeField]
 	List<string> Dialogs, Dialogs_2, Dialogs_3;
 
@@ -62,6 +62,8 @@ public class UIManager : MonoBehaviour {
 		if (dlogCom_btn != null) {
 			dlogCom_btn.gameObject.SetActive (false);
 		}
+
+		startOpeningSequence ();
 
 		paused = false;
 		//DialogManager.Instance.returnDialogs (0);
@@ -122,6 +124,24 @@ public class UIManager : MonoBehaviour {
 				dlogCom_btn.gameObject.SetActive (true);
 			//}						
 		}
+	}
+
+	public void startOpeningSequence()
+	{
+
+		Sequence sequence = DOTween.Sequence();
+		//DOTween.Complete (_spriteFeedback.transform);
+		sequence.Insert(0.1f,openingPnl.DOFade(0.5f,3.0f));
+		sequence.Insert(0.1f,txtOpeningText.rectTransform.DOAnchorPosY(0,1.0f,false));
+		sequence.Append(openingPnl.DOFade(0,1.0f));
+		//sequence.Insert(1.1f,txtOpeningText.rectTransform.DOAnchorPosY(800,1.0f,false));
+		sequence.OnComplete(() =>
+		                    {
+			openingPnl.gameObject.SetActive(false);
+			//camera.orthographic = !currentMode;
+			//_spriteFeedback.SetActive (false);
+			//gameObject.SetActive(false);
+		});
 	}
 
 	public void HideDialogBox()

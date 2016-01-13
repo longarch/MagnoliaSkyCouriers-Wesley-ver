@@ -160,7 +160,8 @@ public class Facility : MonoBehaviour {
                 target.TakeDamage((int)facilityOutput);
                 if (target.getHealth() <= 0)
                 {
-                    target.gameObject.SetActive(false);
+					target.promptDeathCallback();
+                    //target.gameObject.SetActive(false);
                     scanned = false;
                 }
                 break;

@@ -22,7 +22,7 @@ public class enemyGun : MonoBehaviour {
 	void Start () {
 		//Invoke ("fireEnemyBullet", 1.0f);
 		if (self.name.Contains ("Dragon")) {
-			eventTime = 20.0f;
+			eventTime = 10.0f;
             _animTimer = 3.0f;
 
         } else {
@@ -44,6 +44,7 @@ public class enemyGun : MonoBehaviour {
         }
             if (eventTime <= 0) {
 			fireEnemyBullet();
+			fixedeventTime = Random.Range (7,15);
 			eventTime = fixedeventTime;
 		}
 	}
