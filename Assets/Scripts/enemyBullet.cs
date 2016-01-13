@@ -6,8 +6,10 @@ public class enemyBullet : MonoBehaviour {
 	float speed; // the bullet speed
 	Vector2 _direction; // the direction of the bullet
 	bool isReady; //when bullet direction is set
+    [SerializeField]
+    int damage;
 
-	void Awake()
+    void Awake()
 	{
 		speed = 0.2f;
 		isReady = false;
@@ -48,4 +50,10 @@ public class enemyBullet : MonoBehaviour {
 			}
 		}
 	}
+
+    public int damageValue
+    {
+         get { return damage; }
+        set { damage = value; }
+    }
 }

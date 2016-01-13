@@ -2,13 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using DG.Tweening;
 
 public class Facility : MonoBehaviour {
 
     private List<GameObject> assignedCrews;
     
-    private enum type { Magic, Combat, Core, Movement };
-    
+    private enum type { Magic, Combat, Core, Movement, Evasion };
+
+
+    private int fHealth;
     private int ResourcesNeeded;
     private int rValue;
     [SerializeField]
@@ -18,6 +21,8 @@ public class Facility : MonoBehaviour {
     EnemyManager eventEnemies;
     [SerializeField]
     EnemyPool ePool;
+    [SerializeField]
+    public GameObject Bullet;
 
     [SerializeField]
     private type facilityType;
@@ -26,27 +31,40 @@ public class Facility : MonoBehaviour {
 
     private BaseEnemy target;
 
-    bool isActivated;
+    bool isActivated, isWorking;
     bool scanned;
+    float delay, atkDelay;
     bool needToReset = false;
     private float facilityOutput = 0;
     private float originalOutput;
+    Color oriColor;
 
 
     // Use this for initialization
     void Start () {
         isActivated = false;
+        isWorking = true;
+        oriColor = gameObject.GetComponent<SpriteRenderer>().color;
+        gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
         switch ((int)facilityType)
         {
             case 0: // Magic Type
                 scanned = false;
-                facilityOutput = 1;
+                atkDelay = 5;
+                delay = atkDelay;
+                facilityOutput = 20; //currently not used
                 break;
             case 1: // Combat
                 scanned = false;
-                facilityOutput = 1;
+                atkDelay = 5;
+                delay = atkDelay;
+                facilityOutput = 10; //currently not used
                 break;
             case 2: // Core
+                fHealth = shipInteractions.currentHealth;
+                scanned = true;
+                atkDelay = 10;
+                delay = atkDelay;
                 facilityOutput = 2;
                 break;
             case 3: // Movement
@@ -54,11 +72,22 @@ public class Facility : MonoBehaviour {
                 facilityOutput = 3;
                 originalOutput = shipInteractions.ShipSpeed;
                 break;
+            case 4: // Evasion
+                scanned = true;
+                facilityOutput = 3;
+                atkDelay = 3;
+                delay = atkDelay;
+                originalOutput = shipInteractions.ShipSpeed;
+                break;
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (!isWorking)
+        {
+            return;
+        }
         if (!isActivated)
         {
             if (needToReset)
@@ -79,6 +108,10 @@ public class Facility : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (!isWorking)
+        {
+            return;
+        }
         if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
         {
             Debug.Log("Race "+ other.gameObject.GetComponent<Crew>().getRace() + " working on " + name);
@@ -91,6 +124,10 @@ public class Facility : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
+        if (!isWorking)
+        {
+            return;
+        }
         if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
         {
             Debug.Log("Race " + other.gameObject.GetComponent<Crew>().getRace() + " left " + name);
@@ -103,13 +140,13 @@ public class Facility : MonoBehaviour {
         switch(race)
         {
             case 0: //Race = Elf
-                if (facilityType == type.Magic)
+                if (facilityType == type.Movement || facilityType == type.Evasion)
                     rValue = 3;
                 else
                     rValue = 1;
                 break;
             case 1: //Race = Fairy
-                if (facilityType == type.Movement)
+                if (facilityType == type.Magic)
                     rValue = 3;
                 else
                     rValue = 1;
@@ -138,10 +175,11 @@ public class Facility : MonoBehaviour {
         if (ResourcesNeeded >= 3)
         {
             isActivated = true;
+            gameObject.GetComponent<SpriteRenderer>().DOColor(oriColor, 0.5f);
             Debug.Log(name + " is working");
-        }
-        else {
+        } else {
             isActivated = false;
+            gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
             needToReset = true;
         }
     }
@@ -151,29 +189,68 @@ public class Facility : MonoBehaviour {
         switch ((int)facilityType)
         {
             case 0: // Magic Type
+                if (scanned)
+                {
+                    delay -= 0.02f;
+                    if (delay <= 0)
+                    {
+                        fireBullet();
+                        delay = atkDelay;
+                    }
+                    if (target.getHealth() <= 0)
+                    {
+                        target.gameObject.SetActive(false);
+                        delay = atkDelay;
+                        scanned = false;
+                    }
+                }
                 break;
             case 1: // Combat
-                if (target == null)
+                if (scanned)
                 {
-                    return;
-                }
-                target.TakeDamage((int)facilityOutput);
-                if (target.getHealth() <= 0)
-                {
-					target.promptDeathCallback();
-                    //target.gameObject.SetActive(false);
-                    scanned = false;
+                    delay -= 0.02f;
+                    if (delay <= 0)
+                    {
+                        fireBullet();
+                        Debug.Log(target.getHealth());
+                        delay = atkDelay;
+                    }
+                    if (target.getHealth() <= 0)
+                    {
+                        target.gameObject.SetActive(false);
+                        delay = atkDelay;
+                        scanned = false;
+                    }
                 }
                 break;
             case 2: // Core
+                if (shipInteractions.currentHealth < 100)
+                {
+                    delay -= 0.2f;
+                    if (delay <= 0)
+                    {
+                        shipInteractions.repairShip((int)facilityOutput);
+                        delay = atkDelay;
+                    }
+                }
                 break;
             case 3: // Movement
                 float accel = 1;
                 while (accel < facilityOutput)
                 {
                     shipInteractions.ShipSpeed = originalOutput * accel;
-                    SkyBG.setBGSpeed(1);
+                    SkyBG.setBGSpeed(shipInteractions.ShipSpeed * 10);
                     accel += 0.2f;
+                }
+                break;
+            case 4: // Evasion
+                delay -= 0.2f;
+                if (delay <= 0)
+                {
+                    if (randomType() < 1)
+                    { shipInteractions.evadeChance = true; }
+                    else shipInteractions.evadeChance = false;
+                    delay = atkDelay;
                 }
                 break;
         }
@@ -194,7 +271,7 @@ public class Facility : MonoBehaviour {
                 while (accel > 1)
                 {
                     shipInteractions.ShipSpeed = originalOutput * accel;
-                    SkyBG.setBGSpeed(0.5f);
+                    SkyBG.setBGSpeed(shipInteractions.ShipSpeed * 10);
                     accel -= 0.2f;
                 }
                 break;
@@ -218,9 +295,39 @@ public class Facility : MonoBehaviour {
         }
     }
 
-    private void TimerLoop(float delay)
+    void fireBullet()
     {
-        if (delay <= 0)
-        { }
+        Debug.Log(target.transform.position);
+        if (target != null)
+        {
+            Debug.Log(target);
+            GameObject bullet = Instantiate(Bullet, shipInteractions.getPosition(), Quaternion.identity) as GameObject;
+            //bullet.transform.position += Vector3.left;
+            Vector2 direction = target.transform.position - bullet.transform.position - new Vector3(2f, 0, 0);
+            bullet.GetComponent<enemyBullet>().damageValue = (int)facilityOutput;
+            bullet.GetComponent<enemyBullet>().setDirection(direction);
+            Debug.Log(direction);
+        }
+        else {
+            return;
+        }
+    }
+
+
+    private int randomType()
+    {
+        int i = UnityEngine.Random.Range(0, 3);
+
+        return i;
+    }
+
+    void damageFacility(int dmg)
+    {
+        fHealth -= dmg;
+        if (fHealth <= 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().DOColor(Color.black, 0.5f);
+            isWorking = false;
+        }
     }
 }

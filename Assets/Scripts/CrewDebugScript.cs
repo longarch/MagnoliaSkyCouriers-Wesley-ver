@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿// Obselete/ Not In used
+
+using UnityEngine;
 using System.Collections;
 
 public class CrewDebugScript : MonoBehaviour {
 
 	[SerializeField]
 	Camera cam;
+
 	// Use this for initialization
 	void Start () {
 	

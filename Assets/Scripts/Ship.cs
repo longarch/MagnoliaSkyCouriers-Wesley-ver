@@ -29,6 +29,7 @@ public class Ship : MonoBehaviour
 
 	[SerializeField]
 	Camera innerCam;
+    public bool evade;
 
     // Use this for initialization
     void Start()
@@ -105,18 +106,14 @@ public class Ship : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-
-
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Projectile")) {
-			if(other.name.Contains("Fireball")){
-				shipTakeDamage(20);
-			}else{
-				shipTakeDamage(5);
-			}
-			Destroy(other.gameObject);
+            if (!evade)
+                shipTakeDamage(other.GetComponent<enemyBullet>().damageValue);
+            else
+                Debug.Log("Evaded");
+            Destroy(other.gameObject);
+            evade = false;
 		}
-
-
 	}
 
 	public void cargoTakeDamage(int i) {
@@ -180,5 +177,18 @@ public class Ship : MonoBehaviour
     {
         get { return speed; }
         set { speed = value; }
+    }
+
+    public bool evadeChance
+    {
+        get { return evade; }
+        set { evade = value; }
+    }
+
+    public void repairShip(int value)
+    {
+        currentHealth += value;
+        if (currentHealth > 100)
+            currentHealth = 100;
     }
 }

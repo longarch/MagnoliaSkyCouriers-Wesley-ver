@@ -108,6 +108,15 @@ public class BaseEnemy : MonoBehaviour {
 
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("ShipProjectile"))
+        {
+            TakeDamage(other.GetComponent<enemyBullet>().damageValue);
+            Destroy(other.gameObject);
+        }
+    }
+
     public void Setup(Vector3 startingPos)
     {
         position = startingPos;
