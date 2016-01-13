@@ -13,9 +13,12 @@ public class Facility : MonoBehaviour {
 
     private int fHealth;
     private int ResourcesNeeded;
+    private int ResourcesCount;
     private int rValue;
     [SerializeField]
     Ship shipInteractions;
+    [SerializeField]
+    GameObject bulletHole;
 
     [SerializeField]
     EnemyManager eventEnemies;
@@ -46,6 +49,7 @@ public class Facility : MonoBehaviour {
         isWorking = true;
         oriColor = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
+        ResourcesCount = 0;
         switch ((int)facilityType)
         {
             case 0: // Magic Type
@@ -63,7 +67,7 @@ public class Facility : MonoBehaviour {
             case 2: // Core
                 fHealth = shipInteractions.currentHealth;
                 scanned = true;
-                atkDelay = 10;
+                atkDelay = 3;
                 delay = atkDelay;
                 facilityOutput = 2;
                 break;
@@ -141,25 +145,22 @@ public class Facility : MonoBehaviour {
         {
             case 0: //Race = Elf
                 if (facilityType == type.Movement || facilityType == type.Evasion)
-                    rValue = 3;
+                    rValue = 2;
                 else
                     rValue = 1;
                 break;
             case 1: //Race = Fairy
                 if (facilityType == type.Magic)
-                    rValue = 3;
+                    rValue = 2;
                 else
                     rValue = 1;
                 break;
             case 2: //Race = Human
-                if (facilityType == type.Core)
-                    rValue = 3;
-                else
-                    rValue = 1;
+                rValue = 1;
                 break;
             case 3: //Race = Wolfman
                 if (facilityType == type.Combat)
-                    rValue = 3;
+                    rValue = 2;
                 else
                     rValue = 1;
                 break;
@@ -172,7 +173,7 @@ public class Facility : MonoBehaviour {
 
     void checkResource()
     {
-        if (ResourcesNeeded >= 3)
+        if (ResourcesNeeded >= 2)
         {
             isActivated = true;
             gameObject.GetComponent<SpriteRenderer>().DOColor(oriColor, 0.5f);
@@ -199,6 +200,7 @@ public class Facility : MonoBehaviour {
                     }
                     if (target.getHealth() <= 0)
                     {
+                        target.Targeted = false;
                         target.gameObject.SetActive(false);
                         delay = atkDelay;
                         scanned = false;
@@ -217,6 +219,7 @@ public class Facility : MonoBehaviour {
                     }
                     if (target.getHealth() <= 0)
                     {
+                        target.Targeted = false;
                         target.gameObject.SetActive(false);
                         delay = atkDelay;
                         scanned = false;
@@ -275,6 +278,9 @@ public class Facility : MonoBehaviour {
                     accel -= 0.2f;
                 }
                 break;
+            case 4: // Evasion
+                shipInteractions.evadeChance = false;
+                break;
         }
         needToReset = false;
     }
@@ -288,6 +294,7 @@ public class Facility : MonoBehaviour {
                 if (sEnemy.GetType().Equals(pEnemy.GetType()))
                 {
                     target = pEnemy;
+                    target.Targeted = true;
                     scanned = true;
                     break;
                 }
@@ -301,9 +308,9 @@ public class Facility : MonoBehaviour {
         if (target != null)
         {
             Debug.Log(target);
-            GameObject bullet = Instantiate(Bullet, shipInteractions.getPosition(), Quaternion.identity) as GameObject;
+            GameObject bullet = Instantiate(Bullet, bulletHole.transform.position, Quaternion.identity) as GameObject;
             //bullet.transform.position += Vector3.left;
-            Vector2 direction = target.transform.position - bullet.transform.position - new Vector3(2f, 0, 0);
+            Vector2 direction = target.transform.position - bullet.transform.position - new Vector3(4f, 0, 0);
             bullet.GetComponent<enemyBullet>().damageValue = (int)facilityOutput;
             bullet.GetComponent<enemyBullet>().setDirection(direction);
             Debug.Log(direction);

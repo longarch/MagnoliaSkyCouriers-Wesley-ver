@@ -108,12 +108,13 @@ public class Ship : MonoBehaviour
 	{
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Projectile")) {
             if (!evade)
+            {
                 shipTakeDamage(other.GetComponent<enemyBullet>().damageValue);
+                Destroy(other.gameObject);
+            }
             else
                 Debug.Log("Evaded");
-            Destroy(other.gameObject);
-            evade = false;
-		}
+        }
 	}
 
 	public void cargoTakeDamage(int i) {
