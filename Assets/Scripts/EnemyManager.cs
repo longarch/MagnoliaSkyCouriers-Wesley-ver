@@ -237,7 +237,7 @@ public class EnemyManager : MonoBehaviour {
 						spawnedObject.transform.position = spawnPosition;
 						_spawns++;
 						_currentInScene++;
-						enemy.Add (enemies);
+						enemy.Add (_baseEnemy);
 
 					}).AppendInterval(setting.BurstInterval).SetLoops(spawnAmount);
 					

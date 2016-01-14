@@ -201,10 +201,10 @@ public class Facility : MonoBehaviour {
 		LevelLoadHandler _loadHandler = GameObject.Find ("levelHandler").GetComponent<LevelLoadHandler>();
 		if (_loadHandler != null) {
 			switch (_loadHandler.getLeader ()) {
-			case 0:
+			case 0: // Human
 				isCriticalWorking = true;
 				break;
-			case 1:
+			case 1: // Elf
 				if (facilityType == type.Evasion) {
 					facilityOutput = 50;
 				}
@@ -212,7 +212,7 @@ public class Facility : MonoBehaviour {
 					facilityOutput = 2.25f;
 				}
 				break;
-			case 2:
+			case 2: // Wolfman
 				if (facilityType == type.Combat) {
 					atkDelay = 4;
 					delay = atkDelay;
@@ -220,7 +220,7 @@ public class Facility : MonoBehaviour {
 				}
 
 				break;
-			case 3:
+			case 3: // Fairy
 				shipInteractions.setCurrentHealth(150);
 				fHealth = 40;
 				/*
@@ -254,6 +254,7 @@ public class Facility : MonoBehaviour {
             case 0: // Magic Type
                 if (scanned)
                 {
+                    eventEnemies.enemy.RemoveAt(0);
                     delay -= 0.02f;
                     if (delay <= 0)
                     {
@@ -281,6 +282,7 @@ public class Facility : MonoBehaviour {
                     }
                     if (target.getHealth() <= 0)
                     {
+                        eventEnemies.enemy.RemoveAt(0);
                         target.Targeted = false;
                         target.gameObject.SetActive(false);
                         delay = atkDelay;
@@ -309,6 +311,7 @@ public class Facility : MonoBehaviour {
                 }
                 break;
             case 4: // Evasion
+                Debug.Log("Evade working");
                 delay -= 0.2f;
                 if (delay <= 0)
                 {
@@ -351,16 +354,19 @@ public class Facility : MonoBehaviour {
     {
         foreach (BaseEnemy pEnemy in ePool.GetAllActiveEnemies())
         {
-            foreach (BaseEnemy sEnemy in eventEnemies.enemy)
+            //foreach (BaseEnemy sEnemy in eventEnemies.enemy)
+            if (eventEnemies.enemy.Count > 0)
             {
+                BaseEnemy sEnemy = eventEnemies.enemy[0];
                 if (sEnemy.GetType().Equals(pEnemy.GetType()))
                 {
-                    target = pEnemy;
+                    target = sEnemy;
                     target.Targeted = true;
                     scanned = true;
                     break;
                 }
             }
+            else break;
         }
     }
 
@@ -389,7 +395,6 @@ public class Facility : MonoBehaviour {
     private int randomType(int min, int max)
     {
         int i = Random.Range(min, max);
-
         return i;
     }
 
@@ -404,6 +409,4 @@ public class Facility : MonoBehaviour {
             isWorking = false;
         }
     }
-
-
 }
