@@ -31,15 +31,19 @@ public class Ship : MonoBehaviour
 	Camera innerCam;
     public bool evade;
 
+	[SerializeField]
+	List<Facility> facilityList;
+
     // Use this for initialization
     void Start()
     {
 		position = getPosition();
-		currentHealth = 100;
+		//currentHealth = 100;
 		healthImage.fillAmount = maxHealth;
 		cargoHealthImage.fillAmount = maxHealth;
 		CargoManager.Instance.loadCargo ();
 		cargoHealth = CargoManager.Instance.getCargoHealth ("Cargo1");
+		healthTxt.text = "Health: " + currentHealth;
     }
 
     // Update is called once per frame
@@ -98,6 +102,14 @@ public class Ship : MonoBehaviour
 			//healthSlider.value = currentHealth;
 			//Debug.Log(currentHealth/100);
 			healthImage.DOFillAmount (((float)currentHealth) / 100, 0.5f);
+
+			//Randomizing which facility gets damaged
+			int randomFaci = Random.Range (0,facilityList.Count);
+			int randomCrit = Random.Range (0,2);
+			if (randomCrit == 0)
+			{
+				facilityList[randomFaci].damageFacility(i);
+			}
 			//Debug.Log (healthImage.fillAmount);
 			healthTxt.text = "Health: " + currentHealth;
 			innerCam.DOShakePosition(0.5f, 5.0f, 30);
@@ -112,8 +124,12 @@ public class Ship : MonoBehaviour
                 shipTakeDamage(other.GetComponent<enemyBullet>().damageValue);
                 Destroy(other.gameObject);
             }
-            else
-                Debug.Log("Evaded");
+			else
+			{
+
+			}
+            //else
+            //    Debug.Log("Evaded");
         }
 	}
 
@@ -166,6 +182,11 @@ public class Ship : MonoBehaviour
         //Debug.Log("Distance left : " + distance);
         
     }
+
+	public void setCurrentHealth(int f)
+	{
+		currentHealth = f;
+	}
 
 	//Returns random between descending and ascending
 	public float heightVariantChange()

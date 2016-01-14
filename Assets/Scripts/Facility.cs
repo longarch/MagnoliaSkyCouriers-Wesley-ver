@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using DG.Tweening;
 
 public class Facility : MonoBehaviour {
@@ -10,8 +9,8 @@ public class Facility : MonoBehaviour {
     
     private enum type { Magic, Combat, Core, Movement, Evasion };
 
-
-    private int fHealth;
+	[SerializeField]
+    private int fHealth = 10;
     private int ResourcesNeeded;
     private int ResourcesCount;
     private int rValue;
@@ -35,7 +34,7 @@ public class Facility : MonoBehaviour {
 
     private BaseEnemy target;
 
-    bool isActivated, isWorking;
+    bool isActivated, isWorking, isCriticalWorking;
     bool scanned;
     float delay, atkDelay;
     bool needToReset = false;
@@ -46,7 +45,10 @@ public class Facility : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		assignedCrews = new List<GameObject> ();
+		//fHealth = 10;
         isActivated = false;
+		isCriticalWorking = false;
         isWorking = true;
         oriColor = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
@@ -57,13 +59,13 @@ public class Facility : MonoBehaviour {
                 scanned = false;
                 atkDelay = 5;
                 delay = atkDelay;
-                facilityOutput = 50; //currently not used
+                facilityOutput = 25; //currently not used
                 break;
             case 1: // Combat
                 scanned = false;
                 atkDelay = 5;
                 delay = atkDelay;
-				facilityOutput = 50; //currently not used
+				facilityOutput = 25; //currently not used
                 break;
             case 2: // Core
                 fHealth = shipInteractions.currentHealth;
@@ -79,12 +81,15 @@ public class Facility : MonoBehaviour {
                 break;
             case 4: // Evasion
                 scanned = true;
-                facilityOutput = 3;
+                facilityOutput = 25;
                 atkDelay = 3;
                 delay = atkDelay;
                 originalOutput = shipInteractions.ShipSpeed;
                 break;
         }
+
+		applyLeaderEffects ();
+
     }
 	
 	// Update is called once per frame
@@ -107,6 +112,9 @@ public class Facility : MonoBehaviour {
             if (facilityType == type.Combat || facilityType == type.Magic)
                 scanForTarget();
         }
+
+
+
         startFacility();
         // Always be checking for the resources
     }
@@ -166,9 +174,11 @@ public class Facility : MonoBehaviour {
                     rValue = 1;
                 break;
         }
-        if (enter)
-            ResourcesNeeded += rValue;
-        else ResourcesNeeded -= rValue;
+        if (enter) {
+			ResourcesNeeded += rValue;
+		} else {
+			ResourcesNeeded -= rValue;
+		}
         checkResource();
     }
 
@@ -185,6 +195,57 @@ public class Facility : MonoBehaviour {
             needToReset = true;
         }
     }
+
+	void applyLeaderEffects()
+	{
+		LevelLoadHandler _loadHandler = GameObject.Find ("levelHandler").GetComponent<LevelLoadHandler>();
+		if (_loadHandler != null) {
+			switch (_loadHandler.getLeader ()) {
+			case 0:
+				isCriticalWorking = true;
+				break;
+			case 1:
+				if (facilityType == type.Evasion) {
+					facilityOutput = 50;
+				}
+				if (facilityType == type.Movement) {
+					facilityOutput = 2.25f;
+				}
+				break;
+			case 2:
+				if (facilityType == type.Combat) {
+					atkDelay = 4;
+					delay = atkDelay;
+					facilityOutput = 40;
+				}
+
+				break;
+			case 3:
+				shipInteractions.setCurrentHealth(150);
+				fHealth = 40;
+				/*
+				if (facilityType == type.Magic) {
+					atkDelay = 4;
+					delay = atkDelay;
+					facilityOutput = 40;
+
+					//Higher health
+					//shipInteractions.setCurrentHealth(150);
+
+				}
+				*/
+				break;
+			}
+		}
+	}
+
+	void modifyOutputs()
+	{
+		for (int i = 0; i < assignedCrews.Count; i++)
+		{
+
+		}
+	}
 
     public void startFacility()
     {
@@ -251,7 +312,7 @@ public class Facility : MonoBehaviour {
                 delay -= 0.2f;
                 if (delay <= 0)
                 {
-                    if (randomType() < 1)
+                    if (randomType(0, 100) < facilityOutput)
                     { shipInteractions.evadeChance = true; }
                     else shipInteractions.evadeChance = false;
                     delay = atkDelay;
@@ -325,14 +386,16 @@ public class Facility : MonoBehaviour {
     }
 
 
-    private int randomType()
+    private int randomType(int min, int max)
     {
-        int i = UnityEngine.Random.Range(0, 3);
+        int i = Random.Range(min, max);
 
         return i;
     }
 
-    void damageFacility(int dmg)
+
+
+    public void damageFacility(int dmg)
     {
         fHealth -= dmg;
         if (fHealth <= 0)
