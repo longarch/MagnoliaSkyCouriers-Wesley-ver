@@ -20,6 +20,7 @@ public class Facility : MonoBehaviour {
     [SerializeField]
     GameObject bulletHole;
 
+
     [SerializeField]
     EnemyManager eventEnemies;
     [SerializeField]
@@ -56,13 +57,13 @@ public class Facility : MonoBehaviour {
                 scanned = false;
                 atkDelay = 5;
                 delay = atkDelay;
-                facilityOutput = 20; //currently not used
+                facilityOutput = 50; //currently not used
                 break;
             case 1: // Combat
                 scanned = false;
                 atkDelay = 5;
                 delay = atkDelay;
-                facilityOutput = 10; //currently not used
+				facilityOutput = 50; //currently not used
                 break;
             case 2: // Core
                 fHealth = shipInteractions.currentHealth;
@@ -73,7 +74,7 @@ public class Facility : MonoBehaviour {
                 break;
             case 3: // Movement
                 scanned = true;
-                facilityOutput = 3;
+                facilityOutput = 2;
                 originalOutput = shipInteractions.ShipSpeed;
                 break;
             case 4: // Evasion
@@ -242,7 +243,7 @@ public class Facility : MonoBehaviour {
                 while (accel < facilityOutput)
                 {
                     shipInteractions.ShipSpeed = originalOutput * accel;
-                    SkyBG.setBGSpeed(shipInteractions.ShipSpeed * 10);
+                    SkyBG.setBGSpeed(Mathf.Clamp(shipInteractions.ShipSpeed,0.5f,2));
                     accel += 0.2f;
                 }
                 break;
@@ -274,7 +275,7 @@ public class Facility : MonoBehaviour {
                 while (accel > 1)
                 {
                     shipInteractions.ShipSpeed = originalOutput * accel;
-                    SkyBG.setBGSpeed(shipInteractions.ShipSpeed * 10);
+                    SkyBG.setBGSpeed(0.5f);
                     accel -= 0.2f;
                 }
                 break;
@@ -307,13 +308,16 @@ public class Facility : MonoBehaviour {
         Debug.Log(target.transform.position);
         if (target != null)
         {
-            Debug.Log(target);
+           // Debug.Log(target);
             GameObject bullet = Instantiate(Bullet, bulletHole.transform.position, Quaternion.identity) as GameObject;
             //bullet.transform.position += Vector3.left;
-            Vector2 direction = target.transform.position - bullet.transform.position - new Vector3(4f, 0, 0);
+            Vector2 direction = (target.transform.position - bullet.transform.position).normalized;
+
+		
             bullet.GetComponent<enemyBullet>().damageValue = (int)facilityOutput;
-            bullet.GetComponent<enemyBullet>().setDirection(direction);
-            Debug.Log(direction);
+			bullet.GetComponent<enemyBullet>().setBulletSpeed(0.5f);
+			bullet.GetComponent<enemyBullet>().setDirection(direction);
+            //Debug.Log(direction);
         }
         else {
             return;
@@ -337,4 +341,6 @@ public class Facility : MonoBehaviour {
             isWorking = false;
         }
     }
+
+
 }

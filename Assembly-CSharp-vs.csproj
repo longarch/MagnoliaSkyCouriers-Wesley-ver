@@ -120,6 +120,7 @@
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+     <Compile Include="Assets\Scripts\AudioController.cs" />
      <Compile Include="Assets\Scripts\BaseEnemy.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CargoManager.cs" />
@@ -136,6 +137,7 @@
      <Compile Include="Assets\Scripts\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Goal.cs" />
+     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\MoveToClick.cs" />
      <Compile Include="Assets\Scripts\Movers\AbstractMover.cs" />
      <Compile Include="Assets\Scripts\Movers\AstarMover.cs" />

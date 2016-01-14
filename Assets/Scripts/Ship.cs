@@ -138,8 +138,9 @@ public class Ship : MonoBehaviour
 		//transform.position += new Vector3(1,heightAscent,0) * speed;
 		//position += new Vector3(1, 0,0) * speed;
 		//transform.DOMoveX (position.x, 5.0f, false);
-		transform.DOMoveY (heightAscent, 10.0f, false);
-		
+		transform.DOMoveY (heightAscent, 5.0f, false);
+		position = gameObject.transform.position;
+		transform.position = position;
 		//Debug.Log("Distance left : " + distance);
 		
 	}
@@ -154,9 +155,13 @@ public class Ship : MonoBehaviour
 		}
 
 		//transform.position += new Vector3(1,heightAscent,0) * speed;
-		position += new Vector3(1, 0,0) * speed;
-		transform.DOMoveX (position.x, 5.0f, false);
-		transform.DOMoveY (heightAscent, 10.0f, false);
+		//position += new Vector3(1, 0,0) * speed;
+
+		position += Vector3.right * speed * Time.deltaTime;
+		transform.position = position;
+
+		//transform.DOMoveX (position.x, 5.0f, false);
+		//transform.DOMoveY (heightAscent, 10.0f, false);
 
         //Debug.Log("Distance left : " + distance);
         

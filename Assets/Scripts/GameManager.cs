@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
 			countDownTimer -= Time.deltaTime;
 			
 			if (countDownTimer <= 0.0f) {
+				gameObject.GetComponent<EnemyManager>().IsEnabled = true; //Turns on the enemy manager
 				gameMode = STATE.ONGOING;
 				setFollow(true);
 			}

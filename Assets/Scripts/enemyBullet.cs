@@ -3,7 +3,8 @@ using System.Collections;
 
 public class enemyBullet : MonoBehaviour {
 
-	float speed; // the bullet speed
+	[SerializeField]
+	float speed = 0.2f; // the bullet speed
 	Vector2 _direction; // the direction of the bullet
 	bool isReady; //when bullet direction is set
     [SerializeField]
@@ -11,13 +12,18 @@ public class enemyBullet : MonoBehaviour {
 
     void Awake()
 	{
-		speed = 0.2f;
+		//speed = 0.2f;
 		isReady = false;
 	}
 
 	// Use this for initialization
 	void Start () {
 	
+	}
+
+	public void setBulletSpeed(float spd)
+	{
+		speed = spd;
 	}
 
 	public void setDirection(Vector2 direction)
