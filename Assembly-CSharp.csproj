@@ -142,6 +142,7 @@
      <Compile Include="Assets\Scripts\HealthUI.cs" />
      <Compile Include="Assets\Scripts\Killable.cs" />
      <Compile Include="Assets\Scripts\LevelLoadHandler.cs" />
+     <Compile Include="Assets\Scripts\LineOfSight.cs" />
      <Compile Include="Assets\Scripts\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\MoveToClick.cs" />
      <Compile Include="Assets\Scripts\Movers\AbstractMover.cs" />
