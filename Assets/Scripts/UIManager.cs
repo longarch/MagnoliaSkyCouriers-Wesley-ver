@@ -16,9 +16,9 @@ public class UIManager : MonoBehaviour {
 	//}
 
 	[SerializeField]
-	Text txtInstruction1,txtOpeningText;
+	Text txtInstruction1,txtOpeningText,txtStatus;
 	[SerializeField]
-	Button start_btn, dlogNext_btn, dlogCom_btn;
+	Button start_btn, dlogNext_btn, dlogCom_btn,btn_pause;
 	[SerializeField]
 	Image pausePnl,DialogPnl,openingPnl;
 	[SerializeField]
@@ -27,6 +27,9 @@ public class UIManager : MonoBehaviour {
 	string emptySpeech = "";
 	private bool paused;
 	int current = 0, dialogCount = 0;
+
+	[SerializeField]
+	string next_level;
 
 	private int menuState = 0;
 
@@ -93,6 +96,11 @@ public class UIManager : MonoBehaviour {
 				txtInstruction1.text = emptySpeech;
 			}
 		}
+
+		if (GameManager.Instance.getStatus() == GameManager.STATE.CARGOLOST) {
+			txtStatus.text = "Ship Lost!";
+			startGameOverSequence();
+		}
 	}
 
 	IEnumerator TypeText (string speech) {
@@ -137,12 +145,52 @@ public class UIManager : MonoBehaviour {
 		//sequence.Insert(1.1f,txtOpeningText.rectTransform.DOAnchorPosY(800,1.0f,false));
 		sequence.OnComplete(() =>
 		                    {
+			txtOpeningText.gameObject.SetActive(false);
 			openingPnl.gameObject.SetActive(false);
+
 			//camera.orthographic = !currentMode;
 			//_spriteFeedback.SetActive (false);
 			//gameObject.SetActive(false);
 		});
 	}
+
+	public void startGameOverSequence()
+	{
+		openingPnl.gameObject.SetActive (true);
+		//Time.timeScale = 0.25f;
+		btn_pause.gameObject.SetActive (false);
+
+		Sequence sequence = DOTween.Sequence ();
+		sequence.Append (openingPnl.DOFade (1.0f, 1.0f));
+		sequence.Insert (1.5f,txtStatus.rectTransform.DOAnchorPosY(0.0f,1.0f,false));
+		sequence.OnComplete (() =>
+		                     {
+			
+			//txt_Status.gameObject.SetActive(true);
+			//txt_Status.DOFade (1.0f,1.0f);
+			//txt_Status.DOFade (0.0f,6.0f);
+			
+			
+			StartCoroutine(Wait(5));
+			
+			//Application.LoadLevel("Level_1");
+			//img_Fader.gameObject.SetActive(false);
+			//IsGameStart = true;
+		});
+		
+	}
+
+	IEnumerator Wait(float duration)
+	{
+		//This is a coroutine
+		//Debug.Log("Start Wait() function. The time is: "+Time.time);
+		//Debug.Log( "Float duration = "+duration);
+		yield return new WaitForSeconds(duration);   //Wait
+
+		Application.LoadLevel(next_level);
+		//Debug.Log("End Wait() function and the time is: "+Time.time);
+	}
+
 
 	public void HideDialogBox()
 	{

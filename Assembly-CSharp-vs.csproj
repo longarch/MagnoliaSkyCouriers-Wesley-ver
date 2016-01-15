@@ -137,6 +137,8 @@
      <Compile Include="Assets\Scripts\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Goal.cs" />
+     <Compile Include="Assets\Scripts\HealthUI.cs" />
+     <Compile Include="Assets\Scripts\Killable.cs" />
      <Compile Include="Assets\Scripts\LevelLoadHandler.cs" />
      <Compile Include="Assets\Scripts\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\MoveToClick.cs" />
@@ -151,6 +153,7 @@
      <Compile Include="Assets\Scripts\Utilities\TweenHelper.cs" />
      <Compile Include="Assets\Scripts\enemyBullet.cs" />
      <Compile Include="Assets\Scripts\enemyGun.cs" />
+     <Compile Include="Assets\Scripts\enemyHealth.cs" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
@@ -159,6 +162,7 @@
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
+     <None Include="Assets\Shaders\SpriteFlashable.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\dependencies.txt" />
      <None Include="Assets\Resources\Core\cargoInfo.xml" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />

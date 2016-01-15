@@ -11,6 +11,7 @@ public class Facility : MonoBehaviour {
 
 	[SerializeField]
     private int fHealth = 10;
+	private int MaximumHealth;
     private int ResourcesNeeded;
     private int ResourcesCount;
     private int rValue;
@@ -34,6 +35,9 @@ public class Facility : MonoBehaviour {
 
     private BaseEnemy target;
 
+
+	private Killable _healthHandler;
+
     bool isActivated, isWorking, isCriticalWorking;
     bool scanned;
     float delay, atkDelay;
@@ -41,10 +45,22 @@ public class Facility : MonoBehaviour {
     private float facilityOutput = 0;
     private float originalOutput;
     Color oriColor;
+	GameObject _loadHandlerObj;
 
+	//Repair feature
+	[SerializeField]
+	float repairTime = 3;
+	float repairCap;
+	bool isRepair;
 
     // Use this for initialization
     void Start () {
+
+		isRepair = false;
+		repairCap = repairTime;
+		_healthHandler = GetComponent < Killable> ();
+		_loadHandlerObj = GameObject.Find ("levelHandler");
+		MaximumHealth = fHealth;
 		assignedCrews = new List<GameObject> ();
 		//fHealth = 10;
         isActivated = false;
@@ -72,7 +88,7 @@ public class Facility : MonoBehaviour {
                 scanned = true;
                 atkDelay = 3;
                 delay = atkDelay;
-                facilityOutput = 2;
+                facilityOutput = 1;
                 break;
             case 3: // Movement
                 scanned = true;
@@ -87,13 +103,37 @@ public class Facility : MonoBehaviour {
                 originalOutput = shipInteractions.ShipSpeed;
                 break;
         }
+		if (_loadHandlerObj != null) {
+			applyLeaderEffects (_loadHandlerObj.GetComponent<LevelLoadHandler>());
+		}
 
-		applyLeaderEffects ();
-
+		//Apply to true health settings
+		_healthHandler.Health = MaximumHealth;
+		_healthHandler.MaximumHealth = MaximumHealth;
     }
 	
 	// Update is called once per frame
 	void Update () {
+		if (isRepair) {
+			Debug.Log ("fixing myself");
+			repairTime -= Time.deltaTime;
+			//fHealth += (int)(2 * Time.deltaTime);
+			if (repairTime <= 0.0f)
+			{
+				gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
+				//Debug.Log ("Im done fixing!");
+				isRepair = false;
+				isWorking = true;
+
+				_healthHandler.Reset();
+				_healthHandler.Health = MaximumHealth;
+				_healthHandler.MaximumHealth = MaximumHealth;
+				repairTime = repairCap;
+				
+			}
+		}
+
+
         if (!isWorking)
         {
             return;
@@ -125,6 +165,10 @@ public class Facility : MonoBehaviour {
         {
             return;
         }
+		if (fHealth <= 0) {
+			return;
+		}
+
         if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
         {
             Debug.Log("Race "+ other.gameObject.GetComponent<Crew>().getRace() + " working on " + name);
@@ -196,9 +240,9 @@ public class Facility : MonoBehaviour {
         }
     }
 
-	void applyLeaderEffects()
+	void applyLeaderEffects(LevelLoadHandler _loadHandler)
 	{
-		LevelLoadHandler _loadHandler = GameObject.Find ("levelHandler").GetComponent<LevelLoadHandler>();
+
 		if (_loadHandler != null) {
 			switch (_loadHandler.getLeader ()) {
 			case 0: // Human
@@ -223,6 +267,7 @@ public class Facility : MonoBehaviour {
 			case 3: // Fairy
 				shipInteractions.setCurrentHealth(150);
 				fHealth = 40;
+				MaximumHealth = fHealth;
 				/*
 				if (facilityType == type.Magic) {
 					atkDelay = 4;
@@ -254,7 +299,7 @@ public class Facility : MonoBehaviour {
             case 0: // Magic Type
                 if (scanned)
                 {
-                    eventEnemies.enemy.RemoveAt(0);
+                    //eventEnemies.enemy.RemoveAt(0);
                     delay -= 0.02f;
                     if (delay <= 0)
                     {
@@ -263,6 +308,7 @@ public class Facility : MonoBehaviour {
                     }
                     if (target.getHealth() <= 0)
                     {
+						eventEnemies.enemy.RemoveAt(0);
                         target.Targeted = false;
                         target.gameObject.SetActive(false);
                         delay = atkDelay;
@@ -391,6 +437,11 @@ public class Facility : MonoBehaviour {
         }
     }
 
+	public float HealthFraction
+	{
+		get { return ((float)fHealth + 0.0f)/(float)MaximumHealth; }
+	}
+
 
     private int randomType(int min, int max)
     {
@@ -402,11 +453,25 @@ public class Facility : MonoBehaviour {
 
     public void damageFacility(int dmg)
     {
+		_healthHandler.Health -= dmg;
+		_healthHandler.Health = Mathf.Clamp(_healthHandler.Health, 0, _healthHandler.MaximumHealth);
         fHealth -= dmg;
-        if (fHealth <= 0)
+		if (_healthHandler.Health <= 0)
         {
             gameObject.GetComponent<SpriteRenderer>().DOColor(Color.black, 0.5f);
             isWorking = false;
+			isRepair = true;
         }
     }
+
+
+
+	public void AddOnKillCallback(Killable.OnKilled callback)
+	{
+		
+		
+		
+		_healthHandler.AddOnKillCallback(callback);
+	}
+
 }

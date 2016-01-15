@@ -12,7 +12,7 @@ public class Ship : MonoBehaviour
 	private float heightChangeTimer = 5.0f,  maxHealth = 1.0f, heightAscent = 0;// speed = 0.05f;
 	private Vector3 position;
 	public int currentHealth = 100, cargoHealth = 100;
-
+	private int healthCap;
 	[SerializeField] 
 	private float speed = 0.05f;
     [SerializeField] 
@@ -40,10 +40,12 @@ public class Ship : MonoBehaviour
 		position = getPosition();
 		//currentHealth = 100;
 		healthImage.fillAmount = maxHealth;
+
 		cargoHealthImage.fillAmount = maxHealth;
 		CargoManager.Instance.loadCargo ();
 		cargoHealth = CargoManager.Instance.getCargoHealth ("Cargo1");
 		healthTxt.text = "Health: " + currentHealth;
+		healthCap = currentHealth;
     }
 
     // Update is called once per frame
@@ -77,6 +79,10 @@ public class Ship : MonoBehaviour
 				//takeDamage(5);
 				}
                 break;
+			case GameManager.STATE.CARGOLOST:
+				startLoseSequence();
+
+				break;
             case GameManager.STATE.GOAL: //Reached Goal
                 GameManager.Instance.setFollow(false);
                 break;
@@ -96,6 +102,13 @@ public class Ship : MonoBehaviour
         //}
     }
 
+	public void startLoseSequence()
+	{
+		innerCam.DOShakePosition(10.0f, 1.0f, 30);
+
+
+	}
+
 	public void shipTakeDamage(int i ) {
 		if (currentHealth > 0) {
 			currentHealth -= i;
@@ -112,7 +125,8 @@ public class Ship : MonoBehaviour
 			}
 			//Debug.Log (healthImage.fillAmount);
 			healthTxt.text = "Health: " + currentHealth;
-			innerCam.DOShakePosition(0.5f, 5.0f, 30);
+			DOTween.Complete(innerCam.transform);
+			innerCam.transform.DOShakePosition(0.5f, 5.0f, 30);
 		}
 	}
 
@@ -122,6 +136,7 @@ public class Ship : MonoBehaviour
             if (!evade)
             {
                 shipTakeDamage(other.GetComponent<enemyBullet>().damageValue);
+				TweenHelper.FlashSprite(GetComponent<SpriteRenderer>(),0.2f);
                 Destroy(other.gameObject);
             }
 			else
@@ -215,7 +230,12 @@ public class Ship : MonoBehaviour
     public void repairShip(int value)
     {
         currentHealth += value;
-        if (currentHealth > 100)
-            currentHealth = 100;
+        if (currentHealth > healthCap) {
+			currentHealth = healthCap;
+		}
+
+		healthImage.DOFillAmount (((float)currentHealth) / 100, 0.5f);
+		healthTxt.text = "Health: " + currentHealth;
+
     }
 }

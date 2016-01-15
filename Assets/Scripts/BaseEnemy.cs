@@ -39,7 +39,7 @@ public class BaseEnemy : MonoBehaviour {
         player = GameObject.Find("Ship");
         heightChangeTimer = 5.0f;
         //speed = 0.05f;
-        heightAscent = 0;
+        heightAscent = randomOffset(-5,5);
         currentHealth = 100;
 		_spriteFeedback.SetActive (false);
         targeted = false;
@@ -49,9 +49,9 @@ public class BaseEnemy : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		_chaseTime = Random.Range (4, 5);
+		_chaseTime = Random.Range (3, 5);
 		position = gameObject.transform.position;
-		destination = new Vector3(player.transform.position.x - _closenessThreshold,player.transform.position.y + heightAscent,0);
+		destination = new Vector3(player.transform.position.x - _closenessThreshold,player.transform.position.y + randomOffset(-5,5),0);
 
 		//transform.DOMoveY(player.transform.position.y + heightAscent, 1.0f, false);
 
@@ -67,6 +67,12 @@ public class BaseEnemy : MonoBehaviour {
     {
         return Random.Range(-1.4f, 1.4f);
     }
+
+	public float randomOffset(float min,float max)
+	{
+		return Random.Range(min, max);
+	}
+
 
     public void TakeDamage(int i)
     {
@@ -118,7 +124,7 @@ public class BaseEnemy : MonoBehaviour {
         }
 		if (isChasing) {
 
-			transform.DOMove (player.transform.position,_chaseTime, false);
+			transform.DOMove (player.transform.position + new Vector3(0,heightAscent,0),_chaseTime, false);
 			position = gameObject.transform.position;
 			if (Vector3.Distance(transform.position, player.transform.position) <= _closenessThreshold)
 			{
@@ -157,8 +163,10 @@ public class BaseEnemy : MonoBehaviour {
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("ShipProjectile"))
             {
-                Debug.Log("My position is: " + gameObject.transform.position.x.ToString() + "," + gameObject.transform.position.y.ToString());
-                Debug.Log("Ouch");
+				TweenHelper.FlashSprite(GetComponent<SpriteRenderer>(),0.2f);
+				//TweenHelper.FlashSprite(
+                //Debug.Log("My position is: " + gameObject.transform.position.x.ToString() + "," + gameObject.transform.position.y.ToString());
+                //Debug.Log("Ouch");
                 TakeDamage(other.GetComponent<enemyBullet>().damageValue);
                 Destroy(other.gameObject);
             }

@@ -26,9 +26,9 @@ public class CrewController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         _mover = crews[0].GetComponent<AbstractMover>(); //Default moving is the 1st character
-		LevelLoadHandler _levelHandler = GameObject.Find ("levelHandler").GetComponent<LevelLoadHandler>();
-		if (_levelHandler != null) {
-			crews[_levelHandler.getLeader()].GetComponent<Crew>().assignLeader();
+		GameObject _levelHandlerObj = GameObject.Find ("levelHandler");
+		if (_levelHandlerObj != null) {
+			crews[_levelHandlerObj.gameObject.GetComponent<LevelLoadHandler>().getLeader()].GetComponent<Crew>().assignLeader();
 		}
         selectedCrew = crews[0];
     }

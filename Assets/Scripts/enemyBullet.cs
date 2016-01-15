@@ -42,7 +42,7 @@ public class enemyBullet : MonoBehaviour {
 			position += _direction * speed;
 
 			transform.position = position;
-
+			//transform.LookAt(new Vector3(_direction.x,_direction.y,0));
 			// bottome-left of screen
 			Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
 
