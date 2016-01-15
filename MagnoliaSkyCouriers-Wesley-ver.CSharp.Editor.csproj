@@ -180,6 +180,7 @@
     <None Include="Assets\Resources\Core\cargoInfo.xml" />
     <None Include="Assets\Resources\Dialogs\DialogTest.xml" />
     <None Include="Assets\Scene_1.xml" />
+    <None Include="Assets\Shaders\SpriteFlashable.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

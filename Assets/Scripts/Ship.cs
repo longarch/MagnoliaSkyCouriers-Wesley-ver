@@ -29,6 +29,9 @@ public class Ship : MonoBehaviour
 
 	[SerializeField]
 	Camera innerCam;
+    //####Changes
+    [SerializeField]
+    GameObject sLOS;
     public bool evade;
 
 	[SerializeField]
@@ -46,12 +49,15 @@ public class Ship : MonoBehaviour
 		cargoHealth = CargoManager.Instance.getCargoHealth ("Cargo1");
 		healthTxt.text = "Health: " + currentHealth;
 		healthCap = currentHealth;
+        //####Changes
+        sLOS = Instantiate(sLOS, transform.position, Quaternion.identity) as GameObject;
+        sLOS.GetComponent<LineOfSight>().setAssigned(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-		shipDamages (); //placed here to test
+		// shipDamages (); //placed here to test
        // Debug.Log(Health);
 		GameManager.Instance.checkShipStatus(this,currentHealth);
         switch(GameManager.Instance.getStatus())
@@ -190,12 +196,14 @@ public class Ship : MonoBehaviour
 
 		position += Vector3.right * speed * Time.deltaTime;
 		transform.position = position;
-
-		//transform.DOMoveX (position.x, 5.0f, false);
-		//transform.DOMoveY (heightAscent, 10.0f, false);
+        //####Changes
+        sLOS.transform.position = transform.position;
+        
+        //transform.DOMoveX (position.x, 5.0f, false);
+        //transform.DOMoveY (heightAscent, 10.0f, false);
 
         //Debug.Log("Distance left : " + distance);
-        
+
     }
 
 	public void setCurrentHealth(int f)
@@ -236,6 +244,10 @@ public class Ship : MonoBehaviour
 
 		healthImage.DOFillAmount (((float)currentHealth) / 100, 0.5f);
 		healthTxt.text = "Health: " + currentHealth;
+    }
 
+    public List<GameObject> getTargetsInRange
+    {
+        get { return sLOS.GetComponent<LineOfSight>().targets; }
     }
 }

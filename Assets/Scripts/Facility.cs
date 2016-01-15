@@ -308,7 +308,7 @@ public class Facility : MonoBehaviour {
                     }
                     if (target.getHealth() <= 0)
                     {
-						eventEnemies.enemy.RemoveAt(0);
+						//eventEnemies.enemy.RemoveAt(0);
                         target.Targeted = false;
                         target.gameObject.SetActive(false);
                         delay = atkDelay;
@@ -328,7 +328,7 @@ public class Facility : MonoBehaviour {
                     }
                     if (target.getHealth() <= 0)
                     {
-                        eventEnemies.enemy.RemoveAt(0);
+                        //eventEnemies.enemy.RemoveAt(0);
                         target.Targeted = false;
                         target.gameObject.SetActive(false);
                         delay = atkDelay;
@@ -401,9 +401,9 @@ public class Facility : MonoBehaviour {
         foreach (BaseEnemy pEnemy in ePool.GetAllActiveEnemies())
         {
             //foreach (BaseEnemy sEnemy in eventEnemies.enemy)
-            if (eventEnemies.enemy.Count > 0)
+            if (shipInteractions.getTargetsInRange.Count > 0)
             {
-                BaseEnemy sEnemy = eventEnemies.enemy[0];
+                BaseEnemy sEnemy = shipInteractions.getTargetsInRange[0].GetComponent<BaseEnemy>();
                 if (sEnemy.GetType().Equals(pEnemy.GetType()))
                 {
                     target = sEnemy;

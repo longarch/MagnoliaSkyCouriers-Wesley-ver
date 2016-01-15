@@ -38,32 +38,45 @@ public class enemyGun : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		eventTime -= Time.deltaTime;
-		if (self.name.Contains ("Dragon")) {
-			if (eventTime <= _animTimer) {
-				animator.SetBool ("Attacking", true);
-				attkIndicator.SetActive (true);
-				attkIndicator.transform.DOScale (new Vector3 (0.3f, 0.3f, 0.3f), _animTimer);
-			} else {
-				animator.SetBool ("Attacking", false);
-				attkIndicator.SetActive (false);
-				attkIndicator.transform.localScale = new Vector3 (0.125f, 0.125f, 0.125f);
-			}
-		} else {
-			if (eventTime <= _animTimer) {
-				attkIndicator.SetActive (true);
-				attkIndicator.transform.DOScale (new Vector3 (0.3f, 0.3f, 0.3f), _animTimer);
-			} else {
-				attkIndicator.SetActive (false);
-				attkIndicator.transform.localScale = new Vector3 (0.125f, 0.125f, 0.125f);
-			}
-		}
-            if (eventTime <= 0) {
-			fireEnemyBullet();
-			fixedeventTime = Random.Range (7,15);
-			eventTime = fixedeventTime;
-		}
-	}
+        if (self.GetComponent<BaseEnemy>().inRange)
+        {
+            eventTime -= Time.deltaTime;
+            if (self.name.Contains("Dragon"))
+            {
+                if (eventTime <= _animTimer)
+                {
+                    animator.SetBool("Attacking", true);
+                    attkIndicator.SetActive(true);
+                    attkIndicator.transform.DOScale(new Vector3(0.3f, 0.3f, 0.3f), _animTimer);
+                }
+                else {
+                    animator.SetBool("Attacking", false);
+                    attkIndicator.SetActive(false);
+                    attkIndicator.transform.localScale = new Vector3(0.125f, 0.125f, 0.125f);
+                }
+            }
+            else {
+                if (eventTime <= _animTimer)
+                {
+                    attkIndicator.SetActive(true);
+                    attkIndicator.transform.DOScale(new Vector3(0.3f, 0.3f, 0.3f), _animTimer);
+                }
+                else {
+                    attkIndicator.SetActive(false);
+                    attkIndicator.transform.localScale = new Vector3(0.125f, 0.125f, 0.125f);
+                }
+            }
+            if (eventTime <= 0)
+            {
+                fireEnemyBullet();
+                fixedeventTime = Random.Range(7, 15);
+                eventTime = fixedeventTime;
+            }
+        }
+        else {
+            return;
+        }
+    }
 
 	void fireEnemyBullet()
 	{

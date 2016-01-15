@@ -161,9 +161,12 @@
     <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
     <Compile Include="Assets\Scripts\AudioController.cs" />
+    <Compile Include="Assets\Scripts\BaseCloud.cs" />
     <Compile Include="Assets\Scripts\BaseEnemy.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CargoManager.cs" />
+    <Compile Include="Assets\Scripts\CloudManager.cs" />
+    <Compile Include="Assets\Scripts\CloudPool.cs" />
     <Compile Include="Assets\Scripts\Crew.cs" />
     <Compile Include="Assets\Scripts\CrewController.cs" />
     <Compile Include="Assets\Scripts\CrewDebugScript.cs" />
@@ -177,7 +180,10 @@
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Goal.cs" />
+    <Compile Include="Assets\Scripts\HealthUI.cs" />
+    <Compile Include="Assets\Scripts\Killable.cs" />
     <Compile Include="Assets\Scripts\LevelLoadHandler.cs" />
+    <Compile Include="Assets\Scripts\LineOfSight.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\MoveToClick.cs" />
     <Compile Include="Assets\Scripts\Movers\AbstractMover.cs" />
@@ -191,6 +197,7 @@
     <Compile Include="Assets\Scripts\Utilities\TweenHelper.cs" />
     <Compile Include="Assets\Scripts\enemyBullet.cs" />
     <Compile Include="Assets\Scripts\enemyGun.cs" />
+    <Compile Include="Assets\Scripts\enemyHealth.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
@@ -214,6 +221,7 @@
     <None Include="Assets\Resources\Core\cargoInfo.xml" />
     <None Include="Assets\Resources\Dialogs\DialogTest.xml" />
     <None Include="Assets\Scene_1.xml" />
+    <None Include="Assets\Shaders\SpriteFlashable.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
