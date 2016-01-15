@@ -91,13 +91,16 @@ public class HealthUI : MonoBehaviour
 			btnObject.transform.SetSiblingIndex(2);
 			_repairImage = btnObject.GetComponent<Image>();
 			_repairImage.gameObject.SetActive(false);
-
 			
 			_backgroundImage.rectTransform.sizeDelta = _healthbarSize;
 			_foregroundImage.rectTransform.sizeDelta = _healthbarSize;
 			
 			_backgroundImage.color = _backgroundColor;
 			_foregroundImage.color = _foregroundColor;
+
+			_foregroundImage.type = Image.Type.Filled;
+			_foregroundImage.fillMethod = Image.FillMethod.Horizontal;
+			_foregroundImage.fillOrigin = (int)Image.OriginHorizontal.Left;
 			
 			_baseWidth = _foregroundImage.rectTransform.sizeDelta.x;
 		}
@@ -139,9 +142,9 @@ public class HealthUI : MonoBehaviour
 			_backgroundImage.transform.position = new Vector3 (screenPos.x, screenPos.y + _offset.y, screenPos.z);
 			_foregroundImage.transform.position = new Vector3 (screenPos.x, screenPos.y + _offset.y, screenPos.z);
 
-			float newWidth = _followObject.HealthFraction * _baseWidth;
-			Vector2 healthbarDimensions = new Vector2 (newWidth, _foregroundImage.rectTransform.sizeDelta.y);
-			_foregroundImage.rectTransform.sizeDelta = healthbarDimensions;
+			//float newWidth = _followObject.HealthFraction * _baseWidth;
+			//Vector2 healthbarDimensions = new Vector2 (newWidth, _foregroundImage.rectTransform.sizeDelta.y);
+			_foregroundImage.fillAmount = _followObject.HealthFraction;
 		}
 
 		if (_destroyOnDeath && (_followObject.gameObject == null || _followObject.Health <= 0 || GameManager.Instance.getStatus() == GameManager.STATE.CARGOLOST))

@@ -66,12 +66,12 @@ public class CloudPool : MonoBehaviour
 	void InitPool ()
 	{		
 		pooledObjects = new List<GameObject> ();
-		if (Random.Range (0, 4) < 2) {
-			pooledObject = _cloud1Prefab;
-		} else {
-			pooledObject = _cloud2Prefab;
-		}
 		for (int i = 0; i < pooledAmount; i++) {
+			if (Random.Range (0, 4) < 2) {
+				pooledObject = _cloud1Prefab;
+			} else {
+				pooledObject = _cloud2Prefab;
+			}
 			GameObject obj = (GameObject)Instantiate (pooledObject);
 			obj.SetActive (false);
 			pooledObjects.Add (obj);

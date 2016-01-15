@@ -11,11 +11,19 @@ public class CloudManager : MonoBehaviour
 	List<GameObject> clouds;
 
 	void Start ()
-	{
-		InvokeRepeating ("Fire", fireTime, fireTime);
+	{		
 	}
 
-	void Fire ()
+	void Update()
+	{
+		fireTime -= Time.deltaTime;
+		if (fireTime <= 0) {
+			cloudSpawn ();
+			fireTime = Random.Range (0.15f, 1.0f);
+		}
+	}
+
+	void cloudSpawn ()
 	{
 		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (1, 0));
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
@@ -23,10 +31,9 @@ public class CloudManager : MonoBehaviour
 		GameObject obj = CloudPool.current.GetPooledObject ();
 		if (obj == null)
 			return;
-		obj.transform.position = new Vector2 (Random.Range (min.x, max.x+15), Random.Range (min.y, max.y));
+		obj.transform.position = new Vector2 (min.x + Random.Range (0.0f, 55.0f), Random.Range (min.y, max.y));
 		//obj.transform.rotation = transform.rotation;
 		obj.SetActive (true);
-
 	}
 }
 
