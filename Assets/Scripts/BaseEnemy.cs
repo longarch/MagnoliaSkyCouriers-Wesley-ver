@@ -7,6 +7,11 @@ public class BaseEnemy : MonoBehaviour {
     [SerializeField]
     protected GameObject player;
 
+    //####Changes
+    [SerializeField]
+    protected GameObject eLOS;
+    bool isItInRange;
+
     public enum EnemyType
     {
         None,
@@ -45,6 +50,10 @@ public class BaseEnemy : MonoBehaviour {
         targeted = false;
 		isChasing = true;
 		_rigidBody = gameObject.GetComponent<Rigidbody2D> ();
+        //####Changes
+        eLOS = Instantiate(eLOS, transform.position, Quaternion.identity) as GameObject;
+        eLOS.GetComponent<LineOfSight>().setAssigned(gameObject);
+        eLOS.SetActive(false);
     }
 
     // Use this for initialization
@@ -52,10 +61,11 @@ public class BaseEnemy : MonoBehaviour {
 		_chaseTime = Random.Range (3, 5);
 		position = gameObject.transform.position;
 		destination = new Vector3(player.transform.position.x - _closenessThreshold,player.transform.position.y + randomOffset(-5,5),0);
+        //####Changes
+        eLOS.SetActive(true);
+        //transform.DOMoveY(player.transform.position.y + heightAscent, 1.0f, false);
 
-		//transform.DOMoveY(player.transform.position.y + heightAscent, 1.0f, false);
-
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -148,8 +158,10 @@ public class BaseEnemy : MonoBehaviour {
 
 		}
 
-		//_rigidBody.DOMoveX(position.x, 5.0f, false);
-		//_rigidBody.DOMoveY(player.transform.position.y + heightAscent, 4.0f, false);
+        //####Changes
+        eLOS.transform.position = transform.position;
+        //_rigidBody.DOMoveX(position.x, 5.0f, false);
+        //_rigidBody.DOMoveY(player.transform.position.y + heightAscent, 4.0f, false);
 
         //transform.DOMoveX(player.transform.position.x, 10.0f, false);
         //transform.DOMove(new Vector3(1,heightAscent,0) * speed, 10.0f, false);
@@ -182,5 +194,12 @@ public class BaseEnemy : MonoBehaviour {
     {
         get { return targeted; }
         set { targeted = value; }
+    }
+
+    //####Changes
+    public bool inRange
+    {
+        get { return isItInRange; }
+        set { isItInRange = value; }
     }
 }
