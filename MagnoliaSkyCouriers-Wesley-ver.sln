@@ -23,7 +23,6 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-<<<<<<< HEAD
 												GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
@@ -42,11 +41,5 @@ Global
 		$3.inheritsSet = Mono
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
-	EndGlobalSection
-
-=======
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
-	EndGlobalSection
->>>>>>> origin/master
+	EndGlobalSection	GlobalSection(MonoDevelopProperties) = preSolution
 EndGlobal
