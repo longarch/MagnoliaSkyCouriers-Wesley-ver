@@ -25,7 +25,7 @@ public class BaseCloud : MonoBehaviour
 	{
 		min = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
 		if (transform.position.x < min.x) {
-			Debug.Log ("Destroy");
+			//Debug.Log ("Destroy");
 			Invoke ("Destroy", 1f);
 		}
 	}

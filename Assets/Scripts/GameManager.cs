@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System;
@@ -99,6 +99,8 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+
 	public void countDown()
 	{
 		if (gameMode == STATE.START) {
@@ -133,5 +135,9 @@ public class GameManager : MonoBehaviour
 		//distanceTxt.text = "Distance: " + ((int)position).ToString() + " km";
 		//distanceTxt.text = "Distance: " + ((int)position + 1).ToString() + " %";
 		distanceTxt.text = "Distance: " + position.ToString() + " %";
+
+		if (position >= 100) {
+			GameManager.Instance.setStatus(GameManager.STATE.GOAL);
+		}
 	}
 }

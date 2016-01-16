@@ -97,9 +97,12 @@ public class UIManager : MonoBehaviour {
 			}
 		}
 
-		if (GameManager.Instance.getStatus() == GameManager.STATE.CARGOLOST) {
+		if (GameManager.Instance.getStatus () == GameManager.STATE.CARGOLOST) {
 			txtStatus.text = "Ship Lost!";
-			startGameOverSequence();
+			startGameOverSequence ();
+		} else if (GameManager.Instance.getStatus () == GameManager.STATE.GOAL) {
+			txtStatus.text = "Successful delivery!";
+			startGameOverSequence ();
 		}
 	}
 
@@ -245,6 +248,7 @@ public class UIManager : MonoBehaviour {
 
 	public void loadLevel(string s)
 	{
+		Time.timeScale = 1.0f;
 		Application.LoadLevel (s);
 	}	
 
@@ -280,6 +284,8 @@ public class UIManager : MonoBehaviour {
 
 	public void restart_btn()
 	{
+		Time.timeScale = 1.0f;
+		Application.LoadLevel (Application.loadedLevelName);
 		//cargo test
 		//c.cargoDamaged ("Cargo1", 5);
 	}
@@ -288,6 +294,7 @@ public class UIManager : MonoBehaviour {
 	{
 		// check if in main menu or in-game
 		//loadLevel("SelectionScene_2");
+		Application.Quit ();
 	}
 
 	public void dialogNext()

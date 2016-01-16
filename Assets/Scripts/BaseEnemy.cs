@@ -32,6 +32,7 @@ public class BaseEnemy : MonoBehaviour {
     bool targeted;
 
 	//Chasing variables
+	[SerializeField]
 	bool isChasing;
 	float _closenessThreshold = 5.0f;
 	float _chaseTime = 0;
@@ -43,9 +44,11 @@ public class BaseEnemy : MonoBehaviour {
     {
         player = GameObject.Find("Ship");
         heightChangeTimer = 5.0f;
+		speed = player.GetComponent<Ship> ().ShipSpeed;
         //speed = 0.05f;
         heightAscent = randomOffset(-5,5);
-        currentHealth = 100;
+		_closenessThreshold = randomOffset (2, 4);
+        currentHealth = 25;
 		_spriteFeedback.SetActive (false);
         targeted = false;
 		isChasing = true;
@@ -58,7 +61,7 @@ public class BaseEnemy : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		_chaseTime = Random.Range (3, 5);
+		_chaseTime = Random.Range (2, 4);
 		position = gameObject.transform.position;
 		destination = new Vector3(player.transform.position.x - _closenessThreshold,player.transform.position.y + randomOffset(-5,5),0);
         //####Changes
@@ -86,16 +89,17 @@ public class BaseEnemy : MonoBehaviour {
 
     public void TakeDamage(int i)
     {
-        if (currentHealth > 0)
-        {
-            currentHealth -= i;
-            //healthSlider.value = currentHealth;
-            //Debug.Log(currentHealth/100);
-            //healthImage.DOFillAmount (((float)currentHealth) / 100, 0.5f);
-            //Debug.Log (healthImage.fillAmount);
-            //healthTxt.text = "Health: " + currentHealth;
-            ///innerCam.DOShakePosition(0.5f, 5.0f, 30);
-        }
+        if (currentHealth > 0) {
+			currentHealth -= i;
+			//healthSlider.value = currentHealth;
+			//Debug.Log(currentHealth/100);
+			//healthImage.DOFillAmount (((float)currentHealth) / 100, 0.5f);
+			//Debug.Log (healthImage.fillAmount);
+			//healthTxt.text = "Health: " + currentHealth;
+			///innerCam.DOShakePosition(0.5f, 5.0f, 30);
+		} else {
+			promptDeathCallback();
+		}
     }
 
     public int getHealth()
@@ -112,7 +116,7 @@ public class BaseEnemy : MonoBehaviour {
 		sequence.OnComplete(() =>
 		                    {
 			//camera.orthographic = !currentMode;
-			currentHealth = 100;
+			currentHealth = 25;
 			_spriteFeedback.SetActive (false);
 			gameObject.SetActive(false);
 		});
@@ -136,11 +140,20 @@ public class BaseEnemy : MonoBehaviour {
 
 			transform.DOMove (player.transform.position + new Vector3(0,heightAscent,0),_chaseTime, false);
 			position = gameObject.transform.position;
+
+			/*
 			if (Vector3.Distance(transform.position, player.transform.position) <= _closenessThreshold)
 			{
 
 				isChasing = false;
 
+			}
+			*/
+			if (Mathf.Abs(transform.position.x - player.transform.position.x) <= _closenessThreshold)
+			{
+				
+				isChasing = false;
+				
 			}
 			/*.OnComplete (() =>
 			{
@@ -184,6 +197,22 @@ public class BaseEnemy : MonoBehaviour {
             }
         }
     }
+
+	public void reset()
+	{
+		heightChangeTimer = 5.0f;
+		speed = player.GetComponent<Ship> ().ShipSpeed;
+		heightAscent = randomOffset(-5,5);
+		_closenessThreshold = randomOffset (2, 4);
+		currentHealth = 100;
+		_spriteFeedback.SetActive (false);
+		targeted = false;
+		isChasing = true;
+		_chaseTime = Random.Range (2, 4);
+		position = gameObject.transform.position;
+		destination = new Vector3(player.transform.position.x - _closenessThreshold,player.transform.position.y + randomOffset(-5,5),0);
+	}
+
 
     public void Setup(Vector3 startingPos)
     {

@@ -10,19 +10,24 @@ public class MainMenuScript : MonoBehaviour {
 
 
 	[SerializeField]
-	Text txt_description;
+	Text txt_description,txt_Difficulty;
 
 	[SerializeField]
 	Button btn_start,btn_quit,btn_credits;
 
 	[SerializeField]
-	Image img_Character;
+	Image img_Character, img_statusPlaceholder;
 
 	[SerializeField]
-	Image pnl_LeaderSelection,pnl_MainMenu,pnl_Fader;
+	Image pnl_LeaderSelection,pnl_MainMenu,pnl_Fader, pnl_Credits, pnl_HowtoPlay, pnl_Facilities, pnl_Controls,pnl_Objectives;
+
+
 
 	[SerializeField]
 	Sprite humanSpr,elfSpr,wolfSpr,fairySpr;
+
+	[SerializeField]
+	Sprite normalPlace,hardPlace;
 
 	[SerializeField]
 	List<string> descriptionStrings;
@@ -31,9 +36,13 @@ public class MainMenuScript : MonoBehaviour {
 	LevelLoadHandler _levelHandler;
 
 	int currentSelection = 0;
+	int currentTutorial = 0;
+	int currentDifficulty = 0;
 
 	void Awake() {
 		pnl_LeaderSelection.gameObject.SetActive (false);
+		pnl_Credits.gameObject.SetActive (false);
+		pnl_HowtoPlay.gameObject.SetActive (false);
 		//pnl_MainMenu.gameObject.SetActive (false);
 	}
 
@@ -95,10 +104,46 @@ public class MainMenuScript : MonoBehaviour {
 		pnl_LeaderSelection.gameObject.SetActive (true);
 	}
 
+	public void proceedtoCredits()
+	{
+		pnl_MainMenu.gameObject.SetActive (false); 
+		pnl_Credits.gameObject.SetActive (true);
+	}
+
+	public void proceedtoHowtoPlay()
+	{
+		pnl_MainMenu.gameObject.SetActive (false); 
+		pnl_HowtoPlay.gameObject.SetActive (true);
+	}
+
+	public void updateTutorialForward()
+	{
+		currentTutorial++;
+		if (currentTutorial >= 3) {
+			currentTutorial = 0;
+		}
+		refreshTutorial (currentTutorial);
+
+	}
+
+	public void updateTutorialBackward()
+	{
+		currentTutorial--;
+		if (currentTutorial < 0) {
+			currentTutorial = 2;
+		}
+		refreshTutorial (currentTutorial);
+		
+	}
+
+
+
 	public void backtoMainMenu()
 	{
 		pnl_MainMenu.gameObject.SetActive (true); 
 		pnl_LeaderSelection.gameObject.SetActive (false);
+		pnl_Credits.gameObject.SetActive (false);
+		pnl_HowtoPlay.gameObject.SetActive (false);
 	}
 
 	public void updateSpriteForward()
@@ -114,6 +159,8 @@ public class MainMenuScript : MonoBehaviour {
 		}
 	}
 
+
+
 	public void updateSpriteBackwards()
 	{
 		currentSelection--;
@@ -125,6 +172,65 @@ public class MainMenuScript : MonoBehaviour {
 		if (descriptionStrings.Count > 3) {
 			txt_description.text = descriptionStrings [currentSelection];
 		}
+	}
+
+	public void refreshTutorial(int i)
+	{
+		pnl_Objectives.gameObject.SetActive(false);
+		pnl_Facilities.gameObject.SetActive(false);
+		pnl_Controls.gameObject.SetActive(false);
+		switch (i) {
+		case 0:
+			pnl_Objectives.gameObject.SetActive(true);
+
+			break;
+		case 1:
+			pnl_Controls.gameObject.SetActive(true);
+			break;
+		case 2:
+			pnl_Facilities.gameObject.SetActive(true);
+			break;
+		}
+	}
+
+	public void updateDifficultyBackwards()
+	{
+		currentDifficulty++;
+		if (currentDifficulty >= 2) {
+			currentDifficulty = 0;
+		}
+		refreshDifficulty (currentDifficulty);
+
+		
+	}
+
+	public void updateDifficultyForward()
+	{
+		currentDifficulty--;
+		if (currentDifficulty < 0) {
+			currentDifficulty = 1;
+		}
+		refreshDifficulty (currentDifficulty);
+
+
+	}
+
+	public void refreshDifficulty (int i)
+	{
+		switch (i) {
+		case 0:
+			img_statusPlaceholder.sprite = normalPlace;
+			txt_Difficulty.text = "Normal";
+			break;
+		case 1:
+			img_statusPlaceholder.sprite = hardPlace;
+			txt_Difficulty.text = "Hard";
+			break;
+		case 2:
+
+			break;
+		}
+
 	}
 
 	public void refreshSprite(int i)

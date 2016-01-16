@@ -5,7 +5,7 @@ using System.Collections;
 public class LevelLoadHandler : MonoBehaviour {
 
 	int leader = 0;
-
+	float Distance = 0;
 	void Awake() {
 
 		DontDestroyOnLoad (this.gameObject);
@@ -14,6 +14,16 @@ public class LevelLoadHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+	}
+
+	public void setDistance (float i)
+	{
+		Distance = i;
+	}
+
+	public float returnDist()
+	{
+		return Distance;
 	}
 
 	public void setLeader(int i)

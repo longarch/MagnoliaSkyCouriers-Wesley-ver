@@ -53,6 +53,9 @@ public class Facility : MonoBehaviour {
 	float repairCap;
 	bool isRepair;
 
+	//Speed facility
+	float accel = 0;
+
     // Use this for initialization
     void Start () {
 
@@ -92,7 +95,7 @@ public class Facility : MonoBehaviour {
                 break;
             case 3: // Movement
                 scanned = true;
-                facilityOutput = 2;
+                facilityOutput = 1;
                 originalOutput = shipInteractions.ShipSpeed;
                 break;
             case 4: // Evasion
@@ -347,14 +350,24 @@ public class Facility : MonoBehaviour {
                     }
                 }
                 break;
-            case 3: // Movement
-                float accel = 1;
+            case 3: // Movement, ship speed is locked at 3
+				
+			if (accel > facilityOutput)
+			{
+				return;
+			}
+			accel += Time.deltaTime;
+			shipInteractions.ShipSpeed = originalOutput + accel;
+			SkyBG.setBGSpeed(accel);
+                //float accel = 1;
+			/*
                 while (accel < facilityOutput)
                 {
-                    shipInteractions.ShipSpeed = originalOutput * accel;
+                    shipInteractions.ShipSpeed = originalOutput + accel;
                     SkyBG.setBGSpeed(Mathf.Clamp(shipInteractions.ShipSpeed,0.5f,2));
-                    accel += 0.2f;
+                    accel += Time.deltaTime;
                 }
+                */
                 break;
             case 4: // Evasion
                 Debug.Log("Evade working");
@@ -381,13 +394,22 @@ public class Facility : MonoBehaviour {
             case 2: // Core
                 break;
             case 3: // Movement
-                float accel = facilityOutput;
+			if (accel < 0)
+			{
+				return;
+			}
+			accel -= Time.deltaTime;
+			shipInteractions.ShipSpeed = originalOutput + accel;
+			SkyBG.setBGSpeed(0.5f);
+                //float accel = facilityOutput;
+			/*
                 while (accel > 1)
                 {
                     shipInteractions.ShipSpeed = originalOutput * accel;
                     SkyBG.setBGSpeed(0.5f);
                     accel -= 0.2f;
                 }
+                */
                 break;
             case 4: // Evasion
                 shipInteractions.evadeChance = false;
