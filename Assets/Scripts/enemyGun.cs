@@ -74,11 +74,22 @@ public class enemyGun : MonoBehaviour {
             }
         }
         else {
-            return;
+            if (self.name.Contains("Dragon"))
+            {
+                animator.SetBool("Attacking", false);
+                attkIndicator.SetActive(false);
+                attkIndicator.transform.localScale = new Vector3(0.125f, 0.125f, 0.125f);
+            }
+            else {
+                attkIndicator.SetActive(false);
+                attkIndicator.transform.localScale = new Vector3(0.125f, 0.125f, 0.125f);
+            }
+            fixedeventTime = Random.Range(7, 15);
+            eventTime = fixedeventTime;
         }
     }
 
-	void fireEnemyBullet()
+    void fireEnemyBullet()
 	{
 		if (playership != null) {
 			GameObject bullet = (GameObject)Instantiate (enemyBullet);

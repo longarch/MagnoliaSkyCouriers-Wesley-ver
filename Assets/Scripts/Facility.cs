@@ -51,7 +51,7 @@ public class Facility : MonoBehaviour {
 	[SerializeField]
 	float repairTime = 3;
 	float repairCap;
-	bool isRepair;
+	bool isRepair, reCheck;
 
 	//Speed facility
 	float accel = 0;
@@ -60,7 +60,8 @@ public class Facility : MonoBehaviour {
     void Start () {
 
 		isRepair = false;
-		repairCap = repairTime;
+        reCheck = false;
+        repairCap = repairTime;
 		_healthHandler = GetComponent < Killable> ();
 		_loadHandlerObj = GameObject.Find ("levelHandler");
 		MaximumHealth = fHealth;
@@ -127,8 +128,11 @@ public class Facility : MonoBehaviour {
 				//Debug.Log ("Im done fixing!");
 				isRepair = false;
 				isWorking = true;
+                reCheck = false;
+                checkResource();
 
-				_healthHandler.Reset();
+
+                _healthHandler.Reset();
 				_healthHandler.Health = MaximumHealth;
 				_healthHandler.MaximumHealth = MaximumHealth;
 				repairTime = repairCap;
@@ -141,6 +145,7 @@ public class Facility : MonoBehaviour {
         {
             return;
         }
+        checkResource();
         if (!isActivated)
         {
             if (needToReset)
@@ -149,7 +154,7 @@ public class Facility : MonoBehaviour {
             }
             return;
         }
-        //checkResource();
+        
         if (!scanned)
         {
             if (facilityType == type.Combat || facilityType == type.Magic)
@@ -164,13 +169,22 @@ public class Facility : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isWorking)
+        /*if (!isWorking)
         {
-            return;
+            if (!isRepair)
+                return;
+            else
+            {
+                if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
+                {
+                    Debug.Log("Race " + other.gameObject.GetComponent<Crew>().getRace() + " left " + name);
+                    checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), true);
+                }
+            }
         }
 		if (fHealth <= 0) {
 			return;
-		}
+		}*/
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
         {
@@ -184,10 +198,19 @@ public class Facility : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (!isWorking)
+        /*if (!isWorking)
         {
-            return;
-        }
+            if (!isRepair)
+                return;
+            else
+            {
+                if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
+                {
+                    Debug.Log("Race " + other.gameObject.GetComponent<Crew>().getRace() + " left " + name);
+                    checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), false);
+                }
+            }
+        }*/
         if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
         {
             Debug.Log("Race " + other.gameObject.GetComponent<Crew>().getRace() + " left " + name);
@@ -226,11 +249,14 @@ public class Facility : MonoBehaviour {
 		} else {
 			ResourcesNeeded -= rValue;
 		}
-        checkResource();
     }
 
     void checkResource()
     {
+        if (!isWorking)
+        {
+            return;
+        }
         if (ResourcesNeeded >= 2)
         {
             isActivated = true;
@@ -241,6 +267,7 @@ public class Facility : MonoBehaviour {
             gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
             needToReset = true;
         }
+        Debug.Log(gameObject.name + " has tis many : " + ResourcesNeeded);
     }
 
 	void applyLeaderEffects(LevelLoadHandler _loadHandler)
@@ -351,23 +378,24 @@ public class Facility : MonoBehaviour {
                 }
                 break;
             case 3: // Movement, ship speed is locked at 3
-				
-			if (accel > facilityOutput)
-			{
-				return;
-			}
-			accel += Time.deltaTime;
-			shipInteractions.ShipSpeed = originalOutput + accel;
-			SkyBG.setBGSpeed(accel);
-                //float accel = 1;
-			/*
-                while (accel < facilityOutput)
+
+                if (accel > facilityOutput)
                 {
-                    shipInteractions.ShipSpeed = originalOutput + accel;
-                    SkyBG.setBGSpeed(Mathf.Clamp(shipInteractions.ShipSpeed,0.5f,2));
-                    accel += Time.deltaTime;
+                    return;
                 }
-                */
+                accel += Time.deltaTime;// * 0.1f;
+                shipInteractions.ShipSpeed = originalOutput + accel;
+                //float BGspd = (((accel - 0) * (2 - 0.5f)) / (facilityOutput - 0));
+                SkyBG.setBGSpeed(accel + 0.5f);
+                //float accel = 1;
+                /*
+                    while (accel < facilityOutput)
+                    {
+                        shipInteractions.ShipSpeed = originalOutput + accel;
+                        SkyBG.setBGSpeed(Mathf.Clamp(shipInteractions.ShipSpeed,0.5f,2));
+                        accel += Time.deltaTime;
+                    }
+                    */
                 break;
             case 4: // Evasion
                 Debug.Log("Evade working");
@@ -388,34 +416,41 @@ public class Facility : MonoBehaviour {
         switch ((int)facilityType)
         {
             case 0: // Magic Type
+                needToReset = false;
                 break;
             case 1: // Combat
+                needToReset = false;
                 break;
             case 2: // Core
+                needToReset = false;
                 break;
             case 3: // Movement
-			if (accel < 0)
-			{
-				return;
-			}
-			accel -= Time.deltaTime;
-			shipInteractions.ShipSpeed = originalOutput + accel;
-			SkyBG.setBGSpeed(0.5f);
-                //float accel = facilityOutput;
-			/*
-                while (accel > 1)
+                if (accel < 0)
                 {
-                    shipInteractions.ShipSpeed = originalOutput * accel;
-                    SkyBG.setBGSpeed(0.5f);
-                    accel -= 0.2f;
+                    needToReset = false;
+                    return;
                 }
-                */
+                accel -= Time.deltaTime * 0.1f;
+                shipInteractions.ShipSpeed = originalOutput + accel;
+                float BGspd = (((accel - 0) * (2 - 0.5f)) / (facilityOutput - 0));
+                SkyBG.setBGSpeed(Mathf.Abs(accel + 0.5f));
+                //SkyBG.setBGSpeed(0.5f);
+                //float accel = facilityOutput;
+                /*
+                    while (accel > 1)
+                    {
+                        shipInteractions.ShipSpeed = originalOutput * accel;
+                        SkyBG.setBGSpeed(0.5f);
+                        accel -= 0.2f;
+                    }
+                    */
                 break;
             case 4: // Evasion
+                needToReset = false;
                 shipInteractions.evadeChance = false;
                 break;
         }
-        needToReset = false;
+
     }
 
     private void scanForTarget()
@@ -483,16 +518,13 @@ public class Facility : MonoBehaviour {
             gameObject.GetComponent<SpriteRenderer>().DOColor(Color.black, 0.5f);
             isWorking = false;
 			isRepair = true;
+            reCheck = true;
         }
     }
 
 
-
-	public void AddOnKillCallback(Killable.OnKilled callback)
+    public void AddOnKillCallback(Killable.OnKilled callback)
 	{
-		
-		
-		
 		_healthHandler.AddOnKillCallback(callback);
 	}
 
