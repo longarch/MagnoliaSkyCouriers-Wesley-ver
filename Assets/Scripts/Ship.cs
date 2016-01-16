@@ -25,7 +25,7 @@ public class Ship : MonoBehaviour
 	Image cargoHealthImage;
 
 	[SerializeField]
-	Text healthTxt, cargoCountTxt;
+	Text healthTxt, cargoCountTxt, shipSpeedTxt;
 
 	[SerializeField]
 	Camera innerCam;
@@ -142,6 +142,9 @@ public class Ship : MonoBehaviour
             if (!evade)
             {
                 shipTakeDamage(other.GetComponent<enemyBullet>().damageValue);
+				if ((Random.Range (0, 9)) < 4) {
+					cargoTakeDamage ((other.GetComponent<enemyBullet> ().damageValue));
+				}
 				TweenHelper.FlashSprite(GetComponent<SpriteRenderer>(),0.2f);
                 Destroy(other.gameObject);
             }
@@ -179,7 +182,7 @@ public class Ship : MonoBehaviour
 		position = gameObject.transform.position;
 		transform.position = position;
 		//Debug.Log("Distance left : " + distance);
-		
+
 	}
 
     public void moveShip()
@@ -195,6 +198,7 @@ public class Ship : MonoBehaviour
 		//position += new Vector3(1, 0,0) * speed;
 
 		position += Vector3.right * speed * Time.deltaTime;
+		shipSpeedTxt.text = "Speed: " + (int)(speed * 15) + "km/h";
 		transform.position = position;
         //####Changes
         sLOS.transform.position = transform.position;
