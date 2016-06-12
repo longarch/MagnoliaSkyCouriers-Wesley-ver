@@ -20,6 +20,9 @@ public class enemyGun : MonoBehaviour {
 	[SerializeField]
 	GameObject playership;
 
+	float damageMultiplier;
+
+
 	// Use this for initialization
 	void Start () {
 		//Invoke ("fireEnemyBullet", 1.0f);
@@ -34,6 +37,13 @@ public class enemyGun : MonoBehaviour {
 		fixedeventTime = eventTime;
 		playership  = GameObject.Find ("Ship");
 		attkIndicator.SetActive (false);
+
+		if (GameManager.Instance.getDifficulty () == 0) {
+			damageMultiplier = 0.5f;
+		} else {
+			damageMultiplier = 1.0f;
+		}
+
 	}
 
 	// Update is called once per frame
@@ -71,6 +81,7 @@ public class enemyGun : MonoBehaviour {
                 fireEnemyBullet();
                 fixedeventTime = Random.Range(7, 15);
                 eventTime = fixedeventTime;
+
             }
         }
         else {
@@ -97,8 +108,9 @@ public class enemyGun : MonoBehaviour {
 			bullet.transform.position = transform.position;
 
 			Vector2 direction = playership.transform.position - bullet.transform.position + new Vector3(2f,0,0);
-
+			bullet.GetComponent<enemyBullet> ().damageValue = (int)(bullet.GetComponent<enemyBullet> ().damageValue * damageMultiplier);
 			bullet.GetComponent<enemyBullet> ().setDirection (direction);
+			AudioController.Instance.PlayPunchSound();
 		}
 		else {
 			return;

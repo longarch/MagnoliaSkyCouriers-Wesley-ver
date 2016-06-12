@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour {
 	int current = 0, dialogCount = 0;
 
 	[SerializeField]
-	string next_level;
+	string next_level,main_title;
 
 	private int menuState = 0;
 
@@ -190,7 +190,11 @@ public class UIManager : MonoBehaviour {
 		//Debug.Log( "Float duration = "+duration);
 		yield return new WaitForSeconds(duration);   //Wait
 
-		Application.LoadLevel(next_level);
+		if (GameManager.Instance.getStatus () == GameManager.STATE.CARGOLOST) {
+			Application.LoadLevel (main_title);
+		} else {
+			Application.LoadLevel (next_level);
+		}
 		//Debug.Log("End Wait() function and the time is: "+Time.time);
 	}
 

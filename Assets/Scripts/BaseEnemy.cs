@@ -23,6 +23,7 @@ public class BaseEnemy : MonoBehaviour {
     protected float heightChangeTimer = 1.0f, speed = 0.01f, heightAscent = 0;
 
     protected Vector3 position;
+	[SerializeField]
     protected int currentHealth;
     [SerializeField]
     protected EnemyType type = EnemyType.None;
@@ -31,24 +32,35 @@ public class BaseEnemy : MonoBehaviour {
 	GameObject _spriteFeedback;
     bool targeted;
 
+	float chaseTimer = 0;
+
 	//Chasing variables
 	[SerializeField]
 	bool isChasing;
 	float _closenessThreshold = 5.0f;
-	float _chaseTime = 0;
+	float _tooCloseThreshold = 2.0f;
+	float _chaseMultiplier = 1.2f;
+	float _chaseTime = 3.0f; //Check every 3 seconds;
 
 	private Rigidbody2D _rigidBody;
+
+
+	protected Killable _healthHandler;
+
+	Ship _ship;
 
 	Vector3 destination;
     void Awake()
     {
+		_healthHandler = GetComponent<Killable>();
         player = GameObject.Find("Ship");
         heightChangeTimer = 5.0f;
 		speed = player.GetComponent<Ship> ().ShipSpeed;
+		_ship = player.GetComponent<Ship> ();
         //speed = 0.05f;
-        heightAscent = randomOffset(-5,5);
+        heightAscent = randomOffset(-2,-1);
 		_closenessThreshold = randomOffset (2, 4);
-        currentHealth = 25;
+        //currentHealth = 25;
 		_spriteFeedback.SetActive (false);
         targeted = false;
 		isChasing = true;
@@ -57,13 +69,15 @@ public class BaseEnemy : MonoBehaviour {
         eLOS = Instantiate(eLOS, transform.position, Quaternion.identity) as GameObject;
         eLOS.GetComponent<LineOfSight>().setAssigned(gameObject);
         eLOS.SetActive(false);
+		_healthHandler.Health = currentHealth;
+		_healthHandler.MaximumHealth = currentHealth;
     }
 
     // Use this for initialization
     void Start () {
 		_chaseTime = Random.Range (2, 4);
 		position = gameObject.transform.position;
-		destination = new Vector3(player.transform.position.x - _closenessThreshold,player.transform.position.y + randomOffset(-5,5),0);
+		destination = new Vector3(player.transform.position.x - _closenessThreshold,player.transform.position.y + randomOffset(-3,-2),0);
         //####Changes
         eLOS.SetActive(true);
         //transform.DOMoveY(player.transform.position.y + heightAscent, 1.0f, false);
@@ -73,6 +87,13 @@ public class BaseEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         moveEnemy();
+
+		_chaseTime -= Time.deltaTime;
+		if (_chaseTime <= 0.0f) {
+			_chaseTime = 3.0f;
+			_chaseMultiplier = Random.Range(0.9f,1.2f);
+		}
+
     }
 
     //Returns random between descending and ascending
@@ -89,22 +110,31 @@ public class BaseEnemy : MonoBehaviour {
 
     public void TakeDamage(int i)
     {
-        if (currentHealth > 0) {
-			currentHealth -= i;
+
+		_healthHandler.Health -= i;
+		_healthHandler.Health = Mathf.Clamp(_healthHandler.Health, 0, _healthHandler.MaximumHealth);
+		if (_healthHandler.Health <= 0) {
+			GameManager.Instance.incrementDeath();
+			gameObject.SetActive(false);
+			//currentHealth -= i;
 			//healthSlider.value = currentHealth;
 			//Debug.Log(currentHealth/100);
 			//healthImage.DOFillAmount (((float)currentHealth) / 100, 0.5f);
 			//Debug.Log (healthImage.fillAmount);
 			//healthTxt.text = "Health: " + currentHealth;
 			///innerCam.DOShakePosition(0.5f, 5.0f, 30);
-		} else {
-			promptDeathCallback();
-		}
+		} 
     }
+
+	public void setHealth(float i)
+	{ 
+		_healthHandler.Health = (int)(_healthHandler.Health * i);
+		_healthHandler.MaximumHealth = _healthHandler.Health;
+	}
 
     public int getHealth()
     {
-        return currentHealth;
+        return _healthHandler.Health;
     }
 
 	public void promptDeathCallback()
@@ -115,10 +145,12 @@ public class BaseEnemy : MonoBehaviour {
 		sequence.Append(_spriteFeedback.transform.DOPunchScale (new Vector3 (0.05f, 0.05f, 0.05f), 0.5f, 5, 1));
 		sequence.OnComplete(() =>
 		                    {
+
 			//camera.orthographic = !currentMode;
 			currentHealth = 25;
 			_spriteFeedback.SetActive (false);
 			gameObject.SetActive(false);
+
 		});
 	}
 
@@ -166,6 +198,19 @@ public class BaseEnemy : MonoBehaviour {
 			*/
 		} else {
 			//position = transform.position;
+
+			if (Mathf.Abs(transform.position.x - player.transform.position.x) <= _tooCloseThreshold)
+			{
+				
+				speed = _ship.ShipSpeed;
+				
+			}
+			else
+			{
+				speed = _ship.ShipSpeed * _chaseMultiplier ;
+			}
+
+
 			position += Vector3.right * speed * Time.deltaTime;
 			transform.position = position;
 
@@ -184,8 +229,7 @@ public class BaseEnemy : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (targeted)
-        {
+        
             if (other.gameObject.layer == LayerMask.NameToLayer("ShipProjectile"))
             {
 				TweenHelper.FlashSprite(GetComponent<SpriteRenderer>(),0.2f);
@@ -194,17 +238,21 @@ public class BaseEnemy : MonoBehaviour {
                 //Debug.Log("Ouch");
                 TakeDamage(other.GetComponent<enemyBullet>().damageValue);
                 Destroy(other.gameObject);
-            }
-        }
+           	}
+        
     }
 
 	public void reset()
 	{
+		//Debug.Log ("Reseting!");
 		heightChangeTimer = 5.0f;
 		speed = player.GetComponent<Ship> ().ShipSpeed;
-		heightAscent = randomOffset(-5,5);
+		heightAscent = randomOffset(2,-1);
 		_closenessThreshold = randomOffset (2, 4);
-		currentHealth = 100;
+		//currentHealth = 100;_healthHandler.Reset();
+		_healthHandler.Reset();
+		_healthHandler.Health = currentHealth;
+
 		_spriteFeedback.SetActive (false);
 		targeted = false;
 		isChasing = true;
@@ -224,6 +272,14 @@ public class BaseEnemy : MonoBehaviour {
         get { return targeted; }
         set { targeted = value; }
     }
+
+	public void AddOnKillCallback(Killable.OnKilled callback)
+	{
+		
+
+		
+		_healthHandler.AddOnKillCallback(callback);
+	}
 
     //####Changes
     public bool inRange

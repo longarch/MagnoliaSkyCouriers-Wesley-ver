@@ -111,6 +111,7 @@ public class EnemyManager : MonoBehaviour {
 	public BaseEnemy enemies;
 	float eventTime = 5.0f, spawnTime;
 
+	float healthMultiplier = 1;
 
 
 	public bool IsEnabled
@@ -143,6 +144,17 @@ public class EnemyManager : MonoBehaviour {
 	void Start () {
 		spawnTime = eventTime;
 		enemy = new List<BaseEnemy> ();
+
+
+		//_levelHandler = FindObjectOfType<LevelLoadHandler> ();
+		
+		if (GameManager.Instance.getDifficulty() == 1) {
+
+			_maxInScene += 1;
+			healthMultiplier = 1.3f;
+			_spawnInterval = 4.0f;
+		}
+
 		//player = new Ship ();
 		/*
 		if (_enabled)
@@ -192,6 +204,7 @@ public class EnemyManager : MonoBehaviour {
 		
 		if (_currentInScene >= _maxInScene)
 		{
+			//Debug.Log ("stop spawning!");
 			return;
 		}
 		
@@ -200,7 +213,7 @@ public class EnemyManager : MonoBehaviour {
 		
 		if (_spawnAtLocation)
 		{
-			spawnPosition = transform.position;
+			spawnPosition = new Vector3(transform.position.x,transform.position.y - 6,transform.position.z);
 		}
 		else
 		{
@@ -227,13 +240,16 @@ public class EnemyManager : MonoBehaviour {
 						BaseEnemy _baseEnemy = EnemyPool.Instance.SpawnEnemy(new Vector3(), setting.GetRandomSpawnEnemyType());
 						//BaseEnemy(_baseEnemy);
 						spawnedObject = _baseEnemy.gameObject;
-						
+
+						_baseEnemy.setHealth(healthMultiplier);
 						if (setting.AlterEnemySpeed)
 						{
+
 							//_baseEnemy.spee = setting.EnemySpeed;
 						}
 						
 						//virezEnemy.AddOnKillCallback(DecreaseOnSceneCount);
+						_baseEnemy.AddOnKillCallback(DecreaseOnSceneCount);
 						spawnedObject.transform.position = spawnPosition;
 						_spawns++;
 						_currentInScene++;
@@ -251,6 +267,11 @@ public class EnemyManager : MonoBehaviour {
 			Instantiate(_spawnObject, new Vector3(), Quaternion.identity);
 		}
 		
+	}
+
+	public void DecreaseOnSceneCount(Killable killedObject)
+	{
+		_currentInScene--;
 	}
 	//Obselete
 	/*

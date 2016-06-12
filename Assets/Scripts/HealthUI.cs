@@ -135,7 +135,8 @@ public class HealthUI : MonoBehaviour
 		//_xMultiplier = _canvasScaler.referenceResolution.x / Screen.width;
 		//screenPoint *= _xMultiplier;
 
-		if (!checkIsDead() || GameManager.Instance.getStatus() != GameManager.STATE.CARGOLOST) {
+		if (!checkIsDead() || GameManager.Instance.getStatus() != GameManager.STATE.CARGOLOST || 
+		    GameManager.Instance.getStatus() != GameManager.STATE.GOAL) {
 
 			Vector3 worldPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
 			Vector3 screenPos = cam.WorldToScreenPoint (worldPos);
@@ -147,7 +148,9 @@ public class HealthUI : MonoBehaviour
 			_foregroundImage.fillAmount = _followObject.HealthFraction;
 		}
 
-		if (_destroyOnDeath && (_followObject.gameObject == null || _followObject.Health <= 0 || GameManager.Instance.getStatus() == GameManager.STATE.CARGOLOST))
+		if (_destroyOnDeath && (_followObject.gameObject == null || _followObject.Health <= 0
+		                        || GameManager.Instance.getStatus() == GameManager.STATE.CARGOLOST
+		                        || GameManager.Instance.getStatus() == GameManager.STATE.GOAL))
 		{
 			_backgroundImage.gameObject.SetActive(false);
 			_foregroundImage.gameObject.SetActive(false);

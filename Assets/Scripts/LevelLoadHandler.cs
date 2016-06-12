@@ -4,9 +4,22 @@ using System.Collections;
 //Use this to store all stats and load them from here
 public class LevelLoadHandler : MonoBehaviour {
 
+	private static LevelLoadHandler _instance;
+
 	int leader = 0;
-	float Distance = 0;
+	int Difficulty = 0;
+
+	public static LevelLoadHandler Instance
+	{
+		get { return _instance; }
+	}
+
 	void Awake() {
+
+		if (_instance != null && _instance != this)
+		{
+			Destroy(gameObject);
+		}
 
 		DontDestroyOnLoad (this.gameObject);
 	}
@@ -16,14 +29,15 @@ public class LevelLoadHandler : MonoBehaviour {
 	
 	}
 
-	public void setDistance (float i)
+
+	public void setDifficulty (int i)
 	{
-		Distance = i;
+		Difficulty = i;
 	}
 
-	public float returnDist()
+	public int returnDiff()
 	{
-		return Distance;
+		return Difficulty;
 	}
 
 	public void setLeader(int i)

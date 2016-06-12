@@ -40,7 +40,7 @@ public class Facility : MonoBehaviour {
 
     bool isActivated, isWorking, isCriticalWorking;
     bool scanned;
-    float delay, atkDelay;
+    float delay, atkDelay,orgDelay;
     bool needToReset = false;
     private float facilityOutput = 0;
     private float originalOutput;
@@ -53,8 +53,12 @@ public class Facility : MonoBehaviour {
 	float repairCap;
 	bool isRepair, reCheck;
 
+	int efficiency = 0;
+
 	//Speed facility
 	float accel = 0;
+
+
 
     // Use this for initialization
     void Start () {
@@ -79,18 +83,18 @@ public class Facility : MonoBehaviour {
                 scanned = false;
                 atkDelay = 5;
                 delay = atkDelay;
-                facilityOutput = 25; //currently not used
+                facilityOutput = 35; //currently not used
                 break;
             case 1: // Combat
                 scanned = false;
-                atkDelay = 5;
+                atkDelay = 4;
                 delay = atkDelay;
 				facilityOutput = 25; //currently not used
                 break;
             case 2: // Core
                 fHealth = shipInteractions.currentHealth;
                 scanned = true;
-                atkDelay = 3;
+                atkDelay = 1;
                 delay = atkDelay;
                 facilityOutput = 1;
                 break;
@@ -110,7 +114,7 @@ public class Facility : MonoBehaviour {
 		if (_loadHandlerObj != null) {
 			applyLeaderEffects (_loadHandlerObj.GetComponent<LevelLoadHandler>());
 		}
-
+		orgDelay = atkDelay;
 		//Apply to true health settings
 		_healthHandler.Health = MaximumHealth;
 		_healthHandler.MaximumHealth = MaximumHealth;
@@ -119,7 +123,7 @@ public class Facility : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isRepair) {
-			Debug.Log ("fixing myself");
+			//Debug.Log ("fixing myself");
 			repairTime -= Time.deltaTime;
 			//fHealth += (int)(2 * Time.deltaTime);
 			if (repairTime <= 0.0f)
@@ -130,7 +134,7 @@ public class Facility : MonoBehaviour {
 				isWorking = true;
                 reCheck = false;
                 checkResource();
-
+				ApplyEfficiency();
 
                 _healthHandler.Reset();
 				_healthHandler.Health = MaximumHealth;
@@ -188,9 +192,11 @@ public class Facility : MonoBehaviour {
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
         {
-            Debug.Log("Race "+ other.gameObject.GetComponent<Crew>().getRace() + " working on " + name);
+            //Debug.Log("Race "+ other.gameObject.GetComponent<Crew>().getRace() + " working on " + name);
             //if (!other.gameObject.GetComponent<Crew>().getAssigned())
             //other.gameObject.GetComponent<AbstractMover>().IsMoving = false;
+			efficiency ++;
+			ApplyEfficiency();
             checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), true);
         }
         //Debug.Log(assignedCrews);
@@ -213,7 +219,9 @@ public class Facility : MonoBehaviour {
         }*/
         if (other.gameObject.layer == LayerMask.NameToLayer("Crew"))
         {
-            Debug.Log("Race " + other.gameObject.GetComponent<Crew>().getRace() + " left " + name);
+          //  Debug.Log("Race " + other.gameObject.GetComponent<Crew>().getRace() + " left " + name);
+			efficiency --;
+			ApplyEfficiency();
             checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), false);
         }
     }
@@ -261,14 +269,24 @@ public class Facility : MonoBehaviour {
         {
             isActivated = true;
             gameObject.GetComponent<SpriteRenderer>().DOColor(oriColor, 0.5f);
-            Debug.Log(name + " is working");
+           // Debug.Log(name + " is working");
         } else {
             isActivated = false;
             gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
             needToReset = true;
         }
-        Debug.Log(gameObject.name + " has tis many : " + ResourcesNeeded);
+        //Debug.Log(gameObject.name + " has tis many : " + ResourcesNeeded);
     }
+
+	void ApplyEfficiency()
+	{
+		if (efficiency >= 2) {
+			atkDelay = atkDelay / 2.0f;
+			Debug.Log ("Attack Delay is" + atkDelay);
+		} else {
+			atkDelay = orgDelay;
+		}
+	}
 
 	void applyLeaderEffects(LevelLoadHandler _loadHandler)
 	{
@@ -276,21 +294,29 @@ public class Facility : MonoBehaviour {
 		if (_loadHandler != null) {
 			switch (_loadHandler.getLeader ()) {
 			case 0: // Human
+				repairTime = repairTime / 2;
+				repairCap = repairTime;
 				isCriticalWorking = true;
 				break;
 			case 1: // Elf
 				if (facilityType == type.Evasion) {
-					facilityOutput = 50;
+					facilityOutput = 40;
 				}
 				if (facilityType == type.Movement) {
-					facilityOutput = 2.25f;
+					facilityOutput = 1.25f;
 				}
 				break;
 			case 2: // Wolfman
 				if (facilityType == type.Combat) {
-					atkDelay = 4;
+					atkDelay = 3;
 					delay = atkDelay;
 					facilityOutput = 40;
+				}
+
+				if (facilityType == type.Magic)
+				{
+					atkDelay = 4;
+					delay = atkDelay;
 				}
 
 				break;
@@ -330,7 +356,7 @@ public class Facility : MonoBehaviour {
                 if (scanned)
                 {
                     //eventEnemies.enemy.RemoveAt(0);
-                    delay -= 0.02f;
+					delay -= Time.deltaTime;
                     if (delay <= 0)
                     {
                         fireBullet();
@@ -349,7 +375,7 @@ public class Facility : MonoBehaviour {
             case 1: // Combat
                 if (scanned)
                 {
-                    delay -= 0.02f;
+					delay -= Time.deltaTime;
                     if (delay <= 0)
                     {
                         fireBullet();
@@ -369,7 +395,7 @@ public class Facility : MonoBehaviour {
             case 2: // Core
                 if (shipInteractions.currentHealth < 100)
                 {
-                    delay -= 0.2f;
+                    delay -= Time.deltaTime;
                     if (delay <= 0)
                     {
                         shipInteractions.repairShip((int)facilityOutput);
@@ -386,7 +412,7 @@ public class Facility : MonoBehaviour {
                 accel += Time.deltaTime;// * 0.1f;
                 shipInteractions.ShipSpeed = originalOutput + accel;
                 //float BGspd = (((accel - 0) * (2 - 0.5f)) / (facilityOutput - 0));
-                SkyBG.setBGSpeed(accel + 0.5f);
+                //SkyBG.setBGSpeed(1.0f);
                 //float accel = 1;
                 /*
                     while (accel < facilityOutput)
@@ -398,7 +424,7 @@ public class Facility : MonoBehaviour {
                     */
                 break;
             case 4: // Evasion
-                Debug.Log("Evade working");
+                //Debug.Log("Evade working");
                 delay -= 0.2f;
                 if (delay <= 0)
                 {
@@ -433,7 +459,7 @@ public class Facility : MonoBehaviour {
                 accel -= Time.deltaTime * 0.1f;
                 shipInteractions.ShipSpeed = originalOutput + accel;
                 float BGspd = (((accel - 0) * (2 - 0.5f)) / (facilityOutput - 0));
-                SkyBG.setBGSpeed(Mathf.Abs(accel + 0.5f));
+                SkyBG.setBGSpeed(0.25f);
                 //SkyBG.setBGSpeed(0.5f);
                 //float accel = facilityOutput;
                 /*
@@ -487,6 +513,7 @@ public class Facility : MonoBehaviour {
             bullet.GetComponent<enemyBullet>().damageValue = (int)facilityOutput;
 			bullet.GetComponent<enemyBullet>().setBulletSpeed(0.5f);
 			bullet.GetComponent<enemyBullet>().setDirection(direction);
+			AudioController.Instance.PlayPunchSound();
             //Debug.Log(direction);
         }
         else {
@@ -516,6 +543,7 @@ public class Facility : MonoBehaviour {
 		if (_healthHandler.Health <= 0)
         {
             gameObject.GetComponent<SpriteRenderer>().DOColor(Color.black, 0.5f);
+			efficiency = 0;
             isWorking = false;
 			isRepair = true;
             reCheck = true;

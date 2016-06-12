@@ -4,7 +4,7 @@ using System.Collections;
 public class ScrollingBackground : MonoBehaviour {
 
 	[SerializeField]
-	float backgroundSpeed = 1;
+	float backgroundSpeed = 0.5f;
 	//float bgWidth =0;
 	Renderer render;
 	// Use this for initialization
@@ -24,8 +24,10 @@ public class ScrollingBackground : MonoBehaviour {
 		//Vector3 vel  = this.GetComponent<Rigidbody2D>().position;
 		//vel+= new Vector3(-backgroundSpeed,0,0);
 		//this.GetComponent<Rigidbody2D>().position = vel;
-		Vector2 offset = new Vector2 (Time.time * backgroundSpeed, 0);
+		Vector2 offset = new Vector2 (Time.time * backgroundSpeed, 2);
 		render.material.mainTextureOffset = offset;
+
+		Debug.Log (backgroundSpeed.ToString ());
 
 		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x < 0) {
 			//Vector2 pos = gameObject.transform.position + Camera.main.rect.position;

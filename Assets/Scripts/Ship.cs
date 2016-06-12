@@ -129,6 +129,11 @@ public class Ship : MonoBehaviour
 			{
 				facilityList[randomFaci].damageFacility(i);
 			}
+
+			if (currentHealth < 50)
+			{
+				cargoTakeDamage(10); // Takes 10 perm damage
+			}
 			//Debug.Log (healthImage.fillAmount);
 			healthTxt.text = "Health: " + currentHealth;
 			DOTween.Complete(innerCam.transform);
@@ -209,6 +214,7 @@ public class Ship : MonoBehaviour
 	public void setCurrentHealth(int f)
 	{
 		currentHealth = f;
+		healthCap = f;
 	}
 
 	//Returns random between descending and ascending

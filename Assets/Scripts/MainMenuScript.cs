@@ -39,6 +39,8 @@ public class MainMenuScript : MonoBehaviour {
 	int currentTutorial = 0;
 	int currentDifficulty = 0;
 
+
+
 	void Awake() {
 		pnl_LeaderSelection.gameObject.SetActive (false);
 		pnl_Credits.gameObject.SetActive (false);
@@ -49,6 +51,7 @@ public class MainMenuScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+
 		if (_transform != null) {
 			Camera.main.transform.DOMoveY (_transform.position.y, 2.0f, false).SetEase (Ease.OutCubic).OnComplete(() =>
 			                                                                                                                                                                                                      {
@@ -200,7 +203,7 @@ public class MainMenuScript : MonoBehaviour {
 			currentDifficulty = 0;
 		}
 		refreshDifficulty (currentDifficulty);
-
+		_levelHandler.setDifficulty (currentDifficulty);
 		
 	}
 
@@ -211,7 +214,7 @@ public class MainMenuScript : MonoBehaviour {
 			currentDifficulty = 1;
 		}
 		refreshDifficulty (currentDifficulty);
-
+		_levelHandler.setDifficulty (currentDifficulty);
 
 	}
 

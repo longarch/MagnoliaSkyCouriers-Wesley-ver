@@ -47,7 +47,9 @@ public class enemyHealth : Killable
 	{
 		_onKillCalled = false;
 		Health = MaximumHealth;
-		_healthUI.reenableHealthBars ();
+		if (_showUi) {
+			_healthUI.reenableHealthBars ();
+		}
 	}
 	
 }

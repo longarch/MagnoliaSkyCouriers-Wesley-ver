@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -14,6 +15,8 @@ public class CrewController : MonoBehaviour {
     [SerializeField] private LayerMask _selectionLayerMask;
     [SerializeField] private float _touchDistanceThreshold = 50.0f;
     [SerializeField] private float _clickRegisterTime = 0.3f;
+
+	[SerializeField] private Text txtSelected;
 
     [SerializeField]
     Camera cam;
@@ -31,6 +34,7 @@ public class CrewController : MonoBehaviour {
 			crews[_levelHandlerObj.gameObject.GetComponent<LevelLoadHandler>().getLeader()].GetComponent<Crew>().assignLeader();
 		}
         selectedCrew = crews[0];
+		txtSelected.text = "Currently Selecting: " + selectedCrew.name;
     }
 	
 	// Update is called once per frame
@@ -151,6 +155,7 @@ public class CrewController : MonoBehaviour {
             if (Crew.name.Equals(selected.name))
             {
                 selectedCrew = Crew;
+				txtSelected.text = "Currently Selecting: " + selectedCrew.name;
                 break;
             }
         }
