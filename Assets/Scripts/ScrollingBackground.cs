@@ -27,7 +27,7 @@ public class ScrollingBackground : MonoBehaviour {
 		Vector2 offset = new Vector2 (Time.time * backgroundSpeed, 2);
 		render.material.mainTextureOffset = offset;
 
-		Debug.Log (backgroundSpeed.ToString ());
+		//Debug.Log (backgroundSpeed.ToString ());
 
 		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x < 0) {
 			//Vector2 pos = gameObject.transform.position + Camera.main.rect.position;

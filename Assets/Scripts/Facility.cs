@@ -19,6 +19,10 @@ public class Facility : MonoBehaviour {
     Ship shipInteractions;
     [SerializeField]
     GameObject bulletHole;
+	[SerializeField]
+	Camera Fieldcam;
+	[SerializeField] private LayerMask _selectionLayerMask;
+	bool isOver;
 
 
     [SerializeField]
@@ -63,6 +67,7 @@ public class Facility : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+		isOver = false;
 		isRepair = false;
         reCheck = false;
         repairCap = repairTime;
@@ -77,6 +82,7 @@ public class Facility : MonoBehaviour {
         oriColor = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
         ResourcesCount = 0;
+		Physics.queriesHitTriggers = true;
         switch ((int)facilityType)
         {
             case 0: // Magic Type
@@ -122,6 +128,7 @@ public class Facility : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		testMouseEnter ();
 		if (isRepair) {
 			//Debug.Log ("fixing myself");
 			repairTime -= Time.deltaTime;
@@ -201,7 +208,7 @@ public class Facility : MonoBehaviour {
         }
         //Debug.Log(assignedCrews);
     }
-
+		
     void OnTriggerExit2D(Collider2D other)
     {
         /*if (!isWorking)
@@ -554,6 +561,31 @@ public class Facility : MonoBehaviour {
     public void AddOnKillCallback(Killable.OnKilled callback)
 	{
 		_healthHandler.AddOnKillCallback(callback);
+	}
+
+	public void OnMouseEnter(){
+		Debug.Log (this.name + "In");
+		isOver = true;
+	}
+
+	public void OnMouseExit(){
+		if (!isOver)
+			return;
+		Debug.Log (this.name + "out");
+		isOver = false;
+	}
+
+	void testMouseEnter()
+	{
+		RaycastHit2D hit = Physics2D.Raycast(Fieldcam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
+			_selectionLayerMask.value);
+		if (hit.collider != null) {
+			Debug.Log (hit.collider.name);
+			hit.collider.gameObject.GetComponentInChildren<Facility> ().OnMouseEnter ();//){
+		} else {
+			//Set a timer for the exit function
+			OnMouseExit ();
+		}
 	}
 
 }

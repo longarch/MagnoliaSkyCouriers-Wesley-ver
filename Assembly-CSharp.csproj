@@ -187,22 +187,22 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Ionic.Zip.Reduced">
- <HintPath>C:/Users/Shawn/Desktop/MagnoliaSkyCouriers-Wesley-ver/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ <HintPath>C:/Users/YagamiHayate/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.JsonFx">
- <HintPath>C:/Users/Shawn/Desktop/MagnoliaSkyCouriers-Wesley-ver/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ <HintPath>C:/Users/YagamiHayate/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
  </Reference>
  <Reference Include="DOTween">
- <HintPath>C:/Users/Shawn/Desktop/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ <HintPath>C:/Users/YagamiHayate/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="DOTween43">
- <HintPath>C:/Users/Shawn/Desktop/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
+ <HintPath>C:/Users/YagamiHayate/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
  </Reference>
  <Reference Include="DOTween46">
- <HintPath>C:/Users/Shawn/Desktop/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
+ <HintPath>C:/Users/YagamiHayate/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
  </Reference>
  <Reference Include="DOTween50">
- <HintPath>C:/Users/Shawn/Desktop/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
+ <HintPath>C:/Users/YagamiHayate/Documents/GitHub/MagnoliaSkyCouriers-Wesley-ver/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

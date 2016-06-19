@@ -16,7 +16,7 @@ public class MoveToClick : MonoBehaviour
 	[SerializeField] Camera cam;
 	private float _lastPressTime = -1;
 	private Vector3 _firstPressLocation;
-	
+
 	private AbstractMover _mover;
 	
 	public bool CanMove

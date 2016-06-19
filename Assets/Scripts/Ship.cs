@@ -203,7 +203,7 @@ public class Ship : MonoBehaviour
 		//position += new Vector3(1, 0,0) * speed;
 
 		position += Vector3.right * speed * Time.deltaTime;
-		shipSpeedTxt.text = "Speed: " + (int)(speed * 15) + "km/h";
+		//shipSpeedTxt.text = "Speed: " + (int)(speed * 15) + "km/h";
 		transform.position = position;
         //####Changes
         sLOS.transform.position = transform.position;
