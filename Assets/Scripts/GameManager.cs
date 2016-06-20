@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+		DialogManager.Instance.setUpDialog (0);
 		_levelHandler = FindObjectOfType<LevelLoadHandler> ();
 
 		if (_levelHandler != null) {

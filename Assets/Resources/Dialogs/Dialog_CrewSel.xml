@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DialogCollection>
+	<Dialogs>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">Welcome to the tutorial, manager.</Text>
+				<Text face = "1">You will [learn how to decide and pick cats[ suited to implement the system required for the CatBot.</Text>
+				<Text face = "0">Once done, we shall proceed to assigning tasks to the cats.</Text>
+				<Text face = "1">Firstly, explore around by [clicking on a cat or any buttons.[</Text>
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">The [crew data[ is a record which details the crew's abilities.</Text>
+				<Text face = "0">Each crew are equipped with skills which may be relevant to the [project scope[. Decide and pick wisely.</Text>
+				<Text face = "0">Asides from skills, [personal motivation[ is also a important factor in any project.</Text>
+				<Text face = "0">I recommend giving the cat an [interview[, to gauge their interest in the project!</Text>	
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">Robust systems are vital to the core functions of the CatBot</Text>
+				<Text face = "0">This project brief details the development of a mobility system, which will be integrated with the CatBot's hardware.</Text>
+				<Text face = "0">The [requirements[ will outline more information, @read them carefully@.</Text>
+				<Text face = "0">I'm sure you would be able to identify and make your decision based on the information!</Text>			
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "1">It seems you have made your selection.</Text>
+				<Text face = "2">Once done, click on the [proceed to project[ button to begin assigning work to your crew!</Text>
+			</Texts>
+		</Dialog>
+	</Dialogs>	
+</DialogCollection>
+

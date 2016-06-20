@@ -82,7 +82,7 @@ public class Facility : MonoBehaviour {
         oriColor = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
         ResourcesCount = 0;
-		Physics.queriesHitTriggers = true;
+		//Physics.queriesHitTriggers = true;
         switch ((int)facilityType)
         {
             case 0: // Magic Type

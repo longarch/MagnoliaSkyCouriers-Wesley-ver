@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DialogCollection>
+	<Dialogs>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">The project has come to an end. How was it, Managing the cats for the first time?</Text>
+				<Text face = "2">It seems the mobility system proved to be a great asset to the CatBot, thanks to you!</Text>
+				<Text face = "1">This is a report written based on your management over the course of the project.</Text>
+				<Text face = "2">Your results this time are simply exemplary! You really took us by surprise here!</Text>
+				<Text face = "2">We hope you would continue to do your best with your team!</Text>
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">The project has come to an end. How was it, Managing the cats for the first time?</Text>
+				<Text face = "2">It seemed the mobility system managed to hold up on its own, it could have been better.</Text>
+				<Text face = "1">This is a report written based on your management over the course of the project.</Text>
+				<Text face = "1">Your results are within our expectations. The management expects you to improve with the upcoming projects along the way.</Text>
+				<Text face = "2">Do your best and don't give up!</Text>
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">The project has come to an end. How was it, Managing the cats for the first time?</Text>
+				<Text face = "3">We managed to salvage the remains of the CatBot...it will take some time for us to reassemble it together again.</Text>
+				<Text face = "1">This is a report written based on your management over the course of the project.</Text>
+				<Text face = "4">The management was disappointed with your results...</Text>
+				<Text face = "1">They're however, willing to give you a second chance though, don't worry!</Text>
+				<Text face = "0">I strongly recommend you to make use of the report to understand and learn what went wrong.</Text>			
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">The project has come to an end. How was it, Managing the cats for the first time?</Text>
+				<Text face = "3">We managed to salvage the remains of the CatBot...it will take some time for us to reassemble it together again.</Text>
+				<Text face = "1">This is a report written based on your management over the course of the project.</Text>
+				<Text face = "4">The enemy was simply too strong, though the management are having doubts over your developed system</Text>
+				<Text face = "0">They're however, willing to give you a second chance though, don't worry!</Text>
+				<Text face = "2">In the mean time, have a look at the report and see if theres anything you could do better!.</Text>			
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">The project has come to an end. How was it, Managing the cats for the first time?</Text>
+				<Text face = "2">It was a tough fight against the enemy, the CatBot seemed to struggle a fair bit but won in the end.</Text>
+				<Text face = "1">This is a report written based on your management over the course of the project.</Text>
+				<Text face = "4">The performance of the CatBot is making the management are having doubts over your developed system</Text>
+				<Text face = "1">They're however, willing to give you a second chance though, don't worry!</Text>
+				<Text face = "0">I strongly recommend you to make use of the report to understand and improve!.</Text>			
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">The management has took the liberty of doing abit of analysis on the project</Text>
+				<Text face = "1">The cat crew has also given some feedback based on your management style</Text>
+				<Text face = "2">It seems that you have a good eye for matching cats to projects!</Text>
+				<Text face = "2">You can also read the evaluation of the cats here, don't hold it against them if they write anything bad about you!</Text>
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">The management has took the liberty of doing abit of analysis on the project</Text>
+				<Text face = "1">The cat crew has also given some feedback based on your management style</Text>
+				<Text face = "0">You selection of the crew members was good, but the management seems to think some of the other cats listed could play a more critical role in the project!</Text>
+				<Text face = "1">You can also read the evaluation of the cats here, don't hold it against them if they write anything bad about you!</Text>
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">The management has took the liberty of doing abit of analysis on the project</Text>
+				<Text face = "1">The cat crew has also given some feedback based on your management style</Text>
+				<Text face = "3">The management thinks that the following members could have really made a huge impact on the success of your project!</Text>
+				<Text face = "1">You can also read the evaluation of the cats here, don't hold it against them if they write anything bad about you!</Text>
+			</Texts>
+		</Dialog>
+	</Dialogs>	
+</DialogCollection>
+

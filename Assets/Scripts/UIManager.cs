@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour {
 		if (GameManager.Instance.getStatus () == GameManager.STATE.TUTORIAL) { //Application.loadedLevelName.Contains ("DialogScene")
 			DialogPnl.gameObject.SetActive (true);
 			if (Dialogs != null && isDebug) {						
-				setUpDialog (DialogManager.Instance.returnDialogs (0).getListofTexts ());
+
 			}
 		}
 		else {
