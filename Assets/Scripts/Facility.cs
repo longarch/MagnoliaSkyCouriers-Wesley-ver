@@ -22,7 +22,11 @@ public class Facility : MonoBehaviour {
 	[SerializeField]
 	Camera Fieldcam;
 	[SerializeField] private LayerMask _selectionLayerMask;
-	bool isOver;
+	static bool isOver;
+	[SerializeField]
+	public GameObject actionIndicator1, actionIndicator2, actionIndicator3;
+	GameObject over;
+	static float actionDelay = 3f;
 
 
     [SerializeField]
@@ -82,7 +86,10 @@ public class Facility : MonoBehaviour {
         oriColor = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
         ResourcesCount = 0;
-		//Physics.queriesHitTriggers = true;
+		actionIndicator1.SetActive (false);
+		actionIndicator2.SetActive (false);
+		actionIndicator3.SetActive (false);
+		isOver = false;
         switch ((int)facilityType)
         {
             case 0: // Magic Type
@@ -563,29 +570,63 @@ public class Facility : MonoBehaviour {
 		_healthHandler.AddOnKillCallback(callback);
 	}
 
-	public void OnMouseEnter(){
+	public void OnMouseEnter(GameObject now){
 		Debug.Log (this.name + "In");
+		actionIndicator1.SetActive(true);
+		actionIndicator1.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);
+		actionIndicator2.SetActive(true);
+		actionIndicator2.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);
+		actionIndicator3.SetActive(true);
+		actionIndicator3.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);//*/
+		this.over = now;
 		isOver = true;
 	}
 
 	public void OnMouseExit(){
-		if (!isOver)
-			return;
-		Debug.Log (this.name + "out");
-		isOver = false;
+		//if (!isOver)
+			//return;
+		while (actionDelay > 0) {
+			actionDelay -= Time.deltaTime;
+		}
+		if (actionDelay <= 0) {
+			Debug.Log (this.name + "out");
+			actionIndicator1.SetActive (false);
+			actionIndicator1.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
+			actionIndicator2.SetActive (false);
+			actionIndicator2.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
+			actionIndicator3.SetActive (false);
+			actionIndicator3.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
+			isOver = false;
+			actionDelay = 3f;
+			over = null;
+		}
 	}
 
 	void testMouseEnter()
 	{
+		//if (isOver) {
+		//	return;
+		//}
 		RaycastHit2D hit = Physics2D.Raycast(Fieldcam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
 			_selectionLayerMask.value);
 		if (hit.collider != null) {
+			if (!isOver){
 			Debug.Log (hit.collider.name);
-			hit.collider.gameObject.GetComponentInChildren<Facility> ().OnMouseEnter ();//){
+			Debug.Log (hit.collider.name == this.name);
+				hit.collider.gameObject.GetComponentInChildren<Facility> ().OnMouseEnter (hit.collider.gameObject);//){
+			}
 		} else {
 			//Set a timer for the exit function
-			OnMouseExit ();
+			if (over == null)
+			{return;}
+			if (over.GetComponentInChildren<Facility> ().getIsOver()) {
+				over.GetComponentInChildren<Facility> ().OnMouseExit ();
+			}
 		}
 	}
 
+	public bool getIsOver()
+	{
+		return isOver;
+	}
 }

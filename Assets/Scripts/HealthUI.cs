@@ -159,11 +159,7 @@ public class HealthUI : MonoBehaviour
 			//Destroy(_foregroundImage.gameObject);
 			//Destroy(this);
 		}
-		
-	
 
-
-		
 	}
 
 	public void reenableHealthBars()
