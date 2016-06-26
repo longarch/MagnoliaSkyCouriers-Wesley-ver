@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviour {
 	[SerializeField]
 	string next_level,main_title;
 
+
+
 	private int menuState = 0;
 
 	//public Tutorial1Phase TPhase = new Tutorial1Phase ();
@@ -66,8 +68,12 @@ public class UIManager : MonoBehaviour {
 			dlogCom_btn.gameObject.SetActive (false);
 		}
 
-		startOpeningSequence ();
 
+		if (Application.loadedLevelName != "Tutorial_Level") {
+			startOpeningSequence ();
+		} else {
+			StartTutorialOpeningSequence();
+		}
 		paused = false;
 		//DialogManager.Instance.returnDialogs (0);
 		//Dialogs.Add(" ");
@@ -135,6 +141,26 @@ public class UIManager : MonoBehaviour {
 				dlogCom_btn.gameObject.SetActive (true);
 			//}						
 		}
+	}
+
+	public void StartTutorialOpeningSequence()
+	{
+		
+		Sequence sequence = DOTween.Sequence();
+		//DOTween.Complete (_spriteFeedback.transform);
+		sequence.Insert(0.1f,openingPnl.DOFade(0.5f,3.0f));
+		//sequence.Insert(0.1f,txtOpeningText.rectTransform.DOAnchorPosY(0,1.0f,false));
+		sequence.Append(openingPnl.DOFade(0,1.0f));
+		//sequence.Insert(1.1f,txtOpeningText.rectTransform.DOAnchorPosY(800,1.0f,false));
+		sequence.OnComplete(() =>
+		                    {
+			txtOpeningText.gameObject.SetActive(false);
+			openingPnl.gameObject.SetActive(false);
+			
+			//camera.orthographic = !currentMode;
+			//_spriteFeedback.SetActive (false);
+			//gameObject.SetActive(false);
+		});
 	}
 
 	public void startOpeningSequence()

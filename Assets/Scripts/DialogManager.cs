@@ -117,11 +117,8 @@ public class DialogManager : MonoBehaviour {
 			Destroy(gameObject);
 		}
 		_instance = this;
-	}
-	
-	// Use this for initialization
-	void Start () {
-		
+
+
 		TPhase = Tutorial1Phase.PreStart;
 		HideCompleteBtn ();
 		_isSelectedCat = false;
@@ -133,6 +130,12 @@ public class DialogManager : MonoBehaviour {
 		Dialogs = new List<string> ();
 		loadXMLFromAsset ();
 		readXml ();
+	}
+	
+	// Use this for initialization
+	void Start () {
+		
+
 		//setUpDialog (_listofDialogs[0]);
 	}
 	

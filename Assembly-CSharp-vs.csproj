@@ -120,6 +120,7 @@
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+     <Compile Include="Assets\Scripts\ActionsUI.cs" />
      <Compile Include="Assets\Scripts\AudioController.cs" />
      <Compile Include="Assets\Scripts\BaseCloud.cs" />
      <Compile Include="Assets\Scripts\BaseEnemy.cs" />
@@ -156,6 +157,8 @@
      <Compile Include="Assets\Scripts\ResultsMenu.cs" />
      <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
      <Compile Include="Assets\Scripts\Ship.cs" />
+     <Compile Include="Assets\Scripts\TutorialGameManager.cs" />
+     <Compile Include="Assets\Scripts\TutorialObjectScript.cs" />
      <Compile Include="Assets\Scripts\UIManager.cs" />
      <Compile Include="Assets\Scripts\Utilities\TweenHelper.cs" />
      <Compile Include="Assets\Scripts\enemyBullet.cs" />
@@ -166,6 +169,7 @@
      <None Include="Assets\Resources\Dialogs\Dialog_CrewSel.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Resources\Dialogs\DialogTest.xml" />
+     <None Include="Assets\Resources\Dialogs\Dialog_Tutorial.xml" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
      <None Include="Assets\Resources\Dialogs\Dialog_AssessmentScene.xml" />

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DialogCollection>
+	<Dialogs>
+		<Dialog name = "Crew">
+			<Texts>
+				<Text face = "0">Captain...</Text>
+				<Text face = "1">Captain....you...awake.....</Text>
+				<Text face = "0">Hey....reaching....port....</Text>
+				<Text face = "1">GET UP!!!</Text>
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">Geez...sleeping on the job...and this is your first day too...!</Text>
+				<Text face = "0">We are just about to reach the Wingly's port. The crew has got me to check up on you...</Text>
+				<Text face = "0">Sigh...I'm going to close one eye this time. but I need you to get up and direct the ship operations now. </Text>
+				<Text face = "0">Come to the bridge when you're ready.</Text>
+				<Text face = "0">...</Text>	
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "0">Well, captain. This is your first time with us. so I'm going to give you a quick brief on our ship's operations</Text>
+				<Text face = "0">First of all, Take a look at the indicator on the top of the screen. This shows our estimated progress to reach our destination, Wingly's port.</Text>
+				<Text face = "0">Our journey will be complete once the ship icon reaches the goal icon.</Text>
+				<Text face = "0">Next, look at the ship information window. It contains several information, such as the ship's health, speed and the structural layout of our ship.</Text>	
+						
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "1">Lets begin by learning how to direct orders to any one of us.</Text>
+				<Text face = "2">First, select a crew by using the left mouse button</Text>
+				<Text face = "2">Next, you can simply click again on the ground to have him/her move to the specified location.</Text>
+				<Text face = "2">Now, try to have any crew move to the indicated zone.</Text>
+			</Texts>
+		</Dialog>
+	</Dialogs>	
+</DialogCollection>
+
