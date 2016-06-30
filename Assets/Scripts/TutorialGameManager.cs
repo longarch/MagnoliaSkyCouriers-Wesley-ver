@@ -30,13 +30,19 @@ public class TutorialGameManager : MonoBehaviour
 	DataStoresHandler _storeHandler;
 	
 	LevelLoadHandler _levelHandler;
-	
+
+	[SerializeField]
+	TutorialObjectScript[] _tutObjects;
+
 	[SerializeField]
 	int counter = 0;
 	
 	[SerializeField]
 	int Difficulty = 0;
-	
+
+	[SerializeField]
+	int currentTutorialIndex = 0;
+
 	public static TutorialGameManager Instance //can call from any other class w/o reference
 	{
 		get { return _instance; }
@@ -59,32 +65,18 @@ public class TutorialGameManager : MonoBehaviour
 	{
 
 
-		_levelHandler = FindObjectOfType<LevelLoadHandler> ();
+
 		
-		if (_levelHandler != null) {
-			if (_levelHandler.returnDiff() == 1)
-			{
-				//Debug.Log ("Making things harder!");
-				Vector3 harderPos = destination.transform.position;
-				harderPos.x *= 1.5f;
-				destination.transform.position = harderPos;
-				Difficulty = 1;
-				
-				
-			}
-			
-			Destroy (_levelHandler.gameObject);
+
+		_tutObjects = FindObjectsOfType (typeof(TutorialObjectScript)) as TutorialObjectScript[];
+		
+		for (int i = 0; i < _tutObjects.Length; i ++)
+		{
+			_tutObjects[i].setGameManager(this);
+			_tutObjects[i].setTutorialIndex(i);
 		}
-		
-		
-		counter = 0;
-		//Debug.Log (healthImage.fillAmount);
-		//gameMode = STATE.ONGOING;
-		SetEndlessJourney ();
 
-		followShip = false;
-
-		DialogManager.Instance.setUpDialog (2);
+	
 		
 	}
 	
@@ -92,6 +84,17 @@ public class TutorialGameManager : MonoBehaviour
 	void Update()
 	{
 		//countDown ();
+	}
+
+	public void GetNotified()
+	{
+		DialogManager.Instance.setUpDialog (currentTutorialIndex);
+		currentTutorialIndex ++;
+	}
+
+	public int getTutorialIndex()
+	{
+		return currentTutorialIndex;
 	}
 	
 	public STATE getStatus()

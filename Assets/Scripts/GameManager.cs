@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
 	private float countDownTimer = 5.0f;
 	public float maxDist;
 	public int position;
+
+
 
 	[SerializeField]
 	DataStoresHandler _storeHandler;
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
 
 			Destroy (_levelHandler.gameObject);
 		}
+
 
 
 		counter = 0;
