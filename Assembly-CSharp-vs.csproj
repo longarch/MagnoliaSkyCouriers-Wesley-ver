@@ -132,6 +132,7 @@
      <Compile Include="Assets\Scripts\CrewController.cs" />
      <Compile Include="Assets\Scripts\CrewDebugScript.cs" />
      <Compile Include="Assets\Scripts\CrewSelTutorialHandler.cs" />
+     <Compile Include="Assets\Scripts\CutSceneManager.cs" />
      <Compile Include="Assets\Scripts\DataStoresHandler.cs" />
      <Compile Include="Assets\Scripts\DialogManager.cs" />
      <Compile Include="Assets\Scripts\Dragon.cs" />

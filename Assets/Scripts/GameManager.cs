@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance = null;
-    public enum STATE { START , TUTORIAL, ONGOING, EVENT, CARGOLOST, GOAL };
+    public enum STATE { START , TUTORIAL, ONGOING, EVENT, CARGOLOST, GOAL, CUTSCENE };
     [SerializeField]
 	private STATE gameMode;
     private bool followShip;
@@ -20,8 +20,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	Ship player;
 
-	[SerializeField]
-	Text distanceTxt;
+
 
 	private float countDownTimer = 5.0f;
 	public float maxDist;
@@ -61,7 +60,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-		DialogManager.Instance.setUpDialog (0);
+		//DialogManager.Instance.setUpDialog (0);
+
+		CutSceneManager.Instance.animateScene ();
+
 		_levelHandler = FindObjectOfType<LevelLoadHandler> ();
 
 		if (_levelHandler != null) {
@@ -112,10 +114,7 @@ public class GameManager : MonoBehaviour
 			if (maxDist <= 0.0f) {
 				maxDist = getDestination().transform.position.x - shipPos.transform.position.x;
 			}
-            //if (shipPos.GetComponent<Collider2D>().IsTouching(destination.GetComponent<Collider2D>())) 
-            //if (shipPos >= destination)
-              //gameMode = STATE.END;
-			//position = getDestination().transform.position.x - shipPos.transform.position.x; 
+           
 			position = (int)((shipPos.transform.position.x / maxDist) * 100) + 1;
 			//Debug.Log (position);
 			goalDistance ();
@@ -185,7 +184,7 @@ public class GameManager : MonoBehaviour
 	{
 		//distanceTxt.text = "Distance: " + ((int)position).ToString() + " km";
 		//distanceTxt.text = "Distance: " + ((int)position + 1).ToString() + " %";
-		distanceTxt.text = "Distance: " + position.ToString() + " %";
+		//distanceTxt.text = "Distance: " + position.ToString() + " %";
 
 		if (position >= 100) {
 			_storeHandler.setShiphealth(player.currentHealth);

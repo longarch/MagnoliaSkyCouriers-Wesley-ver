@@ -38,7 +38,11 @@ public class DialogManager : MonoBehaviour {
 	[SerializeField]
 	Image _NPCMainImage;
 	
-	
+	[SerializeField]
+	Image NotificationPanel;
+
+	[SerializeField]
+	Image NotificationFaderPanel;
 	
 	private List<List<string>> _listofDialogs;
 	private List<List<int>> _listofSpriteRef;
@@ -282,10 +286,38 @@ public class DialogManager : MonoBehaviour {
 			setUpDialog(additionalEventInstance);
 			additionalEvent = false;
 		}
+
+
+		if (CutSceneManager.Instance.getIsCutScene()) {
+			CutSceneManager.Instance.incrementSceneIndex();
+			CutSceneManager.Instance.animateScene();
+		}
 		
 		
+	}
+
+	public void setUpCutSceneDialog(int i)
+	{
+		TPhase = Tutorial1Phase.Dialog;
+		DialogPnl.gameObject.SetActive (true);
+		_NPCMainImage.gameObject.SetActive (true);
+		tutCompleteBtn.gameObject.SetActive (false);
+		current = 0;
+		Dialogs.Clear ();
+		for (int j = 0; j < _listofDialogs[i].Count; j ++) {
+			Dialogs.Add (_listofDialogs[i][j]);
+		}
+		dialogInstance = i;
+		_NPCMainImage.sprite = _NPCFaces[_listofSpriteRef [dialogInstance] [0]];
 		
+	
+		CutSceneManager.Instance.setIsCutScene (true);
+
+		StopAllCoroutines();
+		//StartCoroutine (TypeText (Dialogs [current]));
+		StartCoroutine (TypeRichText (Dialogs [current]));
 		
+		//txtNextBtn.onClick.AddListener (() => triggerNextDialog_2());
 	}
 	
 	public void setUpDialog(int i)

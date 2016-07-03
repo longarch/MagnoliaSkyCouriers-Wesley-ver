@@ -29,10 +29,18 @@
 		</Dialog>
 		<Dialog name = "Secretary">
 			<Texts>
-				<Text face = "1">Lets begin by learning how to direct orders to any one of us.</Text>
-				<Text face = "2">First, select a crew by using the left mouse button</Text>
-				<Text face = "2">Next, you can simply click again on the ground to have him/her move to the specified location.</Text>
-				<Text face = "2">Now, try to have any crew move to the indicated zone.</Text>
+				<Text face = "1">Lets begin by learning how to direct orders to your crew</Text>
+				<Text face = "2">First, select myself using the left mouse button</Text>
+				<Text face = "2">Next, Use the left mouse button again to direct me to the specified location.</Text>
+				<Text face = "2">Now, try to have to have me move to the zone indicated.</Text>
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "1">Excellent, now lets learn how to have your crew members work on </Text>
+				<Text face = "2">First, select myself using the left mouse button</Text>
+				<Text face = "2">Next, Use the left mouse button again to direct me to the specified location.</Text>
+				<Text face = "2">Now, try to have to have me move to the zone indicated.</Text>
 			</Texts>
 		</Dialog>
 	</Dialogs>	
