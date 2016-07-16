@@ -26,7 +26,8 @@ public class Facility : MonoBehaviour {
 	[SerializeField]
 	public GameObject actionIndicator1, actionIndicator2, actionIndicator3;
 	GameObject over;
-	static float actionDelay = 3f;
+	static float actionDelay = 4f;
+	static bool actionOut;
 
 
     [SerializeField]
@@ -72,6 +73,7 @@ public class Facility : MonoBehaviour {
     void Start () {
 
 		isOver = false;
+		actionOut = false;
 		isRepair = false;
         reCheck = false;
         repairCap = repairTime;
@@ -136,6 +138,13 @@ public class Facility : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		testMouseEnter ();
+		if (!isOver) {
+			if (actionOut) {
+				actionDelay -= Time.deltaTime;
+				if (actionDelay < 0.0f)
+					over.GetComponentInChildren<Facility> ().OnMouseExit ();
+			}
+		}
 		if (isRepair) {
 			//Debug.Log ("fixing myself");
 			repairTime -= Time.deltaTime;
@@ -579,15 +588,15 @@ public class Facility : MonoBehaviour {
 		actionIndicator3.SetActive(true);
 		actionIndicator3.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);//*/
 		this.over = now;
+		actionOut = true;
 		isOver = true;
 	}
 
 	public void OnMouseExit(){
 		//if (!isOver)
 			//return;
-		while (actionDelay > 0) {
-			actionDelay -= Time.deltaTime;
-		}
+		Debug.Log("Testing in out");
+
 		if (actionDelay <= 0) {
 			Debug.Log (this.name + "out");
 			actionIndicator1.SetActive (false);
@@ -596,8 +605,8 @@ public class Facility : MonoBehaviour {
 			actionIndicator2.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 			actionIndicator3.SetActive (false);
 			actionIndicator3.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
-			isOver = false;
-			actionDelay = 3f;
+			actionOut = false;
+			actionDelay = 4f;
 			over = null;
 		}
 	}
@@ -620,8 +629,9 @@ public class Facility : MonoBehaviour {
 			if (over == null)
 			{return;}
 			if (over.GetComponentInChildren<Facility> ().getIsOver()) {
-				over.GetComponentInChildren<Facility> ().OnMouseExit ();
-			}
+				//over.GetComponentInChildren<Facility> ().OnMouseExit ();
+				isOver = false;
+			}//*/
 		}
 	}
 
