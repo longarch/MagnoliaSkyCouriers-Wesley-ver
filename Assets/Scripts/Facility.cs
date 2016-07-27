@@ -138,7 +138,7 @@ public class Facility : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		testMouseEnter ();
+		/*testMouseEnter ();
 
 		if (!isOver) {
 			if (over != null)
@@ -148,7 +148,7 @@ public class Facility : MonoBehaviour {
 				over.GetComponentInChildren<Facility> ().OnMouseExit ();
 			}
 			}
-		}
+		}*/
 		if (isRepair) {
 			//Debug.Log ("fixing myself");
 			repairTime -= Time.deltaTime;
@@ -584,23 +584,25 @@ public class Facility : MonoBehaviour {
 	}
 
 	public void OnMouseEnter(){
-		Debug.Log (this.name + "In");
-		DOTween.Complete (actionIndicator1.transform);
-		DOTween.Complete (actionIndicator2.transform);
-		DOTween.Complete (actionIndicator3.transform);
+		if (!isOver) {
+			Debug.Log (this.name + "In");
+			DOTween.Complete (actionIndicator1.transform);
+			DOTween.Complete (actionIndicator2.transform);
+			DOTween.Complete (actionIndicator3.transform);
 
-		actionIndicator1.transform.localScale = new Vector3 (1, 1, 1);
-		actionIndicator2.transform.localScale = new Vector3 (1, 1, 1);
-		actionIndicator3.transform.localScale = new Vector3 (1, 1, 1);
-		actionIndicator1.SetActive(true);
-		actionIndicator1.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);
-		actionIndicator2.SetActive(true);
-		actionIndicator2.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);
-		actionIndicator3.SetActive(true);
-		actionIndicator3.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);//*/
+			actionIndicator1.transform.localScale = new Vector3 (1, 1, 1);
+			actionIndicator2.transform.localScale = new Vector3 (1, 1, 1);
+			actionIndicator3.transform.localScale = new Vector3 (1, 1, 1);
+			actionIndicator1.SetActive (true);
+			actionIndicator1.transform.DOScale (new Vector3 (3f, 3f, 3f), 1.0f);
+			actionIndicator2.SetActive (true);
+			actionIndicator2.transform.DOScale (new Vector3 (3f, 3f, 3f), 1.0f);
+			actionIndicator3.SetActive (true);
+			actionIndicator3.transform.DOScale (new Vector3 (3f, 3f, 3f), 1.0f);//*/
 
-		actionOut = true;
-		isOver = true;
+			actionOut = true;
+			isOver = true;
+		}
 	}
 
 	public void OnMouseExit(){
@@ -618,6 +620,7 @@ public class Facility : MonoBehaviour {
 			actionIndicator3.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 			actionOut = false;
 			actionDelay = 4f;
+		isOver = false;
 			
 
 	}
