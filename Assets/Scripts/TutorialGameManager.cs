@@ -39,7 +39,7 @@ public class TutorialGameManager : MonoBehaviour
 	int Difficulty = 0;
 
 	[SerializeField]
-	int currentTutorialIndex = 0;
+	int currentTutorialIndex = 2;
 
 	public static TutorialGameManager Instance //can call from any other class w/o reference
 	{
@@ -69,6 +69,7 @@ public class TutorialGameManager : MonoBehaviour
 		{
 			_tutObjects[i].setGameManager(this);
 			_tutObjects[i].setTutorialIndex(i);
+			_tutObjects[i].enabled = false;
 		}
 
 	
@@ -79,6 +80,11 @@ public class TutorialGameManager : MonoBehaviour
 	void Update()
 	{
 		//countDown ();
+	}
+
+	public void enableTutorialObject(int i, bool enabled)
+	{
+		_tutObjects [i].enabled = enabled;
 	}
 
 	public void GetNotified()

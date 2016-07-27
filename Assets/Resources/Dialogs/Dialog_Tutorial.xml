@@ -3,7 +3,7 @@
 	<Dialogs>
 		<Dialog name = "Crew">
 			<Texts>
-				<Text face = "0">Captain...</Text>
+				<Text face = "0">....Captain....wake up...</Text>
 				<Text face = "1">Captain....you...awake.....</Text>
 				<Text face = "0">Hey....reaching....port....</Text>
 				<Text face = "1">GET UP!!!</Text>
@@ -23,8 +23,11 @@
 				<Text face = "0">Well, captain. This is your first time with us. so I'm going to give you a quick brief on our ship's operations</Text>
 				<Text face = "0">First of all, Take a look at the indicator on the top of the screen. This shows our estimated progress to reach our destination, Wingly's port.</Text>
 				<Text face = "0">Our journey will be complete once the ship icon reaches the goal icon.</Text>
-				<Text face = "0">Next, look at the ship information window. It contains several information, such as the ship's health, speed and the structural layout of our ship.</Text>	
-						
+				<Text face = "0">Next, look at the ship information window. The ship's health, speed and the structural layout of our ship are displayed here.</Text>
+				<Text face = "0">The ship will crash and fall if its health drops to zero, so pay close attention to it.</Text>	
+				<Text face = "0">The speed determines how fast the ship is travelling. Our journey would be alot faster if the speed increases.</Text>
+				<Text face = "0">This is where the crew comes in. They help maintain the ship and its facilities, and its your job to direct orders to the crew.</Text>				
+				<Text face = "0"></Text>		
 			</Texts>
 		</Dialog>
 		<Dialog name = "Secretary">
@@ -37,10 +40,33 @@
 		</Dialog>
 		<Dialog name = "Secretary">
 			<Texts>
-				<Text face = "1">Excellent, now lets learn how to have your crew members work on </Text>
-				<Text face = "2">First, select myself using the left mouse button</Text>
-				<Text face = "2">Next, Use the left mouse button again to direct me to the specified location.</Text>
-				<Text face = "2">Now, try to have to have me move to the zone indicated.</Text>
+				<Text face = "1">Excellent, now lets learn how to have your crew members work on a facility</Text>
+				<Text face = "2">Hmm...maybe we could use the ship engine as an example</Text>
+				<Text face = "2">The ship engine is located at the back of the ship, while it can certainly operate on its own at the bare minimum, it needs someone to keep it operated to give our ship a boost in speed</Text>
+				<Text face = "2">To operate the facility, select me, and hover the mouse button on the engine.</Text>
+				<Text face = "2">Theres 3 icons available. For now, select the operate icon indicated to give your orders.</Text>
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "1">Notice how the ship is moving faster now? I'm keeping the engine operated at the moment</Text>
+				<Text face = "2">If I leave the engine however, the engine will be back to being operated automatically.</Text>
+				<Text face = "2">Do note that our ship's aramaments are not automated, and will require the crew members to operate it manually. </Text>
+				<Text face = "2">Well, obviously I couldn't handle everything on my own, that's where the rest of the crew come in!</Text>
+				<Text face = "2">Hmm...I think the elf is handling the armaments at the moment, would you mind getting her to handle the ship controls instead?</Text>
+			</Texts>
+		</Dialog>
+		<Dialog name = "Secretary">
+			<Texts>
+				<Text face = "1">...</Text>
+				<Text face = "2">Man...first day and you're already slave driving us huh?</Text>
+				<Text face = "2">....I'm joking, relax.</Text>
+				<Text face = "2">Alright...I do have to inform you though.</Text>
+				<Text face = "2">Each of us can handle the ship's facilities up to varying degrees of efficiency</Text>
+				<Text face = "2">You made the right choice in getting me to handle the controls.</Text>
+				<Text face = "2">While getting someone else to operate the controls would not be too bad, I just happen to be the right person for the job.</Text>
+				<Text face = "2">Notice the type of the facility when you hover on it? You can use it to match with the crew's strengths</Text>
+				<Text face = "2">That's all from me I guess...you should go and check up on the Human...</Text>
 			</Texts>
 		</Dialog>
 	</Dialogs>	

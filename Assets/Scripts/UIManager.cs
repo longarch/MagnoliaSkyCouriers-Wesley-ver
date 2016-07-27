@@ -144,7 +144,7 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
-	public bool StartTutorialOpeningSequence()
+	public void StartTutorialOpeningSequence()
 	{
 		//openingPnl.gameObject.SetActive(false);
 		//txtOpeningText.gameObject.SetActive(false);
@@ -155,16 +155,19 @@ public class UIManager : MonoBehaviour {
 		sequence.Append(openingPnl.DOFade(0,1.0f));
 		//sequence.Insert(1.1f,txtOpeningText.rectTransform.DOAnchorPosY(800,1.0f,false));
 
+		//Force call again
 		sequence.OnComplete(() =>
 		                    {
 			//txtOpeningText.gameObject.SetActive(false);
 			openingPnl.gameObject.SetActive(false);
+			CutSceneManager.Instance.incrementSceneIndex();
+			CutSceneManager.Instance.animateScene();
 
 			//camera.orthographic = !currentMode;
 			//_spriteFeedback.SetActive (false);
 			//gameObject.SetActive(false);
 		});
-		return true;
+		//return false;
 	}
 
 	public void startOpeningSequence()

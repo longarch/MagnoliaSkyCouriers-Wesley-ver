@@ -37,6 +37,8 @@ public class Ship : MonoBehaviour
 	[SerializeField]
 	List<Facility> facilityList;
 
+	float invertAscent = 0.1f;
+
     // Use this for initialization
     void Start()
     {
@@ -94,6 +96,11 @@ public class Ship : MonoBehaviour
                 break;
         }
     }
+
+	void FixedUpdate()
+	{
+		//this.gameObject.transform.position = 
+	}
 
     private void shipDamages()
     {	//commented out the if....statement to test
@@ -196,13 +203,17 @@ public class Ship : MonoBehaviour
 
 		if (heightChangeTimer <= 0.0f) {
 			heightAscent = heightVariantChange();
-			heightChangeTimer = 15.0f; //Hard coded for now
+			heightChangeTimer = 5.0f; //Hard coded for now
+			invertAscent = invertAscent * -1;
 		}
+
+
 
 		//transform.position += new Vector3(1,heightAscent,0) * speed;
 		//position += new Vector3(1, 0,0) * speed;
 
 		position += Vector3.right * speed * Time.deltaTime;
+		position += Vector3.up * (speed * invertAscent) * Time.deltaTime;
 		//shipSpeedTxt.text = "Speed: " + (int)(speed * 15) + "km/h";
 		transform.position = position;
         //####Changes

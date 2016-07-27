@@ -72,18 +72,22 @@ public class CutSceneManager : MonoBehaviour {
 			DialogManager.Instance.setUpCutSceneDialog(0);
 			break;
 		case 1:
-			if (UIManager.Instance.StartTutorialOpeningSequence())
+			DialogManager.Instance.setUpCutSceneDialog(1);
+
+			break;
+		case 2:
+			UIManager.Instance.StartTutorialOpeningSequence();
+				/*
+			if ()
 			{
 				incrementSceneIndex();
 				animateScene();
 			}
-			break;
-		case 2:
-			DialogManager.Instance.setUpCutSceneDialog(1);
+			*/
 			break;
 		case 3:
-			
-
+			DialogManager.Instance.setUpCutSceneDialog(2);
+			TutorialGameManager.Instance.enableTutorialObject(0,true);
 
 			break;
 		case 4:
@@ -96,6 +100,8 @@ public class CutSceneManager : MonoBehaviour {
 
 			break;
 		}
+
+		Debug.Log ("Current scene at: " + _sceneIndex);
 	}
 
 

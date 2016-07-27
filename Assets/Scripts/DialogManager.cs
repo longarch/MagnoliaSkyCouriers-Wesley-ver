@@ -288,11 +288,12 @@ public class DialogManager : MonoBehaviour {
 		}
 
 
+
 		if (CutSceneManager.Instance.getIsCutScene()) {
 			CutSceneManager.Instance.incrementSceneIndex();
 			CutSceneManager.Instance.animateScene();
 		}
-		
+
 		
 	}
 

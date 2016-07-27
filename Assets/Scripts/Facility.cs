@@ -25,6 +25,7 @@ public class Facility : MonoBehaviour {
 	static bool isOver;
 	[SerializeField]
 	public GameObject actionIndicator1, actionIndicator2, actionIndicator3;
+	[SerializeField]
 	GameObject over;
 	static float actionDelay = 4f;
 	static bool actionOut;
@@ -138,11 +139,14 @@ public class Facility : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		testMouseEnter ();
+
 		if (!isOver) {
+			if (over != null)
+			{
 			if (actionOut) {
-				actionDelay -= Time.deltaTime;
-				if (actionDelay < 0.0f)
-					over.GetComponentInChildren<Facility> ().OnMouseExit ();
+				
+				over.GetComponentInChildren<Facility> ().OnMouseExit ();
+			}
 			}
 		}
 		if (isRepair) {
@@ -579,15 +583,22 @@ public class Facility : MonoBehaviour {
 		_healthHandler.AddOnKillCallback(callback);
 	}
 
-	public void OnMouseEnter(GameObject now){
+	public void OnMouseEnter(){
 		Debug.Log (this.name + "In");
+		DOTween.Complete (actionIndicator1.transform);
+		DOTween.Complete (actionIndicator2.transform);
+		DOTween.Complete (actionIndicator3.transform);
+
+		actionIndicator1.transform.localScale = new Vector3 (1, 1, 1);
+		actionIndicator2.transform.localScale = new Vector3 (1, 1, 1);
+		actionIndicator3.transform.localScale = new Vector3 (1, 1, 1);
 		actionIndicator1.SetActive(true);
 		actionIndicator1.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);
 		actionIndicator2.SetActive(true);
 		actionIndicator2.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);
 		actionIndicator3.SetActive(true);
 		actionIndicator3.transform.DOScale(new Vector3(3f, 3f, 3f), 1.0f);//*/
-		this.over = now;
+
 		actionOut = true;
 		isOver = true;
 	}
@@ -597,7 +608,7 @@ public class Facility : MonoBehaviour {
 			//return;
 		Debug.Log("Testing in out");
 
-		if (actionDelay <= 0) {
+	
 			Debug.Log (this.name + "out");
 			actionIndicator1.SetActive (false);
 			actionIndicator1.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
@@ -607,8 +618,8 @@ public class Facility : MonoBehaviour {
 			actionIndicator3.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 			actionOut = false;
 			actionDelay = 4f;
-			over = null;
-		}
+			
+
 	}
 
 	void testMouseEnter()
@@ -619,19 +630,22 @@ public class Facility : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast(Fieldcam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
 			_selectionLayerMask.value);
 		if (hit.collider != null) {
-			if (!isOver){
-			Debug.Log (hit.collider.name);
-			Debug.Log (hit.collider.name == this.name);
-				hit.collider.gameObject.GetComponentInChildren<Facility> ().OnMouseEnter (hit.collider.gameObject);//){
+
+			Debug.Log("hit something!");
+			if (!isOver && hit.collider.gameObject.name == this.gameObject.transform.parent.gameObject.name)
+			{
+				Debug.Log ("yes");
+				this.gameObject.GetComponentInChildren<Facility>().OnMouseEnter();
 			}
+
+
+
 		} else {
 			//Set a timer for the exit function
-			if (over == null)
-			{return;}
-			if (over.GetComponentInChildren<Facility> ().getIsOver()) {
-				//over.GetComponentInChildren<Facility> ().OnMouseExit ();
+			if (this.gameObject.GetComponentInChildren<Facility>().getIsOver())
+			{
 				isOver = false;
-			}//*/
+			}
 		}
 	}
 

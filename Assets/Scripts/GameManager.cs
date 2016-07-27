@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
 		//DialogManager.Instance.setUpDialog (0);
 
-		CutSceneManager.Instance.animateScene ();
+		//CutSceneManager.Instance.animateScene ();
 
 		_levelHandler = FindObjectOfType<LevelLoadHandler> ();
 

@@ -20,6 +20,10 @@ public class CameraFollow : MonoBehaviour
 	private Rect _boundsRect2D;
 	[SerializeField]
 	private float _smoothTime = 0.5f;
+
+	private float _camSize = 5.5f;
+
+	private float _camSizeScale = 1.0f;
 	
 	private Vector3 _positionDifference;
 	
@@ -115,6 +119,35 @@ public class CameraFollow : MonoBehaviour
 			}
 		}
 		transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref _velocity, _smoothTime);
+
+		Camera.main.orthographicSize = _camSize * _camSizeScale;
+
+		var d = Input.GetAxis("Mouse ScrollWheel");
+
+
+		if (d > 0f)
+		{
+
+			//Hard coded stuff
+			if (Camera.main.orthographicSize <= 8.0f)
+			{
+				_camSizeScale += 1 * Time.fixedDeltaTime;
+			}
+			// scroll up
+		}
+		else if (d < 0f)
+		{
+			// scroll down
+
+
+			//Hard coded stuff
+			if (Camera.main.orthographicSize >= 5.5f)
+			{
+				_camSizeScale -= 1 * Time.fixedDeltaTime;
+			}
+		}
+
+
 	}
 	
 	public void SetLocks(bool lockX, bool lockY, bool lockZ)

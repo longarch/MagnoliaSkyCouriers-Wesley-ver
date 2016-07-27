@@ -7,10 +7,20 @@ public class ScrollingBackground : MonoBehaviour {
 	float backgroundSpeed = 0.5f;
 	//float bgWidth =0;
 	Renderer render;
+
+	Ship ship;
 	// Use this for initialization
+
+	Vector3 BGPos;
+
 	void Start () {
 		render = gameObject.GetComponent<Renderer> ();
 	//	bgWidth = gameObject.GetComponent<Renderer>().bounds.size.x;
+
+		ship = GameObject.FindObjectOfType<Ship> ();
+
+		BGPos = this.gameObject.transform.position;
+
 	}
 
 	public void setBGSpeed(float i)
@@ -33,6 +43,14 @@ public class ScrollingBackground : MonoBehaviour {
 			//Vector2 pos = gameObject.transform.position + Camera.main.rect.position;
 			//pos.x +=  bgWidth;
 			//this.transform.position = pos;
+		}
+
+		if (ship != null) {
+			BGPos = new Vector3(ship.gameObject.transform.position.x,
+			                    this.gameObject.transform.position.y,
+			                    this.gameObject.transform.position.z);
+
+			this.gameObject.transform.position = BGPos;
 		}
 
 		/*

@@ -26,7 +26,7 @@ public class TutorialObjectScript : MonoBehaviour {
 	{
 		Debug.Log ("Touched something!");
 		//Trying to do something that is not current objective
-		if (tutorialIndex != _manager.getTutorialIndex ()) {
+		if (tutorialIndex != _manager.getTutorialIndex () && !_isComplete) {
 			if (other.gameObject.layer == LayerMask.NameToLayer ("Crew")) {
 				_isComplete = true;
 				notifyGameManager ();
