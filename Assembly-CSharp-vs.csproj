@@ -140,6 +140,7 @@
      <Compile Include="Assets\Scripts\EnemyPool.cs" />
      <Compile Include="Assets\Scripts\EventManager.cs" />
      <Compile Include="Assets\Scripts\Facility.cs" />
+     <Compile Include="Assets\Scripts\FacilityManager.cs" />
      <Compile Include="Assets\Scripts\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Goal.cs" />

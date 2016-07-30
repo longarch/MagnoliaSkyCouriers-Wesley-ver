@@ -45,6 +45,8 @@ public class BaseEnemy : MonoBehaviour {
 	private Rigidbody2D _rigidBody;
 
 
+	float randomSpeedTime = 3.0f;
+
 	protected Killable _healthHandler;
 
 	Ship _ship;
@@ -91,7 +93,7 @@ public class BaseEnemy : MonoBehaviour {
 		_chaseTime -= Time.deltaTime;
 		if (_chaseTime <= 0.0f) {
 			_chaseTime = 3.0f;
-			_chaseMultiplier = Random.Range(0.9f,1.2f);
+			//_chaseMultiplier = Random.Range(0.6f,0.9f);
 		}
 
     }
@@ -107,6 +109,10 @@ public class BaseEnemy : MonoBehaviour {
 		return Random.Range(min, max);
 	}
 
+	public void randomChaseMultiplier()
+	{
+		_chaseMultiplier = Random.Range(0.8f,1.2f);
+	}
 
     public void TakeDamage(int i)
     {
@@ -162,11 +168,12 @@ public class BaseEnemy : MonoBehaviour {
     public void moveEnemy()
     {
         heightChangeTimer -= Time.deltaTime;
-
+		randomSpeedTime -= Time.deltaTime;
         if (heightChangeTimer <= 0.0f)
         {
             heightAscent = heightVariantChange();
             heightChangeTimer = 5.0f; //Hard coded for now
+		
         }
 		if (isChasing) {
 
@@ -183,7 +190,8 @@ public class BaseEnemy : MonoBehaviour {
 			*/
 			if (Mathf.Abs(transform.position.x - player.transform.position.x) <= _closenessThreshold)
 			{
-				
+
+				Debug.Log ("Enemy finished chasing");
 				isChasing = false;
 				
 			}
@@ -207,7 +215,12 @@ public class BaseEnemy : MonoBehaviour {
 			}
 			else
 			{
-				speed = _ship.ShipSpeed * _chaseMultiplier ;
+				if (randomSpeedTime < 0.0f)
+				{
+					randomSpeedTime = 4.0f;
+					randomChaseMultiplier();
+					speed = _ship.ShipSpeed * _chaseMultiplier ;
+				}
 			}
 
 

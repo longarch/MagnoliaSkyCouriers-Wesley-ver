@@ -156,12 +156,12 @@ public class EnemyManager : MonoBehaviour {
 		}
 
 		//player = new Ship ();
-		/*
+
 		if (_enabled)
 		{
 			InvokeRepeating("Spawn", _spawnInterval, _spawnInterval);
 		}
-		*/
+
 	}
 
 	// Update is called once per frame
