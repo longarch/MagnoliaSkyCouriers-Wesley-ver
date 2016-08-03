@@ -27,7 +27,7 @@ public class Facility : MonoBehaviour {
 	public GameObject actionIndicator1, actionIndicator2, actionIndicator3;
 	[SerializeField]
 	GameObject over;
-	static float actionDelay = 4f;
+	static float actionDelay = 2f;
 	static bool actionOut;
 
 
@@ -138,17 +138,7 @@ public class Facility : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*testMouseEnter ();
 
-		if (!isOver) {
-			if (over != null)
-			{
-			if (actionOut) {
-				
-				over.GetComponentInChildren<Facility> ().OnMouseExit ();
-			}
-			}
-		}*/
 		if (isRepair) {
 			//Debug.Log ("fixing myself");
 			repairTime -= Time.deltaTime;
@@ -171,32 +161,35 @@ public class Facility : MonoBehaviour {
 			}
 		}
 
-
         if (!isWorking)
         {
             return;
         }
-        checkResource();
-        if (!isActivated)
-        {
-            if (needToReset)
-            {
-                resetOutputs();
-            }
-            return;
-        }
-        
-        if (!scanned)
-        {
-            if (facilityType == type.Combat || facilityType == type.Magic)
-                scanForTarget();
-        }
 
-
-
-        startFacility();
+		if (isActivated) {
+			if (!scanned)
+			{
+				if (facilityType == type.Combat || facilityType == type.Magic)
+					scanForTarget();
+			}
+			startFacility();
+		}
         // Always be checking for the resources
     }
+
+	public void CallActions()
+	{
+		checkResource();
+		if (!isActivated)
+		{
+			if (needToReset)
+			{
+				resetOutputs();
+			}
+			return;
+		}
+	}
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -250,6 +243,7 @@ public class Facility : MonoBehaviour {
 			efficiency --;
 			ApplyEfficiency();
             checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), false);
+			CallActions ();
         }
     }
 
@@ -270,7 +264,7 @@ public class Facility : MonoBehaviour {
                     rValue = 1;
                 break;
             case 2: //Race = Human
-                rValue = 1;
+                rValue = 2; //Human is to be at 1, 2 for testing
                 break;
             case 3: //Race = Wolfman
                 if (facilityType == type.Combat)
@@ -608,9 +602,9 @@ public class Facility : MonoBehaviour {
 	public void OnMouseExit(){
 		//if (!isOver)
 			//return;
-		Debug.Log("Testing in out");
-
-	
+		actionDelay -= Time.deltaTime;
+		if (actionDelay <= 0.0f) {
+			Debug.Log ("Testing in out");
 			Debug.Log (this.name + "out");
 			actionIndicator1.SetActive (false);
 			actionIndicator1.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
@@ -619,9 +613,9 @@ public class Facility : MonoBehaviour {
 			actionIndicator3.SetActive (false);
 			actionIndicator3.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 			actionOut = false;
-			actionDelay = 4f;
-		isOver = false;
-			
+			actionDelay = 2f;
+			isOver = false;
+		} 		
 
 	}
 
@@ -656,4 +650,10 @@ public class Facility : MonoBehaviour {
 	{
 		return isOver;
 	}
+
+	public bool getActionOut()
+	{
+		return actionOut;
+	}
+
 }

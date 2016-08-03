@@ -10,10 +10,11 @@ public class FacilityManager : MonoBehaviour {
 	[SerializeField]
 	Camera Fieldcam;
 	[SerializeField] private LayerMask _selectionLayerMask;
+	[SerializeField] private LayerMask _selectionLayerMask1;
 
 	[SerializeField]
 	bool[] isOver;
-	static float actionDelay = 4f;
+	static float actionDelay = 0.5f;
 	static bool actionOut;
 
 	int facil;
@@ -27,6 +28,8 @@ public class FacilityManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		ToggleActionIcon ();
+		//DelayForActions (); //Still nid to fix for delay of buttons for clicking
+		CheckActionAccessibility (); //Place holder currently for calling of actions
 
 		/*if (!isOver) {
 			if (over != null)
@@ -39,6 +42,56 @@ public class FacilityManager : MonoBehaviour {
 		}*/
 	}
 
+	void DelayForActions()
+	{
+		if (!isOver [0]) {
+			if (facilitiesList[0].GetComponentInChildren<Facility>().getActionOut()){
+				actionDelay -= Time.deltaTime;
+				if (actionDelay <= 0.0f) {
+					facilitiesList [0].GetComponentInChildren<Facility> ().OnMouseExit ();
+					actionDelay = 0.5f;
+				}
+			}
+		}
+		if (!isOver [1]) {
+			if (facilitiesList[1].GetComponentInChildren<Facility>().getActionOut()){
+				actionDelay -= Time.deltaTime;
+				if (actionDelay <= 0.0f) {
+					facilitiesList [1].GetComponentInChildren<Facility> ().OnMouseExit ();
+					actionDelay = 0.5f;
+				}
+			}
+		}
+		if (!isOver [2]) {
+			if (facilitiesList[2].GetComponentInChildren<Facility>().getActionOut()){
+				actionDelay -= Time.deltaTime;
+				if (actionDelay <= 0.0f) {
+					facilitiesList [2].GetComponentInChildren<Facility> ().OnMouseExit ();
+					actionDelay = 0.5f;
+				}
+			}
+		}
+		if (!isOver [3]) {
+			if (facilitiesList[3].GetComponentInChildren<Facility>().getActionOut()){
+				actionDelay -= Time.deltaTime;
+				if (actionDelay <= 0.0f) {
+					facilitiesList [3].GetComponentInChildren<Facility> ().OnMouseExit ();
+					actionDelay = 0.5f;
+				}
+			}
+		}
+		if (!isOver [4]) {
+			if (facilitiesList[4].GetComponentInChildren<Facility>().getActionOut()){
+				Debug.Log ("Delay = : " + actionDelay);
+				actionDelay -= Time.deltaTime;
+				if (actionDelay <= 0.0f) {
+					facilitiesList [4].GetComponentInChildren<Facility> ().OnMouseExit ();
+					actionDelay = 0.5f;
+				}
+			}
+		}
+	}
+
 
 	void ToggleActionIcon()
 	{
@@ -48,7 +101,6 @@ public class FacilityManager : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast(Fieldcam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
 			_selectionLayerMask.value);
 		if (hit.collider != null) {
-
 			Debug.Log("hit something!" + hit.collider.gameObject.name);
 			switch (hit.collider.gameObject.name) {
 			case "Engine":
@@ -98,6 +150,71 @@ public class FacilityManager : MonoBehaviour {
 				//isOver = false;
 			//}
 		}
+	}
+
+	void CheckActionAccessibility()
+	{
+		if (!facilitiesList [facil].GetComponentInChildren<Facility> ().getIsOver ()) {
+			return;
+		} else {
+			RaycastHit2D hit = Physics2D.Raycast(Fieldcam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
+				_selectionLayerMask1.value);
+			if (hit.collider != null) {
+				Debug.Log ("hit something!--Action " + hit.collider.gameObject.name);
+				Debug.Log ("hit something!--Action " + facilitiesList[facil].name + hit.collider.gameObject.name);
+				switch (hit.collider.gameObject.name) {
+				//Engine Actions
+				case "EngineAction1": //For Repair
+					//facilitiesList [0].GetComponentInChildren<Facility> ().CallActions ();
+					break;
+				case "EngineAction2": //For Operation
+					facilitiesList [0].GetComponentInChildren<Facility> ().CallActions ();
+					break;
+				case "EngineAction3":
+					break;
+					//Ship Control Actions
+				case "ControlAction1": //For Repair
+					break;
+				case "ControlAction2": //For Operation
+					facilitiesList [1].GetComponentInChildren<Facility> ().CallActions ();
+					break;
+				case "ControlAction3":
+					break;
+					//Magic Turret Actions
+				case "MagicAction1": //For Repair
+					break;
+				case "MagicAction2": //For Operation
+					facilitiesList [2].GetComponentInChildren<Facility> ().CallActions ();
+					break;
+				case "MagicAction3":
+					break;
+					//Shell Gun Actions
+				case "ShellAction1": //For Repair
+					break;
+				case "ShellAction2": //For Operation
+					facilitiesList [3].GetComponentInChildren<Facility> ().CallActions ();
+					break;
+				case "ShellAction3":
+					break;
+					//Ship Core Actions
+				case "CoreAction1": //For Repair
+					break;
+				case "CoreAction2": //For Operation
+					facilitiesList [4].GetComponentInChildren<Facility> ().CallActions ();
+					break;
+				case "CoreAction3":
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+
+	public void CallActions()
+	{
+		Debug.Log ("Test Actions");
+		facilitiesList [facil].GetComponentInChildren<Facility> ().CallActions ();
 	}
 
 }
