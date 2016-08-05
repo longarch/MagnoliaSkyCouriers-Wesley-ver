@@ -139,6 +139,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+	public float GetCountDownTimer()
+	{
+		return countDownTimer;
+	}
 
 
 	public void countDown()
@@ -150,6 +154,7 @@ public class GameManager : MonoBehaviour
 				gameObject.GetComponent<EnemyManager>().IsEnabled = true; //Turns on the enemy manager
 				gameMode = STATE.ONGOING;
 				setFollow(true);
+				NotificationManager.Instance.NotifyText("The game has started!");
 			}
 		}
 	}

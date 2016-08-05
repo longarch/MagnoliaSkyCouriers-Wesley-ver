@@ -32,6 +32,9 @@ public class CloudManager : MonoBehaviour
 		if (obj == null)
 			return;
 		obj.transform.position = new Vector2 (min.x + Random.Range (0.0f, 55.0f), Random.Range (min.y, max.y));
+
+		//Randomizes between 0 and 1 so as to make clouds sometimes cover the ship / enemy
+		obj.GetComponent<SpriteRenderer> ().sortingOrder = Random.Range (0, 2);
 		//obj.transform.rotation = transform.rotation;
 		obj.SetActive (true);
 	}

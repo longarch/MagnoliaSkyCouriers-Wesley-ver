@@ -23,6 +23,12 @@ public class CameraFollow : MonoBehaviour
 
 	private float _camSize = 5.5f;
 
+	[SerializeField]
+	private float _maxCamSize = 6;
+
+	[SerializeField]
+	private float _minCamSize = 5.5f;
+
 	private float _camSizeScale = 1.0f;
 	
 	private Vector3 _positionDifference;
@@ -129,7 +135,7 @@ public class CameraFollow : MonoBehaviour
 		{
 
 			//Hard coded stuff
-			if (Camera.main.orthographicSize <= 8.0f)
+			if (Camera.main.orthographicSize <= _maxCamSize)
 			{
 				_camSizeScale += 1 * Time.fixedDeltaTime;
 			}
@@ -141,7 +147,7 @@ public class CameraFollow : MonoBehaviour
 
 
 			//Hard coded stuff
-			if (Camera.main.orthographicSize >= 5.5f)
+			if (Camera.main.orthographicSize >= _minCamSize)
 			{
 				_camSizeScale -= 1 * Time.fixedDeltaTime;
 			}

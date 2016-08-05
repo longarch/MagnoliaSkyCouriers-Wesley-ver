@@ -1,16 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Facility.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraFollow.cs">
     <Files>
-      <File FileName="Assets\Scripts\FacilityManager.cs" Line="32" Column="79" />
-      <File FileName="Assets\Scripts\EnemyManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Facility.cs" Line="267" Column="65" />
-      <File FileName="Assets\Scripts\CameraFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Ship.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ScrollingBackground.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BaseEnemy.cs" Line="114" Column="43" />
-      <File FileName="Assets\Scripts\Movers\AstarMover.cs" Line="204" Column="5" />
-      <File FileName="Assets\Scripts\CrewController.cs" Line="15" Column="59" />
+      <File FileName="Assets\Scripts\NotificationManager.cs" Line="98" Column="1" />
+      <File FileName="..\..\..\Downloads\DynamicSizeGridThatWorks\DynamicSizeGrid\Assets\GridEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ContractsManager.cs" Line="38" Column="4" />
+      <File FileName="Assets\Scripts\BaseEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\enemyBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\enemyGun.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\enemyHealth.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemyPool.cs" Line="18" Column="2" />
+      <File FileName="Assets\Scripts\DialogManager.cs" Line="435" Column="75" />
+      <File FileName="Assets\Scripts\CameraFollow.cs" Line="29" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
