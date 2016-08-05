@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -29,7 +30,7 @@ public class FacilityManager : MonoBehaviour {
 	void Update () {
 		ToggleActionIcon ();
 		//DelayForActions (); //Still nid to fix for delay of buttons for clicking
-		CheckActionAccessibility (); //Place holder currently for calling of actions
+		//CheckActionAccessibility (); //Place holder currently for calling of actions
 
 		/*if (!isOver) {
 			if (over != null)
@@ -99,27 +100,32 @@ public class FacilityManager : MonoBehaviour {
 		//	return;
 		//}
 		RaycastHit2D hit = Physics2D.Raycast(Fieldcam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity,
-			_selectionLayerMask.value);
+			_selectionLayerMask1.value);
 		if (hit.collider != null) {
-			Debug.Log("hit something!" + hit.collider.gameObject.name);
+			Debug.Log("hit something! in FM " + hit.collider.gameObject.name);
 			switch (hit.collider.gameObject.name) {
-			case "Engine":
+			case "EngineHoverArea":
+			case "EngineActionIconBar":
 				facil = 0;
 				isOver[facil] = true;
 				break;
-			case "ShipControls":
+			case "ControlHoverArea":
+			case "ControlActionIconBar":
 				facil = 1;
 				isOver[facil] = true;
 				break;
-			case "Magicturret":
+			case "MagicHoverArea":
+			case "MagicActionIconBar":
 				facil = 2;
 				isOver[facil] = true;
 				break;
-			case "Shellgun":
+			case "ShellHoverArea":
+			case "ShellActionIconBar":
 				facil = 3;
 				isOver[facil] = true;
 				break;
-			case "ShipCore":
+			case "CoreHoverArea":
+			case "CoreActionIconBar":
 				facil = 4;
 				isOver[facil] = true;
 				break;

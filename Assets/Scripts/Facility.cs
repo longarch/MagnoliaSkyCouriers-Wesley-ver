@@ -25,6 +25,7 @@ public class Facility : MonoBehaviour {
 	static bool isOver;
 	[SerializeField]
 	public GameObject actionIndicator1, actionIndicator2, actionIndicator3;
+	[SerializeField] GameObject ActionBar;
 	[SerializeField]
 	GameObject over;
 	static float actionDelay = 2f;
@@ -89,9 +90,6 @@ public class Facility : MonoBehaviour {
         oriColor = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
         ResourcesCount = 0;
-		actionIndicator1.SetActive (false);
-		actionIndicator2.SetActive (false);
-		actionIndicator3.SetActive (false);
 		isOver = false;
         switch ((int)facilityType)
         {
@@ -577,7 +575,7 @@ public class Facility : MonoBehaviour {
 		_healthHandler.AddOnKillCallback(callback);
 	}
 
-	public void OnMouseEnter(){
+	public void OnMouseEnter2(){
 		if (!isOver) {
 			Debug.Log (this.name + "In");
 			DOTween.Complete (actionIndicator1.transform);
@@ -599,11 +597,37 @@ public class Facility : MonoBehaviour {
 		}
 	}
 
+	public void OnMouseEnter(){
+		if (!isOver) {
+			Debug.Log (this.name + "In");
+			ActionBar.SetActive(true);
+			/*DOTween.Complete (actionIndicator1.transform);
+			DOTween.Complete (actionIndicator2.transform);
+			DOTween.Complete (actionIndicator3.transform);
+
+			actionIndicator1.transform.localScale = new Vector3 (1, 1, 1);
+			actionIndicator2.transform.localScale = new Vector3 (1, 1, 1);
+			actionIndicator3.transform.localScale = new Vector3 (1, 1, 1);
+			actionIndicator1.SetActive (true);
+			actionIndicator1.transform.DOScale (new Vector3 (0.5f, 0.5f, 0.5f), 1.0f);
+			actionIndicator2.SetActive (true);
+			actionIndicator2.transform.DOScale (new Vector3 (0.5f, 0.5f, 0.5f), 1.0f);
+			actionIndicator3.SetActive (true);
+			actionIndicator3.transform.DOScale (new Vector3 (0.5f, 0.5f, 0.5f), 1.0f);//*/
+			actionOut = true;
+			isOver = true;
+		}
+	}
+
 	public void OnMouseExit(){
 		//if (!isOver)
 			//return;
 		actionDelay -= Time.deltaTime;
-		if (actionDelay <= 0.0f) {
+		ActionBar.SetActive (false);
+		actionOut = false;
+		actionDelay = 2f;
+		isOver = false;
+		/*if (actionDelay <= 0.0f) {
 			Debug.Log ("Testing in out");
 			Debug.Log (this.name + "out");
 			actionIndicator1.SetActive (false);
@@ -615,7 +639,7 @@ public class Facility : MonoBehaviour {
 			actionOut = false;
 			actionDelay = 2f;
 			isOver = false;
-		} 		
+		} 		//*/
 
 	}
 
