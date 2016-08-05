@@ -40,7 +40,7 @@ public class BaseEnemy : MonoBehaviour {
 	float _closenessThreshold = 5.0f;
 	float _tooCloseThreshold = 2.0f;
 	float _chaseMultiplier = 1.2f;
-	float _chaseTime = 3.0f; //Check every 3 seconds;
+	float _chaseTime = 5.0f; //Check every 3 seconds;
 
 	private Rigidbody2D _rigidBody;
 

@@ -92,6 +92,8 @@ public class EnemyManager : MonoBehaviour {
 			return _spawnEnemyTypes[Random.Range(0, _spawnEnemyTypes.Length)];
 		}
 	}
+	[SerializeField]
+	private Transform _startLocation;
 
 	[SerializeField]
 	private bool _enabled = true;
@@ -213,7 +215,10 @@ public class EnemyManager : MonoBehaviour {
 		
 		if (_spawnAtLocation)
 		{
-			spawnPosition = new Vector3(transform.position.x,transform.position.y - 6,transform.position.z);
+			//spawnPosition = new Vector3(transform.position.x,transform.position.y - 6,transform.position.z);
+
+			spawnPosition = _startLocation.position;
+
 		}
 		else
 		{

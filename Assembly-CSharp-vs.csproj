@@ -128,6 +128,7 @@
      <Compile Include="Assets\Scripts\CargoManager.cs" />
      <Compile Include="Assets\Scripts\CloudManager.cs" />
      <Compile Include="Assets\Scripts\CloudPool.cs" />
+     <Compile Include="Assets\Scripts\ContractsManager.cs" />
      <Compile Include="Assets\Scripts\Crew.cs" />
      <Compile Include="Assets\Scripts\CrewController.cs" />
      <Compile Include="Assets\Scripts\CrewDebugScript.cs" />
@@ -153,6 +154,7 @@
      <Compile Include="Assets\Scripts\Movers\AbstractMover.cs" />
      <Compile Include="Assets\Scripts\Movers\AstarMover.cs" />
      <Compile Include="Assets\Scripts\Movers\DirectMover.cs" />
+     <Compile Include="Assets\Scripts\NotificationManager.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Raider.cs" />
      <Compile Include="Assets\Scripts\ResourceUI.cs" />
