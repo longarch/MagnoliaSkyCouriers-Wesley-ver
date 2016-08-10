@@ -37,23 +37,29 @@ public class Ship : MonoBehaviour
 	[SerializeField]
 	List<Facility> facilityList;
 
+	[SerializeField]
+	bool _inGame;
+
 	float invertAscent = 0.1f;
 
     // Use this for initialization
     void Start()
     {
+
 		position = getPosition();
 		//currentHealth = 100;
-		healthImage.fillAmount = maxHealth;
+		if (_inGame) {
+			healthImage.fillAmount = maxHealth;
 
-		cargoHealthImage.fillAmount = maxHealth;
-		CargoManager.Instance.loadCargo ();
-		cargoHealth = CargoManager.Instance.getCargoHealth ("Cargo1");
-		healthTxt.text = "Health: " + currentHealth;
-		healthCap = currentHealth;
-        //####Changes
-        sLOS = Instantiate(sLOS, transform.position, Quaternion.identity) as GameObject;
-        sLOS.GetComponent<LineOfSight>().setAssigned(gameObject);
+			cargoHealthImage.fillAmount = maxHealth;
+			CargoManager.Instance.loadCargo ();
+			cargoHealth = CargoManager.Instance.getCargoHealth ("Cargo1");
+			healthTxt.text = "Health: " + currentHealth;
+			healthCap = currentHealth;
+			//####Changes
+			sLOS = Instantiate (sLOS, transform.position, Quaternion.identity) as GameObject;
+			sLOS.GetComponent<LineOfSight> ().setAssigned (gameObject);
+		}
     }
 
     // Update is called once per frame
@@ -61,40 +67,43 @@ public class Ship : MonoBehaviour
     {
 		// shipDamages (); //placed here to test
        // Debug.Log(Health);
-		GameManager.Instance.checkShipStatus(this,currentHealth);
-        switch(GameManager.Instance.getStatus())
-        {
-            case GameManager.STATE.START: //Starting
-				moveShipHeight();
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    GameManager.Instance.setStatus(GameManager.STATE.ONGOING);
-                    GameManager.Instance.setFollow(true);
-                }
-                break;
+
+		if (_inGame) {
+			GameManager.Instance.checkShipStatus (this, currentHealth);
+			switch (GameManager.Instance.getStatus ()) {
+			case GameManager.STATE.START: //Starting
+				moveShipHeight ();
+				if (Input.GetKeyDown (KeyCode.Space)) {
+					GameManager.Instance.setStatus (GameManager.STATE.ONGOING);
+					GameManager.Instance.setFollow (true);
+				}
+				break;
 			case GameManager.STATE.ONGOING: // On Route Stage
-				moveShip();
+				moveShip ();
 			/*
                 if (UnityEngine.Random.Range(0, 1) > 4) //Random change to eventmode...will not be in here
                     GameManager.Instance.setStatus(GameManager.STATE.EVENT);
                 else 
                     moveShip();
             */
-                break;
+				break;
 			case GameManager.STATE.EVENT: // Event Stage
-                shipDamages();
+				shipDamages ();
 				if (Input.GetButtonDown ("FIRE1")) {
-				//takeDamage(5);
+					//takeDamage(5);
 				}
-                break;
+				break;
 			case GameManager.STATE.CARGOLOST:
-				startLoseSequence();
+				startLoseSequence ();
 
 				break;
-            case GameManager.STATE.GOAL: //Reached Goal
-                GameManager.Instance.setFollow(false);
-                break;
-        }
+			case GameManager.STATE.GOAL: //Reached Goal
+				GameManager.Instance.setFollow (false);
+				break;
+			}
+		} else {
+			hoverShip();
+		}
     }
 
 	void FixedUpdate()
@@ -178,6 +187,8 @@ public class Ship : MonoBehaviour
 		}
 	}
 
+
+
 	public void moveShipHeight()
 	{    
 		heightChangeTimer -= Time.deltaTime;
@@ -194,6 +205,26 @@ public class Ship : MonoBehaviour
 		position = gameObject.transform.position;
 		transform.position = position;
 		//Debug.Log("Distance left : " + distance);
+
+	}
+
+	public void hoverShip()
+	{
+
+		//gameObject.transform.DOMove(
+
+
+		heightChangeTimer -= Time.deltaTime;
+		
+		if (heightChangeTimer <= 0.0f) {
+			heightAscent = heightVariantChange();
+			heightChangeTimer = 5.0f; //Hard coded for now
+			invertAscent = invertAscent * -1;
+		}
+
+		position += Vector3.up * (speed * invertAscent) * Time.deltaTime;
+		//shipSpeedTxt.text = "Speed: " + (int)(speed * 15) + "km/h";
+		transform.position = position;
 
 	}
 
@@ -238,6 +269,10 @@ public class Ship : MonoBehaviour
 		return Random.Range (-1.5f,1.5f);
 
 	}		
+	public void setPosition(Vector3 pos)
+	{
+		position = pos;
+	}
 
 	public Vector3 getPosition()
 	{
