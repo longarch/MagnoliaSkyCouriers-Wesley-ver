@@ -177,6 +177,7 @@ public class Facility : MonoBehaviour {
 
 	public void CallActions()
 	{
+		Debug.Log ("Called the action");
 		checkResource();
 		if (!isActivated)
 		{
@@ -576,6 +577,7 @@ public class Facility : MonoBehaviour {
 	}
 
 	public void OnMouseEnter2(){
+		//Not used currently
 		if (!isOver) {
 			Debug.Log (this.name + "In");
 			DOTween.Complete (actionIndicator1.transform);
@@ -601,19 +603,20 @@ public class Facility : MonoBehaviour {
 		if (!isOver) {
 			Debug.Log (this.name + "In");
 			ActionBar.SetActive(true);
-			/*DOTween.Complete (actionIndicator1.transform);
+			//*
+			DOTween.Complete (actionIndicator1.transform);
 			DOTween.Complete (actionIndicator2.transform);
 			DOTween.Complete (actionIndicator3.transform);
 
-			actionIndicator1.transform.localScale = new Vector3 (1, 1, 1);
-			actionIndicator2.transform.localScale = new Vector3 (1, 1, 1);
-			actionIndicator3.transform.localScale = new Vector3 (1, 1, 1);
+			actionIndicator1.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
+			actionIndicator2.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
+			actionIndicator3.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
 			actionIndicator1.SetActive (true);
-			actionIndicator1.transform.DOScale (new Vector3 (0.5f, 0.5f, 0.5f), 1.0f);
+			actionIndicator1.transform.DOScale (new Vector3 (0.3f, 0.3f, 0.3f), 0.5f);
 			actionIndicator2.SetActive (true);
-			actionIndicator2.transform.DOScale (new Vector3 (0.5f, 0.5f, 0.5f), 1.0f);
+			actionIndicator2.transform.DOScale (new Vector3 (0.3f, 0.3f, 0.3f), 0.5f);
 			actionIndicator3.SetActive (true);
-			actionIndicator3.transform.DOScale (new Vector3 (0.5f, 0.5f, 0.5f), 1.0f);//*/
+			actionIndicator3.transform.DOScale (new Vector3 (0.3f, 0.3f, 0.3f), 0.5f);//*/
 			actionOut = true;
 			isOver = true;
 		}
@@ -678,6 +681,14 @@ public class Facility : MonoBehaviour {
 	public bool getActionOut()
 	{
 		return actionOut;
+	}
+
+	public void repairFacility()
+	{
+		_healthHandler.Reset();
+		_healthHandler.Health = MaximumHealth;
+		_healthHandler.MaximumHealth = MaximumHealth;
+		repairTime = repairCap;
 	}
 
 }
