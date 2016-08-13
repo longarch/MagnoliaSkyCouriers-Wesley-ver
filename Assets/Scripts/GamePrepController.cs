@@ -16,6 +16,17 @@ public class GamePrepController : MonoBehaviour {
 	[SerializeField]
 	RectTransform _contractsContainer;
 
+	[SerializeField]
+	ContractsManager _contractManager;
+
+	[SerializeField]
+	MapManager _mapManager;
+
+	[SerializeField]
+	Image _acceptedIcon;
+
+	Contract _acceptedContract;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -42,11 +53,45 @@ public class GamePrepController : MonoBehaviour {
 			_menuPanel.DOAnchorPos(new Vector2(0,0),0.5f,false);
 			_contractsPanel.gameObject.SetActive(true);
 			_contractsContainer.DOAnchorPos(new Vector2(-460,0),0.5f,false);
+			_contractManager.displayContract();
+
 			//camera.orthographic = !currentMode;
 			//_spriteFeedback.SetActive (false);
 			//gameObject.SetActive(false);
 		});
 
+
+	}
+
+	public void AcceptContract()
+	{
+		_acceptedIcon.gameObject.SetActive (true);
+		Sequence sequence = DOTween.Sequence();
+		sequence.Insert(0.1f,_acceptedIcon.DOFade (1.0f, 0.5f));
+		sequence.Insert(0.1f,_acceptedIcon.rectTransform.DOScale (new Vector3(1,1,1), 0.5f));
+
+		sequence.OnComplete(() =>
+		                    {
+			StartCoroutine("SetDelay");
+
+
+			
+			
+			
+		});
+		_acceptedContract = _contractManager.getCurrentContract();
+		AnalyseContract ();
+	}
+
+	public void AnalyseContract()
+	{
+		_mapManager.VisualizeContract (_acceptedContract.getDestinationID ());
+	}
+
+	IEnumerator SetDelay() {
+
+		yield return new WaitForSeconds(1.0f);
+		_acceptedIcon.gameObject.SetActive (false);
 
 	}
 

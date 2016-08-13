@@ -1,46 +1,94 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 
 public class ContractsManager : MonoBehaviour {
 
 	XmlDocument xmlDoc;
+	[SerializeField]
 	TextAsset contractXML;
+
+	List<Contract> _contractPool;
+
+	[SerializeField]
+	int currentLocaleID = 0;
+
+	[SerializeField]
+	Text _ContractsTitle;
+
+	[SerializeField]
+	Text _ContractsObjective;
+
+	[SerializeField]
+	Text _ContractsSubObjective;
+
+	int _currentContractID = 0;
 
 	// Use this for initialization
 	void Start () {
-	
+
+		_contractPool = new List<Contract> ();
+		loadXMLFromAsset (currentLocaleID);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+	public Contract getCurrentContract()
+	{
+		return _contractPool [_currentContractID];
+	}
+
+	public void displayContract()
+	{
+
+		_ContractsTitle.text = _contractPool [_currentContractID].getContractName ();
+		_ContractsObjective.text = _contractPool [_currentContractID].getContractDescription ();
+	}
+
 	// Following method load xml file from resouces folder under Assets
-	private void loadXMLFromAsset()
+	private void loadXMLFromAsset(int ID)
 	{
 		//TextAsset tipsFile = (TextAsset)Resources.Load("Projects", typeof(TextAsset));
 		xmlDoc = new XmlDocument();
 		xmlDoc.LoadXml (contractXML.text);
 
-		foreach (XmlElement node in xmlDoc.SelectNodes("ContractsCollection/Contracts")) {
+		foreach (XmlElement node in xmlDoc.SelectNodes("ContractsColle/Contracts/Contract")) {
 
-			Contract c = new Contract();
 
-			c.setContractID(int.Parse(node.SelectSingleNode("Contract").InnerText));
-			c.setCargoHealth(int.Parse(node.SelectSingleNode("Contract").InnerText));
-			c.setContractDescription(node.SelectSingleNode("Contract").InnerText);
+			if (int.Parse(node.SelectSingleNode("ID").InnerText) == ID)
+			{
+				Debug.Log ("Found something!");
+				Contract c = new Contract();
 
-			c.setContractDifficulty(int.Parse(node.SelectSingleNode("Contract").InnerText));
+				c.setContractName(node.Attributes[0].Value);
+				c.setCargoHealth(int.Parse(node.SelectSingleNode("CargoHealth").InnerText));
+
+				
+				c.setContractDifficulty(int.Parse(node.SelectSingleNode("Difficulty").InnerText));
+				c.setContractDescription(node.SelectSingleNode("Description").InnerText);
+				
+				c.setContractType(int.Parse(node.SelectSingleNode("Type").InnerText));
+				c.setDestinationID(int.Parse(node.SelectSingleNode("DestinationID").InnerText));
 			
-			c.setContractType(int.Parse(node.SelectSingleNode("Contract").InnerText));
+				_contractPool.Add(c);
+
+
+			}
+
+
+
+
+		
 
 		}
 
-		//xmlDoc.Load( Application.persistentDataPath + "/Resources/Projects.xml" );
-		//TextAsset tipsFile = Resources.Load("CatData") as TextAsset;
-		//xmlDoc.Load(tipsFile.text);
-		//xmlDoc.Load(tipsFile.text);
+		Debug.Log ("No of contracts found: " + _contractPool.Count);
+	
 	}
 }
 
@@ -48,10 +96,11 @@ public class Contract {
 
 
 	private int _contractID;
+	private string _contractName;
 	private string _contractDescription;
 	private int _cargoHealth;
 	private int _contractDifficulty;
-
+	private int _destinationID;
 	public enum ContractType
 	{
 		General,
@@ -65,6 +114,27 @@ public class Contract {
 	public Contract()
 	{
 		_contractType = ContractType.General;
+	}
+
+	public void setContractName(string s)
+	{
+		_contractName = s;
+	}
+
+	public string getContractName()
+	{
+		return _contractName;
+	}
+
+	public void setDestinationID(int i)
+	{
+		_destinationID = i;
+
+	}
+
+	public int getDestinationID()
+	{
+		return _destinationID;
 	}
 
 	public void setContractType(int i)

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContractsColle>
+	<Contracts>
+		<Contract name = "Package Delivery">
+			<ID>0</ID>
+			<CargoHealth>50</CargoHealth>
+			<Difficulty>1</Difficulty>
+			<Description>I need this package delivered to port Vannet, it's nothing special, but I hope its contents are not damaged too badly during transit.</Description>
+			<Objectives>
+				<Objective>Deliver the package successfully</Objective>
+			</Objectives>
+			<SubObjectives>
+				<SubObjective type = "1">Package has more than 25 health remaining upon delivery</SubObjective>
+			</SubObjectives>
+			<Type>1</Type>
+			<DestinationID>2</DestinationID>
+		</Contract>
+	</Contracts>
+	<Contracts>
+		<Contract name = "Jewel Rush!">
+			<ID>0</ID>
+			<CargoHealth>100</CargoHealth>
+			<Difficulty>5</Difficulty>
+			<Description>Jewels are in a prime season! Unfortunately my branch at Salas city is understocked of it. I need someone whom can get there fast with the goods intact!</Description>
+			<Objectives>
+				<Objective>Deliver the jewel cargo successfully</Objective>
+			</Objectives>
+			<SubObjectives>
+				<SubObjective type = "2">Reach and deliver the goods in 2 days time.</SubObjective>
+			</SubObjectives>
+			<Type>1</Type>
+			<DestinationID>2</DestinationID>
+		</Contract>
+	</Contracts>		
+</ContractsColle>
+

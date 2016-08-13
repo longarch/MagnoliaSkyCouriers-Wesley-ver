@@ -66,6 +66,7 @@
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Resources\Dialogs\DialogTest.xml" />
      <None Include="Assets\Resources\Dialogs\Dialog_Tutorial.xml" />
+     <None Include="Assets\Resources\Contracts\Contracts.xml" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
      <None Include="Assets\Resources\Dialogs\Dialog_AssessmentScene.xml" />

@@ -34,7 +34,7 @@ public class AreaNode : MonoBehaviour {
 	
 	}
 
-	void setIsContract(bool b)
+	public void setIsContract(bool b)
 	{
 		if (ContractSprite != null) {
 			ContractSprite.SetActive (b);

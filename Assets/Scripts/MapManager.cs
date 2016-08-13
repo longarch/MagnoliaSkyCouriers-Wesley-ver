@@ -64,9 +64,9 @@ public class MapManager : MonoBehaviour {
 		                 
 	}
 
-	public void VisualizeContract(AreaNode node)
+	public void VisualizeContract(int nodeID)
 	{
-
+		_areaNodes [nodeID].setIsContract (true);
 	}
 
 
