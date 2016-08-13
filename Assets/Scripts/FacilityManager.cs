@@ -149,6 +149,7 @@ public class FacilityManager : MonoBehaviour {
 			if (facil != -1) {
 				if (isOver[facil]) {
 					facilitiesList [facil].GetComponentInChildren<Facility> ().OnMouseEnter ();
+					facilitiesList [facil].GetComponentInChildren<HealthUI> ().ShowUI();
 				}
 			}
 		} else {
@@ -156,6 +157,7 @@ public class FacilityManager : MonoBehaviour {
 				isOver [i] = false;
 				if (facil != -1) {
 					facilitiesList [facil].GetComponentInChildren<Facility> ().OnMouseExit ();
+					facilitiesList [facil].GetComponentInChildren<HealthUI> ().HideUI();
 				}
 			}
 		}

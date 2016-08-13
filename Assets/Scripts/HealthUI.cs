@@ -104,6 +104,7 @@ public class HealthUI : MonoBehaviour
 			
 			_baseWidth = _foregroundImage.rectTransform.sizeDelta.x;
 		}
+		HideUI ();
 		
 	}
 	
@@ -125,6 +126,12 @@ public class HealthUI : MonoBehaviour
 	{
 		_backgroundImage.color = new Color(1, 1, 1, 0);
 		_foregroundImage.color = new Color(1, 1, 1, 0);
+	}
+
+	public void ShowUI()
+	{
+		_backgroundImage.color = new Color(1, 1, 1, 1);
+		_foregroundImage.color = new Color(1, 0, 0, 1);
 	}
 	
 	// Update is called once per frame
