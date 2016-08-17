@@ -261,9 +261,9 @@ public class EnemyManager : MonoBehaviour {
 						_spawns++;
 						_currentInScene++;
 						enemy.Add (_baseEnemy);
+						Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (spawnedObject.name + " spawned");
 
 					}).AppendInterval(setting.BurstInterval).SetLoops(spawnAmount);
-					Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (spawnedObject.name + " spawned");
 					break;
 				}
 			}

@@ -185,6 +185,7 @@ public class Facility : MonoBehaviour {
 		{
 			if (needToReset)
 			{
+				//Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (this.name + " deactivating.");
 				resetOutputs();
 			}
 			return;
@@ -219,6 +220,7 @@ public class Facility : MonoBehaviour {
 			efficiency ++;
 			ApplyEfficiency();
             checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), true);
+			Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (other.gameObject.GetComponent<Crew>().getRace() + " assigned to " + this.name);
         }
         //Debug.Log(assignedCrews);
     }
@@ -244,6 +246,7 @@ public class Facility : MonoBehaviour {
 			efficiency --;
 			ApplyEfficiency();
             checkRaceVsType((int)other.gameObject.GetComponent<Crew>().getRace(), false);
+			Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (other.gameObject.GetComponent<Crew>().getRace() + " left " + this.name);
 			CallActions ();
         }
     }
@@ -291,12 +294,15 @@ public class Facility : MonoBehaviour {
         {
             isActivated = true;
             gameObject.GetComponent<SpriteRenderer>().DOColor(oriColor, 0.5f);
-			Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (this.name + " Activated.");
+			Notifier.GetComponentInChildren<NotificationManager> ().NotifyText ("Resources Condition met. " + this.name + " Activating.");
            // Debug.Log(name + " is working");
         } else {
-            isActivated = false;
-            gameObject.GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.5f);
-            needToReset = true;
+			if (isActivated) {
+				isActivated = false;
+				gameObject.GetComponent<SpriteRenderer> ().DOColor (Color.gray, 0.5f);
+				needToReset = true;
+				Notifier.GetComponentInChildren<NotificationManager> ().NotifyText ("Resources Condition lost. " + this.name + " deactivating.");
+			}
         }
         //Debug.Log(gameObject.name + " has tis many : " + ResourcesNeeded);
     }
@@ -389,6 +395,7 @@ public class Facility : MonoBehaviour {
                     {
 						//eventEnemies.enemy.RemoveAt(0);
                         target.Targeted = false;
+					Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (target.name + " shot down.");
                         target.gameObject.SetActive(false);
                         delay = atkDelay;
                         scanned = false;
@@ -409,6 +416,7 @@ public class Facility : MonoBehaviour {
                     {
                         //eventEnemies.enemy.RemoveAt(0);
                         target.Targeted = false;
+					Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (target.name + " shot down.");
                         target.gameObject.SetActive(false);
                         delay = atkDelay;
                         scanned = false;
@@ -537,6 +545,14 @@ public class Facility : MonoBehaviour {
 			bullet.GetComponent<enemyBullet>().setBulletSpeed(0.5f);
 			bullet.GetComponent<enemyBullet>().setDirection(direction);
 			AudioController.Instance.PlayPunchSound();
+			switch ((int)facilityType) {
+			case 0: //Magic
+				Notifier.GetComponentInChildren<NotificationManager> ().NotifyText ("Firing magic gun.");
+				break;
+			case 1: // Combat
+				Notifier.GetComponentInChildren<NotificationManager> ().NotifyText ("Firing shell gun.");
+				break;
+			}
             //Debug.Log(direction);
         }
         else {
