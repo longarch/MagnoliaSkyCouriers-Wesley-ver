@@ -43,6 +43,8 @@ public class Facility : MonoBehaviour {
     private type facilityType;
 	[SerializeField]
 	private ScrollingBackground SkyBG; //To be used to indirectly manipulate scroll speed
+	[SerializeField]
+	GameObject Notifier;
 
     private BaseEnemy target;
 
@@ -289,6 +291,7 @@ public class Facility : MonoBehaviour {
         {
             isActivated = true;
             gameObject.GetComponent<SpriteRenderer>().DOColor(oriColor, 0.5f);
+			Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (this.name + " Activated.");
            // Debug.Log(name + " is working");
         } else {
             isActivated = false;
@@ -560,9 +563,11 @@ public class Facility : MonoBehaviour {
 		_healthHandler.Health -= dmg;
 		_healthHandler.Health = Mathf.Clamp(_healthHandler.Health, 0, _healthHandler.MaximumHealth);
         fHealth -= dmg;
+		Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (this.name + " took " + dmg + " damage");
 		if (_healthHandler.Health <= 0)
         {
             gameObject.GetComponent<SpriteRenderer>().DOColor(Color.black, 0.5f);
+			Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (this.name + " has 0 health. Deactivating");
 			efficiency = 0;
             isWorking = false;
 			isRepair = true;
@@ -689,6 +694,7 @@ public class Facility : MonoBehaviour {
 		_healthHandler.Health = MaximumHealth;
 		_healthHandler.MaximumHealth = MaximumHealth;
 		repairTime = repairCap;
+		Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (this.name + " repairing.");
 	}
 
 }

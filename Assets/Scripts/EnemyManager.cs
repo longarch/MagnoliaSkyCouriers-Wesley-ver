@@ -109,6 +109,8 @@ public class EnemyManager : MonoBehaviour {
 	private EnemySpawnSettings[] _spawnSettings;
 	[SerializeField]
 	private GameObject _spawnObject;
+	[SerializeField]
+	GameObject Notifier;
 
 	public BaseEnemy enemies;
 	float eventTime = 5.0f, spawnTime;
@@ -261,7 +263,7 @@ public class EnemyManager : MonoBehaviour {
 						enemy.Add (_baseEnemy);
 
 					}).AppendInterval(setting.BurstInterval).SetLoops(spawnAmount);
-					
+					Notifier.GetComponentInChildren<NotificationManager> ().NotifyText (spawnedObject.name + " spawned");
 					break;
 				}
 			}

@@ -40,6 +40,9 @@ public class Ship : MonoBehaviour
 	[SerializeField]
 	bool _inGame;
 
+	[SerializeField]
+	GameObject Notifier;
+
 	float invertAscent = 0.1f;
 
     // Use this for initialization
@@ -154,6 +157,7 @@ public class Ship : MonoBehaviour
 			healthTxt.text = "Health: " + currentHealth;
 			DOTween.Complete(innerCam.transform);
 			innerCam.transform.DOShakePosition(0.5f, 5.0f, 30);
+			Notifier.GetComponentInChildren<NotificationManager> ().NotifyText ("Ship took " + i + " damage");
 		}
 	}
 
