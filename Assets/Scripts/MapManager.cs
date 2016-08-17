@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 public class MapManager : MonoBehaviour {
 
@@ -49,10 +50,18 @@ public class MapManager : MonoBehaviour {
 	
 	}
 
+
+
 	public void moveShipToLocation(AreaNode node)
 	{
 
+
+
+
+
 		Sequence sequence = DOTween.Sequence();
+
+
 
 
 		sequence.Append(_ship.transform.DOMove (new Vector3 (node.transform.position.x, node.transform.position.y, 0), 0.5f, false));

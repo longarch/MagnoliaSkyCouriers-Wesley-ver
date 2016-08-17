@@ -26,7 +26,7 @@
 				<Objective>Deliver the jewel cargo successfully</Objective>
 			</Objectives>
 			<SubObjectives>
-				<SubObjective type = "2">Reach and deliver the goods in 2 days time.</SubObjective>
+				<SubObjective type = "2" day = "2">Reach and deliver the goods in 2 days time.</SubObjective>
 			</SubObjectives>
 			<Type>1</Type>
 			<DestinationID>2</DestinationID>

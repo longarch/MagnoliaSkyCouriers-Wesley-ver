@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public class NodeLineDrawer : MonoBehaviour {
 	
@@ -29,17 +30,27 @@ public class NodeLineDrawer : MonoBehaviour {
 		for (int i = 0; i < goalNodes.Count; i++) {
 			_tempLine = Instantiate (_progressLineRendererPrefab).gameObject.GetComponent<LineRenderer> ();
 
+			_tempLine.transform.position = Vector3.Lerp(startNode.transform.position, goalNodes[i].transform.position,0.5f);
+
+			//Route _routeInfo = _tempLine.gameObject.AddComponent<Route>( ) as Route;
+
+			_tempLine.GetComponent<Route>().FitColliderToChildren(startNode.transform.position,goalNodes[i].transform.position);
+			//_tempLine.gameObject.GetComponent<EventTrigger>().triggers.a
 			_instantLine.Add(_tempLine);
 		}
-		
+
+		for (int i = 0; i < _instantLine.Count; i ++) {
+			DrawActualLine (i,goalNodes[i]);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		/*
 		for (int i = 0; i < _instantLine.Count; i ++) {
 			DrawActualLine (i,goalNodes[i]);
-		}
+		}*/
 	}
 	
 	
@@ -63,6 +74,11 @@ public class NodeLineDrawer : MonoBehaviour {
 			_instantLine[lineID].material.mainTextureOffset = lineOffset;
 
 		}
+	}
+
+	private void animateLine()
+	{
+
 	}
 
 }

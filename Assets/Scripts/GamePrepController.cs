@@ -27,6 +27,27 @@ public class GamePrepController : MonoBehaviour {
 
 	Contract _acceptedContract;
 
+	[SerializeField]
+	Text _routeName, _routeStatus, _routeDescription, _routeDaysEstimate;
+
+	private static GamePrepController _instance = null;
+
+	public static GamePrepController Instance //can call from any other class w/o reference
+	{
+		get { return _instance; }
+	}
+
+	void Awake()
+	{
+		if (_instance != null && _instance != this)
+		{
+			Destroy(gameObject);
+		}
+		_instance = this;
+		
+		
+	}
+
 	// Use this for initialization
 	void Start () {
 	
@@ -117,5 +138,13 @@ public class GamePrepController : MonoBehaviour {
 
 
 		});
+	}
+
+	public void DisplayRouteInfo(string routeName, string routeDescription, string routeStatus, string routeEsti)
+	{
+		_routeName.text = routeName;
+		_routeDescription.text = routeDescription;
+		_routeStatus.text = routeStatus;
+		_routeDaysEstimate.text = routeEsti;
 	}
 }

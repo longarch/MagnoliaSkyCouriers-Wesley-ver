@@ -1,21 +1,31 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Facility.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Route.cs">
     <Files>
+<<<<<<< HEAD
       <File FileName="Assets\Scripts\NotificationManager.cs" Line="54" Column="29" />
+=======
+      <File FileName="Assets\Scripts\Route.cs" Line="47" Column="5" />
+>>>>>>> origin/master
       <File FileName="Assets\Scripts\ContractsManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GamePrepController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Contracts\Contracts.xml" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GamePrepController.cs" Line="49" Column="3" />
       <File FileName="Assets\Scripts\ScrollingBackground.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FacilityManager.cs" Line="160" Column="74" />
-      <File FileName="Assets\Scripts\MapManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FacilityManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MapManager.cs" Line="31" Column="3" />
       <File FileName="Assets\Scripts\AreaNode.cs" Line="1" Column="1" />
+<<<<<<< HEAD
       <File FileName="Assets\Scripts\Facility.cs" Line="10" Column="66" />
       <File FileName="Assets\Scripts\DialogManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\NodeLineDrawer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\HealthUI.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EnemyManager.cs" Line="286" Column="3" />
       <File FileName="Assets\Scripts\Ship.cs" Line="43" Column="2" />
+=======
+      <File FileName="Assets\Scripts\Facility.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DialogManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\NodeLineDrawer.cs" Line="33" Column="76" />
+      <File FileName="Assets\Scripts\HealthUI.cs" Line="1" Column="1" />
+>>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
