@@ -1,18 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Facility.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Route.cs">
     <Files>
+      <File FileName="Assets\Scripts\Route.cs" Line="47" Column="5" />
       <File FileName="Assets\Scripts\ContractsManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GamePrepController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Contracts\Contracts.xml" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GamePrepController.cs" Line="49" Column="3" />
       <File FileName="Assets\Scripts\ScrollingBackground.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FacilityManager.cs" Line="160" Column="74" />
-      <File FileName="Assets\Scripts\MapManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FacilityManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MapManager.cs" Line="31" Column="3" />
       <File FileName="Assets\Scripts\AreaNode.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Facility.cs" Line="528" Column="53" />
+      <File FileName="Assets\Scripts\Facility.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\DialogManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NodeLineDrawer.cs" Line="35" Column="3" />
-      <File FileName="Assets\Scripts\HealthUI.cs" Line="135" Column="3" />
+      <File FileName="Assets\Scripts\NodeLineDrawer.cs" Line="33" Column="76" />
+      <File FileName="Assets\Scripts\HealthUI.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
